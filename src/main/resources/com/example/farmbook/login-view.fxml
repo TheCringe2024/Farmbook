@@ -16,8 +16,11 @@
     <TextField fx:id="usernameField"/>
 
     <Label text="Password:"/>
-    <TextField fx:id="passwordField"/>
+    <PasswordField fx:id="passwordField"/>
 
-    <Button text="Login" onAction="#onLoginCLick"/>
+    <Button fx:id="logonButton"
+            text="Login"
+            onAction="#onLoginCLick"/>
+
     <Label fx:id="accessLabel"/>
 </VBox>
