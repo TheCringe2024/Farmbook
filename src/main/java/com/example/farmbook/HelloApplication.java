@@ -48,7 +48,16 @@ public class HelloApplication extends Application {
             return;
         }
 
-        changeScene("home-view.fxml");
+        var root = HomePage_application.createContent(() -> {
+            try {
+                showSettings();
+            } catch (IOException exception) {
+                throw new java.io.UncheckedIOException(
+                        "Unable to open Settings", exception);
+            }
+        });
+
+        primaryStage.setScene(new Scene(root, 800, 600));
     }
 
     public static void showSettings() throws IOException {
