@@ -114,9 +114,29 @@ public class HomePage_application extends Application {
         root.setTop(topSection);
         root.setCenter(mainSection);
 
-        Scene scene = new Scene(root, 800, 600);
-        stage.setScene(scene);
+        // --- NAVIGATION LOGIC ---
+        Scene homeScene = new Scene(root, 800, 600);
+
+        cropsButton.setOnAction(e -> {
+            stage.setScene(CropUI.getScene(stage, homeScene));
+        });
+
+        cropsBodyButton.setOnAction(e -> {
+            stage.setScene(CropUI.getScene(stage, homeScene));
+        });
+
+        exitButton.setOnAction(e -> stage.close());
+
+        // Sets scene
+        stage.setScene(homeScene);
         stage.show();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        // Kill Database connection when stopped
+        DBConnection.getInstance().close();
+        super.stop();
     }
 
     public static void main(String[] args) {
