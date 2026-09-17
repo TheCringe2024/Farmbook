@@ -9,6 +9,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.util.HashMap;
+import java.util.Map;
+import javafx.scene.chart.PieChart;
+
 public class CropUI {
 
     private static CropDAO cropDAO = new CropDAO();
@@ -44,6 +48,16 @@ public class CropUI {
         table.getColumns().addAll(idCol, nameCol, typeCol, amountCol, dateCol, notesCol);
         table.setItems(getCropList());
 
+        // Summary Chart Setup
+        PieChart summaryChart = new PieChart();
+        summaryChart.setTitle("Total Crop Amounts");
+        summaryChart.setVisible(false); // Hide the chart by default
+
+        // StackPane to hold both Table and Chart, toggle visibility to switch views.
+        StackPane displayArea = new StackPane();
+        displayArea.getChildren().addAll(summaryChart, table);
+        VBox.setVgrow(displayArea, Priority.ALWAYS); // Makes sure the area fills the screen properly
+
         // Input
         TextField nameInput = new TextField();
         nameInput.setPromptText("Plant Name (e.g. Corn)");
@@ -66,9 +80,10 @@ public class CropUI {
         Button btnAdd = new Button("Add Crop");
         Button btnUpdate = new Button("Update Selected");
         Button btnDelete = new Button("Delete Selected");
+        Button btnToggleView = new Button("Show Chart");
         Button btnBack = new Button("Back to Home");
 
-        HBox buttonLayout = new HBox(10, btnAdd, btnUpdate, btnDelete, btnBack);
+        HBox buttonLayout = new HBox(10, btnAdd, btnUpdate, btnDelete, btnToggleView, btnBack);
 
         // Inputs when clicking a table row
         table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -90,6 +105,7 @@ public class CropUI {
             );
             cropDAO.insert(newCrop);
             table.setItems(getCropList()); // refresh table
+            updateChartData(summaryChart); // refresh chart
         });
 
         btnUpdate.setOnAction(e -> {
@@ -103,6 +119,7 @@ public class CropUI {
 
                 cropDAO.update(selected);
                 table.refresh();
+                updateChartData(summaryChart);
             }
         });
 
@@ -111,13 +128,51 @@ public class CropUI {
             if (selected != null) {
                 cropDAO.delete(selected.getId());
                 table.setItems(getCropList());
+                updateChartData(summaryChart);
+            }
+        });
+
+        // NEW: Action for the Toggle View Button
+        btnToggleView.setOnAction(e -> {
+            if (table.isVisible()) {
+                // Switch to Chart View
+                table.setVisible(false);
+                summaryChart.setVisible(true);
+                btnToggleView.setText("Show Table");
+                updateChartData(summaryChart);
+                formLayout.setDisable(true); //disable text inputs while viewing chart
+            } else {
+                // Switch to Table View
+                summaryChart.setVisible(false);
+                table.setVisible(true);
+                btnToggleView.setText("Show Chart");
+                formLayout.setDisable(false);
             }
         });
 
         btnBack.setOnAction(e -> stage.setScene(homeScene)); // Return to homepage
 
-        layout.getChildren().addAll(new Label("Crop Management"), table, formLayout, buttonLayout);
+        layout.getChildren().addAll(new Label("Crop Management"), displayArea, formLayout, buttonLayout);
         return new Scene(layout, 800, 600);
+    }
+
+    // helper method to gather data + build the PieChart
+    private static void updateChartData(PieChart chart) {
+        //Add by name
+        Map<String, Integer> summary = new HashMap<>();
+        for (Crop crop : getCropList()) {
+            String name = crop.getPlantName();
+            int currentTotal = summary.getOrDefault(name, 0);
+            summary.put(name, currentTotal + crop.getAmount());
+        }
+
+        // convert to piechart
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+        for (Map.Entry<String, Integer> entry : summary.entrySet()) {
+            // format slice name quantity
+            pieChartData.add(new PieChart.Data(entry.getKey() + " (" + entry.getValue() + ")", entry.getValue()));
+        }
+        chart.setData(pieChartData);
     }
 
     private static ObservableList<Crop> getCropList() {
