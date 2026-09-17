@@ -1,6 +1,7 @@
 package com.example.farmbook;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
@@ -26,6 +27,7 @@ public class HomePage_application extends Application {
 
         Button inventoryButton = new Button("Inventory");
         inventoryButton.setStyle("-fx-font-size: 15px;");
+
 
         Button livestockButton = new Button("Livestock");
         livestockButton.setStyle("-fx-font-size: 15px;");
@@ -114,11 +116,28 @@ public class HomePage_application extends Application {
         root.setTop(topSection);
         root.setCenter(mainSection);
 
+
+        inventoryButton.setOnAction(e -> openInventory(inventoryButton));
+        inventoryBodyButton.setOnAction(e -> openInventory(inventoryBodyButton));
+
         Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
         stage.show();
     }
 
+    private static void openInventory(Button source) {
+        try {
+            Stage stage = (Stage) source.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("inventory-add-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 800, 500);
+            stage.setScene(scene);
+            stage.setTitle("Inventory");
+            stage.sizeToScene();
+            stage.centerOnScreen();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
     public static void main(String[] args) {
         launch();
     }
