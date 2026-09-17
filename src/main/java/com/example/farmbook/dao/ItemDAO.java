@@ -55,4 +55,34 @@ public class ItemDAO {
             System.err.println("Failed to add stock: " + e.getMessage());
         }
     }
+
+    public boolean removeStock(int itemId, int amount) {
+        String checkSql = "SELECT quantity FROM items WHERE id = ?";
+        try (Connection conn = DatabaseConnection.connect();
+             PreparedStatement checkPs = conn.prepareStatement(checkSql)) {
+            checkPs.setInt(1, itemId);
+            ResultSet rs = checkPs.executeQuery();
+            if (rs.next()) {
+                int current = rs.getInt("quantity");
+                if (current < amount) {
+                    return false;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Failed to check stock: " + e.getMessage());
+            return false;
+        }
+
+        String updateSql = "UPDATE items SET quantity = quantity - ? WHERE id = ?";
+        try (Connection conn = DatabaseConnection.connect();
+             PreparedStatement ps = conn.prepareStatement(updateSql)) {
+            ps.setInt(1, amount);
+            ps.setInt(2, itemId);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Failed to remove stock: " + e.getMessage());
+            return false;
+        }
+    }
 }
