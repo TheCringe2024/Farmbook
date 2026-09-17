@@ -2,6 +2,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.PasswordField?>
 
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.farmbook.LoginController">
@@ -32,7 +33,7 @@
                     prefWidth="300.0"/>
 
         <Label text="password:" style="-fx-font-size: 15px"/>
-        <TextField fx:id="passwordField"
+        <PasswordField fx:id="passwordField"
                    promptText="Enter password"
                    prefWidth="300.0"/>
     </VBox>

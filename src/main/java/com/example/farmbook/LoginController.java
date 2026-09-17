@@ -34,10 +34,8 @@ public class LoginController {
         {
             accessLabel.setText("Login success");
 
-            Stage stage = (Stage) logonButton.getScene().getWindow();
-            new HomePage_application().start(stage);
-            stage.setTitle("Farmbook");
-            stage.centerOnScreen();
+            SessionState.login();
+            HelloApplication.showHome();
 
         }
         else

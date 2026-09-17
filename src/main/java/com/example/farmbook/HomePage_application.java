@@ -14,6 +14,15 @@ public class HomePage_application extends Application {
 
     @Override
     public void start(Stage stage) {
+
+        if (!SessionState.isAuthenticated()) {
+            try {
+                new LoginApplication().start(stage);
+            } catch (java.io.IOException exception) {
+                throw new java.io.UncheckedIOException(exception);
+            }
+            return;
+        }
         //-- Header of the app --
         Label logo = new Label("Farmbook");
         logo.setStyle("-fx-font-size: 20px;");
@@ -41,6 +50,17 @@ public class HomePage_application extends Application {
                 livestockButton
         );
         navigation.setAlignment(Pos.CENTER);
+
+        Button settingsButton = new Button("Settings");
+        settingsButton.setStyle("-fx-font-size: 15px;");
+        settingsButton.setOnAction(event -> {
+            try {
+                HelloApplication.showSettings();
+            } catch (java.io.IOException exception) {
+                throw new java.io.UncheckedIOException(exception);
+            }
+        });
+        navigation.getChildren().add(settingsButton);
 
         // Now putting it all together including the title for the nav bar
         HBox header = new HBox(30);
@@ -143,17 +163,12 @@ public class HomePage_application extends Application {
     }
 
     private static void openLogin(Button source) {
+        SessionState.logout();
+
         try {
-            Stage stage = (Stage) source.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource("login-view.fxml"));
-
-            Scene scene = new Scene(fxmlLoader.load(), 450, 550);
-            stage.setScene(scene);
-            stage.setTitle("Login");
-            stage.sizeToScene();
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+            HelloApplication.showLogin();
+        } catch (java.io.IOException exception) {
+            throw new java.io.UncheckedIOException(exception);
         }
     }
     public static void main(String[] args) {
