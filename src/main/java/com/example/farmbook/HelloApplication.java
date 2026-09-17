@@ -39,7 +39,7 @@ public class HelloApplication extends Application {
     }
 
     public static void showLogin() throws IOException {
-        changeScene("login-view.fxml");
+        new LoginApplication().start(primaryStage);
     }
 
     public static void showHome() throws IOException {
@@ -48,16 +48,10 @@ public class HelloApplication extends Application {
             return;
         }
 
-        var root = HomePage_application.createContent(() -> {
-            try {
-                showSettings();
-            } catch (IOException exception) {
-                throw new java.io.UncheckedIOException(
-                        "Unable to open Settings", exception);
-            }
-        });
-
-        primaryStage.setScene(new Scene(root, 800, 600));
+        new HomePage_application().start(primaryStage);
+        primaryStage.setTitle("Farmbook");
+        primaryStage.sizeToScene();
+        primaryStage.centerOnScreen();
     }
 
     public static void showSettings() throws IOException {
