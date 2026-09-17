@@ -1,26 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.farmbook.LoginController">
+
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="20.0"
+                left="20.0"
+                right="20.0"
+                top="20.0"/>
     </padding>
-    <Label text="Username:"/>
-    <TextField fx:id="usernameField"/>
 
-    <Label text="Password:"/>
-    <PasswordField fx:id="passwordField"/>
+    <!-- Farmbook header -->
+    <Label text="Welcome to Farmbook"
+           style="-fx-font-size: 35px; -fx-font-weight: bold;" />
+    <Label text="Farming Management System"
+           style="-fx-font-size: 16px;" />
 
+    <Separator />
+    <Label text="Login"
+           style="-fx-font-size: 25px; -fx-font-weight: bold;"/>
+
+    <!-- Login section -->
+    <VBox spacing="8.0" alignment="CENTER">
+
+        <Label text="username:" style="-fx-font-size: 15px"/>
+        <TextField fx:id="usernameField"
+                    promptText="Enter username"
+                    prefWidth="300.0"/>
+
+        <Label text="password:" style="-fx-font-size: 15px"/>
+        <TextField fx:id="passwordField"
+                   promptText="Enter password"
+                   prefWidth="300.0"/>
+    </VBox>
+
+    <!-- Login Button -->
     <Button fx:id="logonButton"
             text="Login"
-            onAction="#onLoginCLick"/>
+            onAction="#onLoginClick"
+            prefWidth="300.0"
+            prefHeight="40.0"
+            style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
 
-    <Label fx:id="accessLabel"/>
+    <!-- Login Status -->
+    <Label fx:id="accessLabel"
+           style="-fx-font-size: 14px;"/>
 </VBox>

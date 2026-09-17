@@ -55,11 +55,11 @@ public class HomePage_application extends Application {
         // -- Main content
 
         // Title of the homepage
-        Label welcome = new Label("Welcome to Farmbook");
+        Label welcome = new Label("Farmbook");
         welcome.setStyle("-fx-font-size: 40px;");
 
         // Description could be itierated as a feature later
-        Label description = new Label("Farming management application (DRAFT)");
+        Label description = new Label("What we up to?");
         description.setStyle("-fx-font-size: 20px;");
 
         // Creating the individual buttons. Not together yet
@@ -120,6 +120,9 @@ public class HomePage_application extends Application {
         inventoryButton.setOnAction(e -> openInventory(inventoryButton));
         inventoryBodyButton.setOnAction(e -> openInventory(inventoryBodyButton));
 
+        // Exit button
+        exitButton.setOnAction(e -> openLogin(exitButton));
+
         Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
         stage.show();
@@ -134,6 +137,21 @@ public class HomePage_application extends Application {
             stage.setTitle("Inventory");
             stage.sizeToScene();
             stage.centerOnScreen();
+        } catch (Exception error) {
+            throw new RuntimeException(error);
+        }
+    }
+
+    private static void openLogin(Button source) {
+        try {
+            Stage stage = (Stage) source.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource("login-view.fxml"));
+
+            Scene scene = new Scene(fxmlLoader.load(), 450, 550);
+            stage.setScene(scene);
+            stage.setTitle("Login");
+            stage.sizeToScene();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
