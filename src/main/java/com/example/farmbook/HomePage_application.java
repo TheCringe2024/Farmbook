@@ -121,7 +121,7 @@ public class HomePage_application extends Application {
 
     private void openAddLivestockScreen(Stage stage) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("add-livestock-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("livestock-list-view.fxml"));
             Scene scene = new Scene(loader.load(), 800, 600);
             stage.setScene(scene);
             stage.setTitle("FarmBook - Add Livestock");

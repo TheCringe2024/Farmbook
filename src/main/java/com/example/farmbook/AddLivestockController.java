@@ -56,10 +56,10 @@ public class AddLivestockController {
     private void handleBack() {
         try {
             Stage stage = (Stage) backButton.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("livestock-list-view.fxml"));
             Scene scene = new Scene(loader.load(), 800, 600);
             stage.setScene(scene);
-            stage.setTitle("Farmbook - Home");
+            stage.setTitle("Farmbook - Livestock List");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
