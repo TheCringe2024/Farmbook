@@ -140,6 +140,9 @@ public class HomePage_application extends Application {
         inventoryButton.setOnAction(e -> openInventory(inventoryButton));
         inventoryBodyButton.setOnAction(e -> openInventory(inventoryBodyButton));
 
+        cropsButton.setOnAction(e -> openCrops(cropsButton));
+        cropsBodyButton.setOnAction(e -> openCrops(cropsBodyButton));
+
         // Exit button
         exitButton.setOnAction(e -> openLogin(exitButton));
 
@@ -162,6 +165,20 @@ public class HomePage_application extends Application {
         }
     }
 
+    private static void openCrops(Button source) {
+        try {
+            Stage stage = (Stage) source.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(HomePage_application.class.getResource("crop-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+            stage.setScene(scene);
+            stage.setTitle("Crops");
+            stage.sizeToScene();
+            stage.centerOnScreen();
+        } catch (Exception error) {
+            throw new RuntimeException(error);
+        }
+    }
+
     private static void openLogin(Button source) {
         SessionState.logout();
 
@@ -171,6 +188,13 @@ public class HomePage_application extends Application {
             throw new java.io.UncheckedIOException(exception);
         }
     }
+    @Override
+    public void stop() throws Exception {
+        // Kill Database connection when stopped
+        SqliteConnection.getInstance().close();
+        super.stop();
+    }
+
     public static void main(String[] args) {
         launch();
     }
