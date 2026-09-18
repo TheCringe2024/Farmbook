@@ -41,3 +41,4 @@ build/
 #db file
 .db
 farmbook.db
+inventory.db
