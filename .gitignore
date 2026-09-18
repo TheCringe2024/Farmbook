@@ -40,3 +40,4 @@ build/
 
 #db file
 .db
+farmbook.db
