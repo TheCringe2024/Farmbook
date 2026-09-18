@@ -8,16 +8,23 @@ import java.util.List;
 
 public class LivestockDAO {
 
-    public void save(Livestock livestock) {
+    public LivestockDAO() {
+        DatabaseConnection.initialiseLivestockTable();
+    }
+
+    public boolean save(Livestock livestock) {
         String sql = "INSERT INTO livestock (species, identifier, date_acquired) VALUES (?, ?, ?)";
+
         try (Connection conn = DatabaseConnection.connect();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, livestock.getSpecies());
             ps.setString(2, livestock.getIdentifier());
             ps.setString(3, livestock.getDateAcquired());
-            ps.executeUpdate();
+
+            return ps.executeUpdate() == 1;
         } catch (SQLException e) {
             System.err.println("Failed to save livestock: " + e.getMessage());
+            return false;
         }
     }
 

@@ -34,14 +34,22 @@ public class AddLivestockController {
             return;
         }
 
-        Livestock livestock = new Livestock(species, identifier, dateAcquired);
-        livestockDAO.save(livestock);
+        Livestock livestock = new Livestock(
+                species,
+                identifier,
+                dateAcquired
+        );
 
-        statusLabel.setStyle("-fx-text-fill: green;");
-        statusLabel.setText("Saved: " + livestock);
+        if (livestockDAO.save(livestock)) {
+            statusLabel.setStyle("-fx-text-fill: green;");
+            statusLabel.setText("Animal saved successfully.");
 
-        speciesField.clear();
-        identifierField.clear();
-        dateAcquiredField.clear();
+            speciesField.clear();
+            identifierField.clear();
+            dateAcquiredField.clear();
+        } else {
+            statusLabel.setStyle("-fx-text-fill: red;");
+            statusLabel.setText("Unable to save animal.");
+        }
     }
 }
