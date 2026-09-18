@@ -12,6 +12,21 @@ public class DatabaseConnection {
         return DriverManager.getConnection(URL);
     }
 
+    public static void initialiseCropTable() {
+        String sql = "CREATE TABLE IF NOT EXISTS crops (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "type TEXT NOT NULL," +
+                "field_plot TEXT NOT NULL," +
+                "quantity INTEGER NOT NULL," +
+                "date_planted TEXT NOT NULL" +
+                ");";
+        try (Connection conn = connect(); Statement stmt = conn.createStatement()) {
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            System.err.println("Failed to create crops table: " + e.getMessage());
+        }
+    }
+
     public static void initialiseItemTable() {
         String sql = "CREATE TABLE IF NOT EXISTS items (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +

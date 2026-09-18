@@ -1,0 +1,43 @@
+.root {
+    -fx-background-color: #F5F3EE;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.label {
+    -fx-text-fill: #2E3A23;
+    -fx-font-size: 13px;
+}
+
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: #C9C2B2;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px 10px;
+    -fx-font-size: 13px;
+}
+
+.text-field:focused {
+    -fx-border-color: #6B8E5A;
+}
+
+.combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #C9C2B2;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+}
+
+.button {
+    -fx-background-color: #4E6B3C;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #3E5730;
+}
