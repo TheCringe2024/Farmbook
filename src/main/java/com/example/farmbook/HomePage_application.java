@@ -122,7 +122,7 @@ public class HomePage_application extends Application {
     private void openAddLivestockScreen(Stage stage) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("add-livestock-view.fxml"));
-            Scene scene = new Scene(loader.load(), 400, 400);
+            Scene scene = new Scene(loader.load(), 800, 600);
             stage.setScene(scene);
             stage.setTitle("FarmBook - Add Livestock");
         } catch (Exception ex) {

@@ -3,8 +3,12 @@ package com.example.farmbook;
 import com.example.farmbook.dao.LivestockDAO;
 import com.example.farmbook.model.Livestock;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class AddLivestockController {
 
@@ -20,6 +24,9 @@ public class AddLivestockController {
     @FXML
     private Label statusLabel;
 
+    @FXML
+    private Button backButton;
+
     private final LivestockDAO livestockDAO = new LivestockDAO();
 
     @FXML
@@ -34,22 +41,27 @@ public class AddLivestockController {
             return;
         }
 
-        Livestock livestock = new Livestock(
-                species,
-                identifier,
-                dateAcquired
-        );
+        Livestock livestock = new Livestock(species, identifier, dateAcquired);
+        livestockDAO.save(livestock);
 
-        if (livestockDAO.save(livestock)) {
-            statusLabel.setStyle("-fx-text-fill: green;");
-            statusLabel.setText("Animal saved successfully.");
+        statusLabel.setStyle("-fx-text-fill: green;");
+        statusLabel.setText("Saved: " + livestock);
 
-            speciesField.clear();
-            identifierField.clear();
-            dateAcquiredField.clear();
-        } else {
-            statusLabel.setStyle("-fx-text-fill: red;");
-            statusLabel.setText("Unable to save animal.");
+        speciesField.clear();
+        identifierField.clear();
+        dateAcquiredField.clear();
+    }
+
+    @FXML
+    private void handleBack() {
+        try {
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
+            Scene scene = new Scene(loader.load(), 800, 600);
+            stage.setScene(scene);
+            stage.setTitle("Farmbook - Home");
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 }
