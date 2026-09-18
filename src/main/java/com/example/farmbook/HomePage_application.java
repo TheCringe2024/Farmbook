@@ -140,26 +140,14 @@ public class HomePage_application extends Application {
         inventoryButton.setOnAction(e -> openInventory(inventoryButton));
         inventoryBodyButton.setOnAction(e -> openInventory(inventoryBodyButton));
 
+        cropsButton.setOnAction(e -> openCrops(cropsButton));
+        cropsBodyButton.setOnAction(e -> openCrops(cropsBodyButton));
+
         // Exit button
         exitButton.setOnAction(e -> openLogin(exitButton));
 
         Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
-        // --- NAVIGATION LOGIC ---
-        Scene homeScene = new Scene(root, 800, 600);
-
-        cropsButton.setOnAction(e -> {
-            stage.setScene(CropUI.getScene(stage, homeScene));
-        });
-
-        cropsBodyButton.setOnAction(e -> {
-            stage.setScene(CropUI.getScene(stage, homeScene));
-        });
-
-        exitButton.setOnAction(e -> stage.close());
-
-        // Sets scene
-        stage.setScene(homeScene);
         stage.show();
     }
 
@@ -170,6 +158,20 @@ public class HomePage_application extends Application {
             Scene scene = new Scene(fxmlLoader.load(), 800, 500);
             stage.setScene(scene);
             stage.setTitle("Inventory");
+            stage.sizeToScene();
+            stage.centerOnScreen();
+        } catch (Exception error) {
+            throw new RuntimeException(error);
+        }
+    }
+
+    private static void openCrops(Button source) {
+        try {
+            Stage stage = (Stage) source.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(HomePage_application.class.getResource("crop-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+            stage.setScene(scene);
+            stage.setTitle("Crops");
             stage.sizeToScene();
             stage.centerOnScreen();
         } catch (Exception error) {
@@ -189,7 +191,7 @@ public class HomePage_application extends Application {
     @Override
     public void stop() throws Exception {
         // Kill Database connection when stopped
-        DBConnection.getInstance().close();
+        SqliteConnection.getInstance().close();
         super.stop();
     }
 

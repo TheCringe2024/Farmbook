@@ -8,7 +8,7 @@ public class CropDAO implements ICropDAO {
     private Connection connection;
 
     public CropDAO() {
-        connection = DBConnection.getInstance();
+        connection = SqliteConnection.getInstance();
     }
 
     @Override
