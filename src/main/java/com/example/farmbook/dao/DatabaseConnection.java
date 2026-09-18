@@ -25,4 +25,19 @@ public class DatabaseConnection {
             System.err.println("Failed to create livestock table: " + e.getMessage());
         }
     }
+
+    public static void initialiseCropTable() {
+        String sql = "CREATE TABLE IF NOT EXISTS crops (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "type TEXT NOT NULL," +
+                "field_plot TEXT NOT NULL," +
+                "quantity INTEGER NOT NULL," +
+                "date_planted TEXT NOT NULL" +
+                ");";
+        try (Connection conn = connect(); Statement stmt = conn.createStatement()) {
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            System.err.println("Failed to create crops table: " + e.getMessage());
+        }
+    }
 }

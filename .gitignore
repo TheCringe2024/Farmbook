@@ -36,4 +36,8 @@ build/
 .vscode/
 
 ### Mac OS ###
-.DS_Storefarmbook.db
+.DS_Store
+
+#db file
+.db
+farmbook.db
