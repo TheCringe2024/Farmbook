@@ -37,3 +37,6 @@ build/
 
 ### Mac OS ###
 .DS_Storefarmbook.db
+.idea/dataSources.xml
+.idea/dataSources.local.xml
+farmbook.db
