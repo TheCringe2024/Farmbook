@@ -41,4 +41,19 @@ public class DatabaseConnection {
             System.err.println("Failed to create items table: " + e.getMessage());
         }
     }
+    public static void initialiseLivestockTable() {
+        String sql = "CREATE TABLE IF NOT EXISTS livestock (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "species TEXT NOT NULL," +
+                "identifier TEXT NOT NULL," +
+                "date_acquired TEXT NOT NULL" +
+                ");";
+
+        try (Connection conn = connect();
+             Statement stmt = conn.createStatement()) {
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            System.err.println("Failed to create livestock table: " + e.getMessage());
+        }
+    }
 }
