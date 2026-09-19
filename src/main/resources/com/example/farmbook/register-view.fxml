@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.farmbook.RegisterController">
+
+    <padding>
+        <Insets bottom="20.0"
+                left="20.0"
+                right="20.0"
+                top="20.0"/>
+    </padding>
+
+    <!-- Farmbook header -->
+    <Label text="Welcome to Farmbook"
+           style="-fx-font-size: 35px; -fx-font-weight: bold;" />
+    <Label text="Farming Management System"
+           style="-fx-font-size: 16px;" />
+
+    <Separator />
+    <Label text="Register"
+           style="-fx-font-size: 25px; -fx-font-weight: bold;"/>
+
+    <!-- Register section -->
+    <VBox spacing="8.0" alignment="CENTER">
+
+        <Label text="username:" style="-fx-font-size: 15px"/>
+        <TextField fx:id="usernameField"
+                   promptText="Enter username"
+                   maxWidth="300.0"/>
+
+        <Label text="email:" style="-fx-font-size: 15px"/>
+        <TextField fx:id="emailField"
+                   promptText="Enter email"
+                   maxWidth="300.0"/>
+
+        <Label text="password:" style="-fx-font-size: 15px"/>
+        <PasswordField fx:id="passwordField"
+                       promptText="Enter password"
+                       maxWidth="300.0"/>
+    </VBox>
+
+    <!-- Buttons -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Register"
+                onAction="#onRegisterClick"
+                prefWidth="300.0"
+                prefHeight="40.0"
+                style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+        <Button text="Back"
+                onAction="#onGoBack"
+                prefWidth="300.0"
+                prefHeight="40.0"
+                style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+    </HBox>
+
+    <!-- Register Status -->
+    <Label fx:id="messageLabel"
+           wrapText="true"
+           style="-fx-font-size: 14px;"/>
+</VBox>
