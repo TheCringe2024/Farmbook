@@ -2,10 +2,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.PasswordField?>
 
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.farmbook.LoginController">
+      fx:controller="com.example.farmbook.RegisterController">
 
     <padding>
         <Insets bottom="20.0"
@@ -21,41 +20,45 @@
            style="-fx-font-size: 16px;" />
 
     <Separator />
-    <Label text="Login"
+    <Label text="Register"
            style="-fx-font-size: 25px; -fx-font-weight: bold;"/>
 
-    <!-- Login section -->
+    <!-- Register section -->
     <VBox spacing="8.0" alignment="CENTER">
 
         <Label text="username:" style="-fx-font-size: 15px"/>
         <TextField fx:id="usernameField"
                    promptText="Enter username"
-                   prefWidth="300.0"/>
+                   maxWidth="300.0"/>
+
+        <Label text="email:" style="-fx-font-size: 15px"/>
+        <TextField fx:id="emailField"
+                   promptText="Enter email"
+                   maxWidth="300.0"/>
 
         <Label text="password:" style="-fx-font-size: 15px"/>
         <PasswordField fx:id="passwordField"
                        promptText="Enter password"
-                       prefWidth="300.0"/>
+                       maxWidth="300.0"/>
     </VBox>
-    <!-- Login Button -->
-    <HBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com">
-        <children>
-            <Button fx:id="logonButton"
-                    text="Login"
-                    onAction="#onLoginClick"
-                    prefWidth="300.0"
-                    prefHeight="40.0"
-                    style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
-            <Button fx:id="regiserButton"
-                    text="Register"
-                    onAction="#onRegisterClick"
-                    prefWidth="300.0"
-                    prefHeight="40.0"
-                    style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
 
-        </children>
+    <!-- Buttons -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Register"
+                onAction="#onRegisterClick"
+                prefWidth="300.0"
+                prefHeight="40.0"
+                style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+        <Button text="Back"
+                onAction="#onGoBack"
+                prefWidth="300.0"
+                prefHeight="40.0"
+                style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
     </HBox>
-    <!-- Login Status -->
-    <Label fx:id="accessLabel"
+
+    <!-- Register Status -->
+    <Label fx:id="messageLabel"
+           wrapText="true"
            style="-fx-font-size: 14px;"/>
 </VBox>
