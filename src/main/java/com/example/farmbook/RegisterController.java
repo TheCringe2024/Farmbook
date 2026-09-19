@@ -9,11 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class RegisterController {
 
@@ -36,6 +32,7 @@ public class RegisterController {
         String password = passwordField.getText();
 
         String regex =  "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+
         if (username.isEmpty()) {
             showError("Please enter a username.");
             return;
