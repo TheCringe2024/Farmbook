@@ -3,13 +3,13 @@
   docs/week9-kevin-evidence
   docs/week9-kevin-javadocs
   docs/week9-kevin-video-prep
-* docs/week9-version-control-evidence
+  docs/week9-version-control-evidence
   feature/fr01-logout
   fix/fr07-livestock-dashboard-navigation
   fix/fr07-livestock-persistence
   fix/fr07-livestock-save-feedback
   integration/fr07-livestock
-  main
+* main
   test/fr07-livestock-date-validation
   test/fr07-livestock-persistence-verification
   remotes/origin/HEAD -> origin/main
@@ -17,6 +17,7 @@
   remotes/origin/docs/fr01-logout
   remotes/origin/docs/week9-kevin-javadocs
   remotes/origin/docs/week9-kevin-video-prep
+  remotes/origin/docs/week9-version-control-evidence
   remotes/origin/feature/GUIColours
   remotes/origin/feature/fr01-login
   remotes/origin/feature/fr01-logout

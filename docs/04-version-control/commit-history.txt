@@ -1,4 +1,7 @@
-﻿33f8e35 | 2026-09-20 | Vy Nguyen | Merge branch 'main' of https://github.com/TheCringe2024/Farmbook
+﻿de6bd56 | 2026-09-20 | kevintrap-16 | Merge pull request #28 from TheCringe2024/docs/week9-version-control-evidence
+ef28ba1 | 2026-09-20 | Kevin Duy | docs: add version control evidence
+4b36714 | 2026-09-20 | kevintrap-16 | Add files via upload
+33f8e35 | 2026-09-20 | Vy Nguyen | Merge branch 'main' of https://github.com/TheCringe2024/Farmbook
 0e30084 | 2026-09-20 | Vy Nguyen | docs: add low-fidelity UI wireframes from Figma
 f9e8e8f | 2026-09-20 | kevintrap-16 | Enhance livestock OO architecture documentation
 5b9f63b | 2026-09-20 | kevintrap-16 | Update kevin-video-map.md
@@ -98,3 +101,26 @@ ac08d70 | 2026-09-17 | Jeremy Johns | Feature/fr01 login page
 9308833 | 2026-09-17 | Rohan | CRUD for Crops and clickable Table based Crop UI Page
 12b5a1f | 2026-09-17 | vynguyen28 | style: add shared stylesheet and apply to Add Livestock screen
 6108b7c | 2026-09-17 | vynguyen28 | chore: stop tracking local database file
+af35b57 | 2026-09-17 | vynguyen28 | chore: remove test file used for manual verification
+65c2410 | 2026-09-17 | vynguyen28 | feat: add Add Livestock screen for FR07
+3f0ed9c | 2026-09-17 | vynguyen28 | fix: update module-info and add sqlite-jdbc dependency for FR07
+1f1bfe0 | 2026-09-17 | vynguyen28 | feat: add LivestockDAO with save and findAll methods for FR07
+4813a7a | 2026-09-17 | vynguyen28 | feat: add Livestock model and livestock table for FR07
+0958248 | 2026-09-17 | vynguyen28 | feat: add Outgoing Stock screen and removeStock logic for FR06
+7f0abba | 2026-09-17 | vynguyen28 | chore: ignore local database file
+c0374eb | 2026-09-17 | vynguyen28 | feat: add Incoming Stock screen for FR06
+436352b | 2026-09-17 | vynguyen28 | fix: update module-info and add sqlite-jdbc dependency for FR05/FR06
+7a5425c | 2026-09-17 | vynguyen28 | feat: add ItemDAO with save, findAll, and addStock methods (FR05/FR06)
+c3022d7 | 2026-09-17 | vynguyen28 | feat: add Item model and items table for inventory (FR05)
+69cf55d | 2026-09-16 | Jeremy Johns | FR05 Added the basic inventory add item page, functional database, can add, edit and remove items.
+d6ce5df | 2026-09-15 | My name | No changes applied
+f3b8abf | 2026-09-11 | My name | Homepage coding done
+ef70763 | 2026-09-04 | Kevin Duy | feat: implement FR01 logout prototype
+5ec960c | 2026-09-04 | Jeremy Johns | Added the first stages of the login screen, uses hardcoded login creds for the time
+9885a10 | 2026-09-02 | vynguyen28 | feat: add JavaFX screens for adding and viewing crops
+af4c63c | 2026-09-02 | vynguyen28 | fix: update Java version to 21 and module-info to allow java.sql
+a476acf | 2026-09-02 | vynguyen28 | fix: remove duplicate sqlite-jdbc dependency
+db7cc28 | 2026-09-02 | vynguyen28 | feat: implement FR02 record crops (model, DAO, database setup)
+a594703 | 2026-09-02 | kevintrap-16 | Merge pull request #1 from TheCringe2024/docs/fr01-logout
+6d92b79 | 2026-09-02 | Kevin Duy | docs: refine FR01 logout user story and acceptance criteria
+c6b2599 | 2026-08-29 | TheCringe2024 | Document information in regards to Farmbook
