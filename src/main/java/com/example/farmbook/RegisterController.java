@@ -21,11 +21,20 @@ public class RegisterController {
 
     private final Connection connection = SqliteConnection.getInstance();
 
+    /**
+     *Runs when the register page is loaded and makes sure the user
+     * tables exists in the database.
+     */
     @FXML
     public void initialize() {
         createTable();
     }
 
+    /**
+     * Gets the username, email and password from the text fields and checks
+     * the email is a valid email through regex and hashes the password
+     * and stores it's into the database.
+     */
     @FXML
     protected void onRegisterClick() {
         String username = usernameField.getText().trim();
@@ -54,6 +63,11 @@ public class RegisterController {
                 return;
             }
 
+            if (emailExists(email)) {
+                showError("That email is already taken.");
+                return;
+            }
+
             String sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
             try (PreparedStatement stmt = connection.prepareStatement(sql)) {
                 stmt.setString(1, username);
@@ -73,6 +87,13 @@ public class RegisterController {
         }
     }
 
+    /**
+     * Checks the database to see if a user with a username has already been
+     * taken so each account has a unique username
+     * @param username the username that is entered in the register form
+     * @return true if the username is already taken and false if its available.
+     * @throws SQLException if the database query fails
+     */
     private boolean usernameExists(String username) throws SQLException {
         String sql = "SELECT 1 FROM users WHERE username = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -83,6 +104,28 @@ public class RegisterController {
         }
     }
 
+    /**
+     * Checks the database to see if a user with an email has already been
+     * taken so each account has a unique email
+     * @param email the email that is entered in the register form
+     * @return true if the email is already taken and false if its available.
+     * @throws SQLException if the database query fails
+     */
+    private boolean emailExists(String email) throws SQLException {
+        String sql = "SELECT 1 FROM users WHERE email = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next();
+            }
+        }
+    }
+
+
+    /**
+     * Creates the users table in the database if it doesnt already exist with an id,
+     * a unique username, unique email and the hashed password. Displays an error message if the table cant be reached.
+     */
     private void createTable() {
         String userSQL = "CREATE TABLE IF NOT EXISTS users ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -97,6 +140,10 @@ public class RegisterController {
         }
     }
 
+    /**
+     * Loads the logon page and swaps it into the current window when the back button is clicked
+     * @throws IOException if the login-view.fxml file cant be loaded
+     */
     @FXML
     protected void onGoBack() throws IOException {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
@@ -104,11 +151,19 @@ public class RegisterController {
         stage.setScene(new Scene(loader.load(), 450, 550));
     }
 
+    /**
+     * Displays an error message in red below the register form
+     * @param msg the error message to show the user
+     */
     private void showError(String msg) {
         messageLabel.setStyle("-fx-text-fill: #c0392b;");
         messageLabel.setText(msg);
     }
 
+    /**
+     * Displays the success messsage in green below the register form
+     * @param msg the success message to show the user
+     */
     private void showSuccess(String msg) {
         messageLabel.setStyle("-fx-text-fill: #27ae60;");
         messageLabel.setText(msg);
