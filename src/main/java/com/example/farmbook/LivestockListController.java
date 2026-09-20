@@ -57,8 +57,15 @@ public class LivestockListController {
 
     @FXML
     private void handleBack() throws IOException {
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("homepage-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(
+                LivestockListController.class.getResource("homepage-view.fxml")
+        );
+
         Stage stage = (Stage) livestockListView.getScene().getWindow();
+
         stage.setScene(new Scene(loader.load(), 1000, 800));
+        stage.setTitle("FarmBook");
+        stage.sizeToScene();
+        stage.centerOnScreen();
     }
 }
