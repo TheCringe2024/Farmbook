@@ -31,4 +31,48 @@ class LivestockValidatorTest {
     void rejectsNullDate() {
         assertFalse(LivestockValidator.isValidDate(null));
     }
+
+    @Test
+    void detectsBlankSpecies() {
+        assertTrue(
+                LivestockValidator.hasBlankRequiredFields(
+                        "",
+                        "CATTLE-01",
+                        "2026-09-20"
+                )
+        );
+    }
+
+    @Test
+    void detectsBlankIdentifier() {
+        assertTrue(
+                LivestockValidator.hasBlankRequiredFields(
+                        "Cattle",
+                        " ",
+                        "2026-09-20"
+                )
+        );
+    }
+
+    @Test
+    void detectsBlankAcquisitionDate() {
+        assertTrue(
+                LivestockValidator.hasBlankRequiredFields(
+                        "Cattle",
+                        "CATTLE-01",
+                        ""
+                )
+        );
+    }
+
+    @Test
+    void acceptsCompleteRequiredFields() {
+        assertFalse(
+                LivestockValidator.hasBlankRequiredFields(
+                        "Cattle",
+                        "CATTLE-01",
+                        "2026-09-20"
+                )
+        );
+    }
 }
