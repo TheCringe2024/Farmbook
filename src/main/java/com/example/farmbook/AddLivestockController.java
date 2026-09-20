@@ -35,6 +35,12 @@ public class AddLivestockController {
         String identifier = identifierField.getText();
         String dateAcquired = dateAcquiredField.getText();
 
+        if (!LivestockValidator.isValidDate(dateAcquired)) {
+            statusLabel.setStyle("-fx-text-fill: red;");
+            statusLabel.setText("Date must use YYYY-MM-DD format.");
+            return;
+        }
+
         if (species.isBlank() || identifier.isBlank() || dateAcquired.isBlank()) {
             statusLabel.setStyle("-fx-text-fill: red;");
             statusLabel.setText("Please fill in all fields.");
