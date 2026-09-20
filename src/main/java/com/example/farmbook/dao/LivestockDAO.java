@@ -14,8 +14,9 @@ public class LivestockDAO {
     /**
      * Saves a new animal record.
      * @param livestock the animal to save
+     * @return true if saved successfully
      */
-    public void save(Livestock livestock) {
+    public boolean save(Livestock livestock) {
         String sql = "INSERT INTO livestock (species, identifier, date_acquired) VALUES (?, ?, ?)";
         try (Connection conn = DatabaseConnection.connect();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -23,8 +24,10 @@ public class LivestockDAO {
             ps.setString(2, livestock.getIdentifier());
             ps.setString(3, livestock.getDateAcquired());
             ps.executeUpdate();
+            return true;
         } catch (SQLException e) {
             System.err.println("Failed to save livestock: " + e.getMessage());
+            return false;
         }
     }
 
