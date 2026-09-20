@@ -7,6 +7,14 @@ public class Inventory {
     private String inventoryUnit;
     private int inventoryQuantity;
 
+    /**
+     * Creates a new inventory item with its details, if the ID is not set here because
+     * it is given by the database when the item is saved.
+     * @param inventoryItemName the name of the item e.g. Wheat
+     * @param inventoryCategory the category of th item belongs to e.g. Seeds
+     * @param inventoryUnit the unit the item is measured in e.g. Packets
+     * @param inventoryQuantity how many items stored e.g. 54
+     */
     public Inventory(String inventoryItemName,  String inventoryCategory, String inventoryUnit, int inventoryQuantity){
 
         this.inventoryItemName = inventoryItemName;
