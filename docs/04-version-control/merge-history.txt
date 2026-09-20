@@ -1,0 +1,40 @@
+﻿33f8e35 (HEAD -> docs/week9-version-control-evidence, origin/main, origin/HEAD, main) Merge branch 'main' of https://github.com/TheCringe2024/Farmbook
+8c181ba Merge pull request #27 from TheCringe2024/docs/week9-kevin-javadocs
+afd5759 (docs/week9-kevin-video-prep) Merge pull request #26 from TheCringe2024/feature/fr01-login
+55bf919 Merge pull request #25 from TheCringe2024/feature/fr05-inventory
+ac9d00f Merge branch 'main' of https://github.com/TheCringe2024/Farmbook
+b169868 Merge pull request #24 from TheCringe2024/feature/fr05-inventory
+eb28b8e Merge branch 'main' of https://github.com/TheCringe2024/Farmbook into feature/fr05-inventory
+5c2c96f Merge pull request #22 from TheCringe2024/feature/fr01-register
+275cbd7 Merge pull request #23 from TheCringe2024/docs/week9-kevin-video-prep
+395ce4e (docs/week9-kevin-evidence) Merge branch 'main' of https://github.com/TheCringe2024/Farmbook
+9d4655d Merge branch 'main' of https://github.com/TheCringe2024/Farmbook into feature/fr01-register
+fba7308 Merge branch 'main' of https://github.com/TheCringe2024/Farmbook into feature/fr01-register
+84e2465 Merge pull request #20 from TheCringe2024/fix/fr07-livestock-save-feedback
+9ebd1f6 Merge pull request #19 from TheCringe2024/Rohan Added Crop test
+edf6a29 Merge remote-tracking branch 'origin/main' into Rohan
+167ed81 Merge pull request #18 from TheCringe2024/test/fr07-livestock-persistence-verification
+2be81e6 Merge remote-tracking branch 'origin/main' into Rohan
+df3761c Merge branch 'main' of https://github.com/TheCringe2024/Farmbook
+9f4d888 Merge pull request #17 from TheCringe2024/fix/fr07-livestock-dashboard-navigation
+f95132f Merge remote-tracking branch 'origin/main' into Rohan
+648ea95 Merge pull request #16 from TheCringe2024/test/fr07-livestock-date-validation
+8a43f3e test: validate livestock acquisition date using RGR
+88bb3d6 Merge pull request #14 from TheCringe2024/feature/GUIColours
+0735928 Merge pull request #12 from TheCringe2024/fix/fr07-livestock-persistence
+305c1e7 Merge pull request #5 from TheCringe2024/feature/fr06-stock-movement
+62e4f6e merge: resolve conflicts between FR06 stock movement and main
+9a96f5d Merge pull request #6 from TheCringe2024/feature/fr07-livestock-records
+85ad192 merge: resolve conflicts between FR07 livestock and main (login, crops, inventory)
+23a53eb (integration/fr07-livestock) merged Rohan into main
+23b3e9d Merge remote-tracking branch 'origin/main' into Rohan
+0f5ed5f Merge remote-tracking branch 'refs/remotes/origin/main' into Rohan
+92e0050 Merge pull request #10 from TheCringe2024/feature/fr05-inventory
+c8ce30c Merge pull request #4 from TheCringe2024/feature/fr01-logout
+e77fda6 (origin/feature/fr01-logout, feature/fr01-logout) Merge latest main and integrate logout with login and inventory navigation
+038c6dd Merge remote-tracking branch 'origin/main' into feature/fr05-inventory Adding inventory system to main branch with basic test cases
+ceb6379 Merge pull request #9 from TheCringe2024/feature/fr05-inventory
+b93c3a8 Merge pull request #8 from TheCringe2024/feature/fr01-login
+7c5868e Merge pull request #2 from TheCringe2024/feature/fr02-record-crops
+24d562a Merge origin/main and connect homepage to logout flow
+a594703 Merge pull request #1 from TheCringe2024/docs/fr01-logout
