@@ -9,17 +9,57 @@ import java.io.IOException;
 
 public class HelloApplication extends Application {
 
-    // Constants defining the window title and size
-    public static final String TITLE = "Address Book";
-    public static final int WIDTH = 640;
-    public static final int HEIGHT = 360;
+    private static Stage primaryStage;
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
+        primaryStage = stage;
+
+        stage.setTitle("FarmBook");
+        showLogin();
+
         stage.show();
+    }
+
+    private static void changeScene(String fxmlFile) throws IOException {
+        var resource = HelloApplication.class.getResource(
+                "/com/example/farmbook/" + fxmlFile
+        );
+
+        if (resource == null) {
+            throw new IllegalStateException(
+                    "FXML file not found: " + fxmlFile
+            );
+        }
+
+        FXMLLoader loader = new FXMLLoader(resource);
+        Scene scene = new Scene(loader.load(), 500, 400);
+
+        primaryStage.setScene(scene);
+    }
+
+    public static void showLogin() throws IOException {
+        new LoginApplication().start(primaryStage);
+    }
+
+    public static void showHome() throws IOException {
+        if (!SessionState.isAuthenticated()) {
+            showLogin();
+            return;
+        }
+
+        new HomePage_application().start(primaryStage);
+        primaryStage.setTitle("Farmbook");
+        primaryStage.sizeToScene();
+        primaryStage.centerOnScreen();
+    }
+
+    public static void showSettings() throws IOException {
+        if (!SessionState.isAuthenticated()) {
+            showLogin();
+            return;
+        }
+
+        changeScene("settings-view.fxml");
     }
 }

@@ -26,4 +26,34 @@ public class DatabaseConnection {
             System.err.println("Failed to create crops table: " + e.getMessage());
         }
     }
+
+    public static void initialiseItemTable() {
+        String sql = "CREATE TABLE IF NOT EXISTS items (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "name TEXT NOT NULL," +
+                "category TEXT NOT NULL," +
+                "unit TEXT NOT NULL," +
+                "quantity INTEGER NOT NULL DEFAULT 0" +
+                ");";
+        try (Connection conn = connect(); Statement stmt = conn.createStatement()) {
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            System.err.println("Failed to create items table: " + e.getMessage());
+        }
+    }
+    public static void initialiseLivestockTable() {
+        String sql = "CREATE TABLE IF NOT EXISTS livestock (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "species TEXT NOT NULL," +
+                "identifier TEXT NOT NULL," +
+                "date_acquired TEXT NOT NULL" +
+                ");";
+
+        try (Connection conn = connect();
+             Statement stmt = conn.createStatement()) {
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            System.err.println("Failed to create livestock table: " + e.getMessage());
+        }
+    }
 }

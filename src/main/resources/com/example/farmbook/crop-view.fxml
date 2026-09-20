@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="15" style="-fx-background-color: #3B435F;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.farmbook.CropController">
+<padding>
+    <Insets bottom="20" left="20" right="20" top="20" />
+</padding>
+
+<Label style="-fx-font-size: 24px;" text="Crop Management" textFill="WHITE" />
+
+<!-- StackPane to hold both Chart and Table -->
+<StackPane VBox.vgrow="ALWAYS">
+    <PieChart fx:id="summaryChart" title="Total Crop Amounts" visible="false" />
+
+    <TableView fx:id="table">
+        <columns>
+            <TableColumn fx:id="idCol" text="ID" />
+            <TableColumn fx:id="nameCol" text="Plant Name" />
+            <TableColumn fx:id="typeCol" text="Type" />
+            <TableColumn fx:id="amountCol" text="Amount" />
+            <TableColumn fx:id="dateCol" text="Date Planted" />
+            <TableColumn fx:id="notesCol" text="Notes" />
+        </columns>
+    </TableView>
+</StackPane>
+
+<!-- Input Form -->
+<HBox fx:id="formLayout" spacing="10">
+    <TextField fx:id="nameInput" promptText="Plant Name (e.g. Corn)" />
+    <TextField fx:id="typeInput" promptText="Type (e.g. Grain)" />
+    <TextField fx:id="amountInput" promptText="Amount" />
+    <DatePicker fx:id="dateInput" promptText="Date Planted" />
+    <TextField fx:id="notesInput" promptText="Notes" />
+</HBox>
+
+<!-- Buttons -->
+<HBox spacing="10">
+    <Button onAction="#handleAddCrop" style="-fx-background-color: green;" text="Add Crop" />
+    <Button onAction="#handleUpdateCrop" text="Update Selected" />
+    <Button onAction="#handleDeleteCrop" text="Delete Selected" />
+    <Button fx:id="btnToggleView" onAction="#handleToggleView" text="Show Chart (Pie)" />
+    <Button fx:id="btnBack" onAction="#handleBack" text="Back to Home" />
+</HBox>
+</VBox>
