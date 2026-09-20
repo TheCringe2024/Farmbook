@@ -12,7 +12,7 @@
 
 7\. TDD Tests
 
-8\. Red–Green–Refactor Evidence
+8\. Red-Green-Refactor Evidence
 
 9\. Current Regression Result
 
