@@ -4,9 +4,19 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+/**
+ * Provides SQLite database connections and initialises
+ * the persistence tables used by Farmbook.
+ */
 public class DatabaseConnection {
     private static final String URL = "jdbc:sqlite:farmbook.db";
+
+    /**
+     * Opens a connection to the Farmbook SQLite database.
+     *
+     * @return an active database connection
+     * @throws SQLException if the connection cannot be created
+     */
 
     public static Connection connect() throws SQLException {
         return DriverManager.getConnection(URL);
@@ -41,6 +51,11 @@ public class DatabaseConnection {
             System.err.println("Failed to create items table: " + e.getMessage());
         }
     }
+
+    /**
+     * Creates the livestock table when it does not already exist.
+     * Required livestock fields are protected by NOT NULL constraints.
+     */
     public static void initialiseLivestockTable() {
         String sql = "CREATE TABLE IF NOT EXISTS livestock (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
