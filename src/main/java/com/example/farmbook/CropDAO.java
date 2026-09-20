@@ -4,13 +4,21 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * data access object for handling operations related to Crops
+ * methods to create the table, insert, read, update, delete
+ */
 public class CropDAO implements ICropDAO {
     private Connection connection;
-
+    /**
+     * Establishes a connection to the SQLite db using the singleton SqliteConnection instance.
+     */
     public CropDAO() {
         connection = SqliteConnection.getInstance();
     }
-
+    /**
+     * Creates the crops table in the database if it does not already exist.
+     */
     @Override
     public void createTable() {
         try {
@@ -30,6 +38,10 @@ public class CropDAO implements ICropDAO {
         }
     }
 
+    /**
+     * Inserts a new Crop record into the database
+     * @param crop Crop object containing the data to insert
+     */
     @Override
     public void insert(Crop crop) {
         try {
@@ -46,7 +58,10 @@ public class CropDAO implements ICropDAO {
             System.err.println(ex);
         }
     }
-
+    /**
+     * Updates existing Crop record in the database based on its ID
+     * @param crop the object containing the updated data
+     */
     @Override
     public void update(Crop crop) {
         try {
@@ -65,6 +80,10 @@ public class CropDAO implements ICropDAO {
         }
     }
 
+    /**
+     * Deletes a Crop record from the database
+     * @param id the unique identifier of the crop to delete
+     */
     @Override
     public void delete(int id) {
         try {
@@ -76,6 +95,10 @@ public class CropDAO implements ICropDAO {
         }
     }
 
+    /**
+     * Retrieves all Crop records from the database
+     * @return A List of Crop objects representing all rows in the crops table
+     */
     @Override
     public List<Crop> getAll() {
         List<Crop> crops = new ArrayList<>();
@@ -98,11 +121,18 @@ public class CropDAO implements ICropDAO {
         return crops;
     }
 
+    /**
+     * Retrieves a specific Crop record by its ID
+     * @param id unique identifier of  crop
+     * @return if found, or null if it does not exist
+     */
     @Override
     public Crop getById(int id) {
         return null;
     }
-
+    /**
+     * closes the connection to the database
+     */
     @Override
     public void close() {
         try {

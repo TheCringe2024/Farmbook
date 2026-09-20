@@ -49,7 +49,7 @@
     <Button onAction="#handleAddCrop" style="-fx-background-color: green;" text="Add Crop" />
     <Button onAction="#handleUpdateCrop" text="Update Selected" />
     <Button onAction="#handleDeleteCrop" text="Delete Selected" />
-    <Button fx:id="btnToggleView" onAction="#handleToggleView" text="Show Chart 📊" />
+    <Button fx:id="btnToggleView" onAction="#handleToggleView" text="Show Chart (Pie)" />
     <Button fx:id="btnBack" onAction="#handleBack" text="Back to Home" />
 </HBox>
 </VBox>
