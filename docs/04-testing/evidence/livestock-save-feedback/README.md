@@ -1,8 +1,9 @@
-\# FR07 Livestock Save Validation and Feedback Evidence
+> Historical iteration evidence. Test counts below reflect the repository state at the time this feature was completed. The current Week 9 regression suite contains 39 passing tests.
+# FR07 Livestock Save Validation and Feedback Evidence
 
 
 
-\## Objective
+## Objective
 
 
 
@@ -10,7 +11,7 @@ Improve Livestock input validation and ensure that the application provides accu
 
 
 
-\## Validation Flow
+## Validation Flow
 
 
 
@@ -32,27 +33,27 @@ This ensures that users receive the most relevant validation message before the 
 
 
 
-\## Changes
+## Changes
 
 
 
-\* Added reusable required-field validation to `LivestockValidator`.
+* Added reusable required-field validation to `LivestockValidator`.
 
-\* Required fields are checked before date-format validation.
+* Required fields are checked before date-format validation.
 
-\* Added handling for failed `LivestockDAO.save()` operations.
+* Added handling for failed `LivestockDAO.save()` operations.
 
-\* Success feedback is only displayed when the database save succeeds.
+* Success feedback is only displayed when the database save succeeds.
 
-\* Input fields are only cleared after a successful save.
+* Input fields are only cleared after a successful save.
 
-\* Added automated tests for blank required fields.
+* Added automated tests for blank required fields.
 
-\* Added a negative persistence test to verify DAO failure handling.
+* Added a negative persistence test to verify DAO failure handling.
 
 
 
-\## Manual Verification
+## Manual Verification
 
 
 
@@ -60,23 +61,23 @@ The following scenarios were manually verified:
 
 
 
-1\. Blank required field displays `Please fill in all fields.`
+1. Blank required field displays `Please fill in all fields.`
 
-2\. Incorrect date format displays `Date must use YYYY-MM-DD format.`
+2. Incorrect date format displays `Date must use YYYY-MM-DD format.`
 
-3\. Impossible calendar date is rejected.
+3. Impossible calendar date is rejected.
 
-4\. Valid livestock data is saved successfully.
+4. Valid livestock data is saved successfully.
 
-5\. Input fields are cleared only after a successful save.
-
-
-
-\## Automated Testing
+5. Input fields are cleared only after a successful save.
 
 
 
-\### LivestockValidatorTest
+## Automated Testing
+
+
+
+### LivestockValidatorTest
 
 
 
@@ -94,27 +95,27 @@ The tests verify:
 
 
 
-\* Valid ISO dates
+* Valid ISO dates
 
-\* Incorrect date formats
+* Incorrect date formats
 
-\* Impossible calendar dates
+* Impossible calendar dates
 
-\* Blank dates
+* Blank dates
 
-\* Null dates
+* Null dates
 
-\* Blank species
+* Blank species
 
-\* Blank identifier
+* Blank identifier
 
-\* Blank acquisition date
+* Blank acquisition date
 
-\* Complete required fields
+* Complete required fields
 
 
 
-\### LivestockPersistenceTest
+### LivestockPersistenceTest
 
 
 
@@ -132,13 +133,13 @@ The persistence tests verify:
 
 
 
-\* Livestock records can be saved and loaded from SQLite.
+* Livestock records can be saved and loaded from SQLite.
 
-\* DAO save operations correctly return failure when database constraints are violated.
+* DAO save operations correctly return failure when database constraints are violated.
 
 
 
-\## Full Regression Result
+## Full Regression Result
 
 
 
