@@ -14,6 +14,14 @@ public final class LivestockValidator {
 
     private LivestockValidator() {
     }
+    /**
+     * Checks whether any required livestock field is missing or blank.
+     *
+     * @param species livestock species entered by the user
+     * @param identifier livestock identifier entered by the user
+     * @param dateAcquired acquisition or birth date entered by the user
+     * @return true when at least one required field is blank or null
+     */
     public static boolean hasBlankRequiredFields(
             String species,
             String identifier,
