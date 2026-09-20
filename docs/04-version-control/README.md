@@ -1,8 +1,8 @@
-\# Version Control Evidence
+# Version Control Evidence
 
 
 
-\## Workflow
+## Workflow
 
 
 
@@ -14,7 +14,7 @@ Feature, fix, testing and documentation work is developed on separate branches a
 
 
 
-\## Evidence Files
+## Evidence Files
 
 
 
@@ -28,7 +28,7 @@ Feature, fix, testing and documentation work is developed on separate branches a
 
 
 
-\## Iterative Development
+## Iterative Development
 
 
 
