@@ -1,6 +1,9 @@
 package com.example.farmbook;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
@@ -12,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
 
@@ -145,9 +149,9 @@ public class InventoryController {
         }
     }
 
-    @FXML
-    private void onReturn() {
-        Stage stage = (Stage) inventoryTableView.getScene().getWindow();
-        new HomePage_application().start(stage);
+    public void onReturn(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("homepage-view.fxml"));
+        Stage stage = (Stage) itemNameTextField.getScene().getWindow();
+        stage.setScene(new Scene(loader.load(), 1000, 800));
     }
 }
