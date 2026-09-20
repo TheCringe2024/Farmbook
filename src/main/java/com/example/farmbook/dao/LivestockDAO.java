@@ -10,7 +10,25 @@ import java.util.List;
  * Saves and loads livestock records from the database.
  */
 public class LivestockDAO {
+    public LivestockDAO() {
+        createTable();
+    }
 
+    private void createTable() {
+        String sql = "CREATE TABLE IF NOT EXISTS livestock ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "species VARCHAR NOT NULL, "
+                + "identifier VARCHAR NOT NULL, "
+                + "date_acquired VARCHAR NOT NULL"
+                + ")";
+
+        try (Connection conn = DatabaseConnection.connect();
+             Statement stmt = conn.createStatement()) {
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            System.err.println("Failed to create livestock table: " + e.getMessage());
+        }
+    }
     /**
      * Saves a new animal record.
      * @param livestock the animal to save
