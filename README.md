@@ -12,5 +12,4 @@ Technology for Sustainable Futures
 - Kevin Pham
 
 ## Documentation
-Project requirements:
-`docs/requirements/`
+FARMBOOK_Project_Requirements-V1.pdf
