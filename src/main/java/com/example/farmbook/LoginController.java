@@ -39,7 +39,9 @@ public class LoginController {
             if (isValidLogin(enteredUsername, enteredPassword)) {
                 accessLabel.setText("Login success");
                 SessionState.login();
-                HelloApplication.showHome();
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("homepage-view.fxml"));
+                Stage stage = (Stage) usernameField.getScene().getWindow();
+                stage.setScene(new Scene(loader.load(), 1000, 800));
             } else {
                 accessLabel.setText("Wrong password or username! Try again!");
             }

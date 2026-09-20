@@ -4,12 +4,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -115,14 +118,10 @@ public class CropController {
     }
 
     @FXML
-    void handleBack(ActionEvent event) {
-        try {
-            // Get the current stage from the button, and launch HomePage back onto it
-            Stage stage = (Stage) btnBack.getScene().getWindow();
-            new HomePage_application().start(stage);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    void handleBack(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("homepage-view.fxml"));
+        Stage stage = (Stage) nameInput.getScene().getWindow();
+        stage.setScene(new Scene(loader.load(), 1000, 800));
     }
 
     private void refreshTable() {

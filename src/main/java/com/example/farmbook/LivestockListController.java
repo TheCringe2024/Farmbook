@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
 
 public class LivestockListController {
@@ -55,12 +56,9 @@ public class LivestockListController {
     }
 
     @FXML
-    private void handleBack() {
-        try {
-            Stage stage = (Stage) backButton.getScene().getWindow();
-            new HomePage_application().start(stage);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+    private void handleBack() throws IOException {
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("homepage-view.fxml"));
+        Stage stage = (Stage) livestockListView.getScene().getWindow();
+        stage.setScene(new Scene(loader.load(), 1000, 800));
     }
 }
