@@ -9,8 +9,25 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class LivestockPersistenceTest {
+
+    @Test
+    void saveReturnsFalseWhenRequiredDatabaseFieldIsNull() {
+        LivestockDAO dao = new LivestockDAO();
+
+        Livestock invalidLivestock = new Livestock(
+                null,
+                "INVALID-" + System.nanoTime(),
+                "2026-09-20"
+        );
+
+        assertFalse(
+                dao.save(invalidLivestock),
+                "DAO should report failure when a required field violates the database constraint"
+        );
+    }
 
     @Test
     void savedLivestockCanBeLoadedFromDatabase() throws Exception {

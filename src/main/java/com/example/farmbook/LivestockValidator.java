@@ -14,6 +14,15 @@ public final class LivestockValidator {
 
     private LivestockValidator() {
     }
+    public static boolean hasBlankRequiredFields(
+            String species,
+            String identifier,
+            String dateAcquired) {
+
+        return species == null || species.isBlank()
+                || identifier == null || identifier.isBlank()
+                || dateAcquired == null || dateAcquired.isBlank();
+    }
 
     /**
      * Checks whether a date uses the ISO YYYY-MM-DD format
