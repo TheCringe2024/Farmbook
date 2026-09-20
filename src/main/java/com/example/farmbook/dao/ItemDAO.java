@@ -6,8 +6,18 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class handles everything to do with saving and updating
+ * inventory items (like seeds, tools, fertiliser) in the database.
+ * It's the only part of the app that actually talks to the database
+ * for inventory — everything else just asks this class to do it.
+ */
 public class ItemDAO {
 
+    /**
+     * Saves a brand new item into the inventory.
+     * @param item the item the farmer wants to add
+     */
     public void save(Item item) {
         String sql = "INSERT INTO items (name, category, unit, quantity) VALUES (?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.connect();
@@ -22,6 +32,10 @@ public class ItemDAO {
         }
     }
 
+    /**
+     * Gets the full list of everything currently in the inventory.
+     * @return every saved item, or an empty list if nothing's been added yet
+     */
     public List<Item> findAll() {
         List<Item> items = new ArrayList<>();
         String sql = "SELECT * FROM items";
@@ -44,6 +58,12 @@ public class ItemDAO {
         return items;
     }
 
+    /**
+     * Adds more stock to an item — used when new stock arrives
+     * (e.g. a farmer buys more seeds).
+     * @param itemId which item to update
+     * @param amount how much stock is being added
+     */
     public void addStock(int itemId, int amount) {
         String sql = "UPDATE items SET quantity = quantity + ? WHERE id = ?";
         try (Connection conn = DatabaseConnection.connect();
@@ -56,6 +76,13 @@ public class ItemDAO {
         }
     }
 
+    /**
+     * Removes stock from an item — used when it's used up or sold.
+     * Won't let the amount go below zero, so the numbers always stay accurate.
+     * @param itemId which item to update
+     * @param amount how much stock is being taken away
+     * @return true if it worked, false if there wasn't enough stock to remove
+     */
     public boolean removeStock(int itemId, int amount) {
         String checkSql = "SELECT quantity FROM items WHERE id = ?";
         try (Connection conn = DatabaseConnection.connect();
