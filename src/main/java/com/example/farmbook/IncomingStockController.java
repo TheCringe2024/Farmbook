@@ -10,6 +10,9 @@ import javafx.scene.control.TextField;
 
 import java.util.List;
 
+/**
+ * Controls the Incoming Stock screen.
+ */
 public class IncomingStockController {
 
     @FXML
@@ -29,12 +32,18 @@ public class IncomingStockController {
 
     private final ItemDAO itemDAO = new ItemDAO();
 
+    /**
+     * Loads items into the dropdown when the screen opens.
+     */
     @FXML
     public void initialize() {
         List<Item> items = itemDAO.findAll();
         itemComboBox.setItems(FXCollections.observableArrayList(items));
     }
 
+    /**
+     * Validates input and adds stock to the selected item.
+     */
     @FXML
     private void handleAddStock() {
         Item selectedItem = itemComboBox.getValue();
@@ -64,7 +73,6 @@ public class IncomingStockController {
             dateField.clear();
             sourceField.clear();
 
-            // refresh the list so the combo box shows updated quantities
             itemComboBox.setItems(FXCollections.observableArrayList(itemDAO.findAll()));
         } catch (NumberFormatException e) {
             statusLabel.setStyle("-fx-text-fill: red;");

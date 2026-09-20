@@ -46,11 +46,27 @@ public class CropDAO {
                         rs.getInt("quantity"),
                         rs.getString("date_planted")
                 );
+                crop.setId(rs.getInt("id"));
                 crops.add(crop);
             }
         } catch (SQLException e) {
             System.err.println("Failed to load crops: " + e.getMessage());
         }
         return crops;
+    }
+
+    /**
+     * Deletes a crop record by ID.
+     * @param id the record to delete
+     */
+    public void delete(int id) {
+        String sql = "DELETE FROM crops WHERE id = ?";
+        try (Connection conn = DatabaseConnection.connect();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Failed to delete crop: " + e.getMessage());
+        }
     }
 }

@@ -10,6 +10,9 @@ import javafx.scene.control.TextField;
 
 import java.util.List;
 
+/**
+ * Controls the Outgoing Stock screen.
+ */
 public class OutgoingStockController {
 
     @FXML
@@ -26,12 +29,18 @@ public class OutgoingStockController {
 
     private final ItemDAO itemDAO = new ItemDAO();
 
+    /**
+     * Loads items into the dropdown when the screen opens.
+     */
     @FXML
     public void initialize() {
         List<Item> items = itemDAO.findAll();
         itemComboBox.setItems(FXCollections.observableArrayList(items));
     }
 
+    /**
+     * Validates input and removes stock from the selected item.
+     */
     @FXML
     private void handleRemoveStock() {
         Item selectedItem = itemComboBox.getValue();
