@@ -7,16 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is in charge of saving and loading livestock records
- * (like cows, sheep, chickens) to and from the database.
- * Think of it as the "middleman" between the app and the database —
- * nothing else in the app talks to the database directly for livestock.
+ * Saves and loads livestock records from the database.
  */
 public class LivestockDAO {
 
     /**
-     * Saves a new animal to the database.
-     * @param livestock the animal we want to save
+     * Saves a new animal record.
+     * @param livestock the animal to save
      */
     public void save(Livestock livestock) {
         String sql = "INSERT INTO livestock (species, identifier, date_acquired) VALUES (?, ?, ?)";
@@ -32,9 +29,8 @@ public class LivestockDAO {
     }
 
     /**
-     * Gets every animal that's been saved so far.
-     * Used to show the farmer the full list of their livestock.
-     * @return a list of all animals, or an empty list if none exist yet
+     * Returns all saved animals.
+     * @return list of every livestock record
      */
     public List<Livestock> findAll() {
         List<Livestock> list = new ArrayList<>();
@@ -58,9 +54,8 @@ public class LivestockDAO {
     }
 
     /**
-     * Removes an animal record completely, based on its ID.
-     * Used if a farmer added something by mistake or an animal is no longer being tracked.
-     * @param id the ID of the animal record to remove
+     * Deletes an animal record by ID.
+     * @param id the record to delete
      */
     public void delete(int id) {
         String sql = "DELETE FROM livestock WHERE id = ?";

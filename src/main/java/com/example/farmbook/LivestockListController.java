@@ -13,6 +13,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Controls the Livestock List screen.
+ */
 public class LivestockListController {
 
     @FXML
@@ -26,11 +29,17 @@ public class LivestockListController {
 
     private final LivestockDAO livestockDAO = new LivestockDAO();
 
+    /**
+     * Loads the list when the screen opens.
+     */
     @FXML
     public void initialize() {
         loadLivestock();
     }
 
+    /**
+     * Fetches and displays all saved animals.
+     */
     private void loadLivestock() {
         List<Livestock> animals = livestockDAO.findAll();
         livestockListView.setItems(FXCollections.observableArrayList());
@@ -42,6 +51,9 @@ public class LivestockListController {
         }
     }
 
+    /**
+     * Opens the Add Livestock screen.
+     */
     @FXML
     private void handleAddNew() {
         try {
@@ -55,6 +67,10 @@ public class LivestockListController {
         }
     }
 
+    /**
+     * Returns to the home page.
+     * @throws IOException if the home page fails to load
+     */
     @FXML
     private void handleBack() throws IOException {
         FXMLLoader loader = new FXMLLoader(

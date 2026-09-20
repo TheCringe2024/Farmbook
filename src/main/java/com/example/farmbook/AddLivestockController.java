@@ -10,6 +10,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+/**
+ * Controls the Add Livestock screen.
+ */
 public class AddLivestockController {
 
     @FXML
@@ -29,6 +32,9 @@ public class AddLivestockController {
 
     private final LivestockDAO livestockDAO = new LivestockDAO();
 
+    /**
+     * Validates and saves a new animal.
+     */
     @FXML
     private void handleSaveLivestock() {
         String species = speciesField.getText();
@@ -58,6 +64,9 @@ public class AddLivestockController {
         dateAcquiredField.clear();
     }
 
+    /**
+     * Returns to the livestock list.
+     */
     @FXML
     private void handleBack() {
         try {

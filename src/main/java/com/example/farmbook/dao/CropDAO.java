@@ -6,8 +6,15 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Saves and loads crop records from the database.
+ */
 public class CropDAO {
 
+    /**
+     * Saves a new crop record.
+     * @param crop the crop to save
+     */
     public void save(Crop crop) {
         String sql = "INSERT INTO crops (type, field_plot, quantity, date_planted) VALUES (?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.connect();
@@ -22,6 +29,10 @@ public class CropDAO {
         }
     }
 
+    /**
+     * Returns all saved crops.
+     * @return list of every crop record
+     */
     public List<Crop> findAll() {
         List<Crop> crops = new ArrayList<>();
         String sql = "SELECT * FROM crops";
@@ -35,7 +46,6 @@ public class CropDAO {
                         rs.getInt("quantity"),
                         rs.getString("date_planted")
                 );
-                crop.setId(rs.getInt("id"));
                 crops.add(crop);
             }
         } catch (SQLException e) {

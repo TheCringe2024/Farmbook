@@ -7,16 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class handles everything to do with saving and updating
- * inventory items (like seeds, tools, fertiliser) in the database.
- * It's the only part of the app that actually talks to the database
- * for inventory — everything else just asks this class to do it.
+ * Saves and updates inventory items in the database.
  */
 public class ItemDAO {
 
     /**
-     * Saves a brand new item into the inventory.
-     * @param item the item the farmer wants to add
+     * Saves a new item.
+     * @param item the item to save
      */
     public void save(Item item) {
         String sql = "INSERT INTO items (name, category, unit, quantity) VALUES (?, ?, ?, ?)";
@@ -33,8 +30,8 @@ public class ItemDAO {
     }
 
     /**
-     * Gets the full list of everything currently in the inventory.
-     * @return every saved item, or an empty list if nothing's been added yet
+     * Returns all saved items.
+     * @return list of every inventory item
      */
     public List<Item> findAll() {
         List<Item> items = new ArrayList<>();
@@ -59,29 +56,33 @@ public class ItemDAO {
     }
 
     /**
-     * Adds more stock to an item — used when new stock arrives
-     * (e.g. a farmer buys more seeds).
-     * @param itemId which item to update
-     * @param amount how much stock is being added
+     * Adds stock to an item.
+     * @param itemId item to update
+     * @param amount stock to add
+     * @return true if successful
      */
-    public void addStock(int itemId, int amount) {
+    public boolean addStock(int itemId, int amount) {
+        if (amount < 0) {
+            return false;
+        }
         String sql = "UPDATE items SET quantity = quantity + ? WHERE id = ?";
         try (Connection conn = DatabaseConnection.connect();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, amount);
             ps.setInt(2, itemId);
             ps.executeUpdate();
+            return true;
         } catch (SQLException e) {
             System.err.println("Failed to add stock: " + e.getMessage());
+            return false;
         }
     }
 
     /**
-     * Removes stock from an item — used when it's used up or sold.
-     * Won't let the amount go below zero, so the numbers always stay accurate.
-     * @param itemId which item to update
-     * @param amount how much stock is being taken away
-     * @return true if it worked, false if there wasn't enough stock to remove
+     * Removes stock from an item.
+     * @param itemId item to update
+     * @param amount stock to remove
+     * @return true if successful, false if not enough stock
      */
     public boolean removeStock(int itemId, int amount) {
         String checkSql = "SELECT quantity FROM items WHERE id = ?";
