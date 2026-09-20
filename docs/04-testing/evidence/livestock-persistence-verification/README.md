@@ -1,4 +1,4 @@
-> Historical iteration evidence. Test counts below reflect the repository state at the time this feature was completed. The current Week 9 regression suite contains 39 passing tests.
+> Historical iteration evidence. Test counts below reflect the repository state at the time this feature was completed. 
 # FR07 Livestock Persistence Verification
 
 
