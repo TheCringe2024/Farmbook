@@ -16,9 +16,14 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Controller for  Crop UI view
+ * Handles user interactions. Updates the TableView and PieChart.
+ * Communicates with the database via the CropDAO
+ */
 public class CropController {
 
-    // link var to fxml filke
+    // link var to fxml file
     @FXML private TableView<Crop> table;
     @FXML private TableColumn<Crop, Integer> idCol;
     @FXML private TableColumn<Crop, String> nameCol;
@@ -39,7 +44,11 @@ public class CropController {
 
     private final CropDAO cropDAO = new CropDAO();
 
-    // initialize() runs automatically right after the FXML is loaded.
+    /**
+     * Initialize method automatically called after the FXML file.
+     * Sets up the database table, binds table columns to the Crop properties,
+     * loads data and starts row selection listener.
+     */
     @FXML
     public void initialize() {
         cropDAO.createTable();
@@ -66,6 +75,13 @@ public class CropController {
         });
     }
 
+    /**
+     * handles the action of adding a new crop
+     * retrieves data from the input fields, inserts it into the database
+     * refreshes the table and chart views.
+     *
+     * @param event ActionEvent triggered by clicking the Add Crop button.
+     */
     @FXML
     void handleAddCrop(ActionEvent event) {
         Crop newCrop = new Crop(
@@ -78,6 +94,12 @@ public class CropController {
         refreshTable();
     }
 
+    /**
+     * handles updating an existing crop record
+     * modifies the currently selected crop using the text input fields
+     *
+     * @param event ActionEvent triggered by clicking the Update Selected button
+     */
     @FXML
     void handleUpdateCrop(ActionEvent event) {
         Crop selected = table.getSelectionModel().getSelectedItem();
@@ -93,6 +115,12 @@ public class CropController {
         }
     }
 
+    /**
+     * handles the deletion of the selected crop
+     * Removes the record from the database and updates the UI
+     *
+     * @param event ActionEvent triggered by clicking the Delete Selected button
+     */
     @FXML
     void handleDeleteCrop(ActionEvent event) {
         Crop selected = table.getSelectionModel().getSelectedItem();
@@ -102,6 +130,12 @@ public class CropController {
         }
     }
 
+    /**
+     * toggles the UI view between the data table and the summary pie chart
+     * also enables or disables the input form to prevent editing while viewing the chart
+     *
+     * @param event ActionEvent triggered by clicking the toggle view button
+     */
     @FXML
     void handleToggleView(ActionEvent event) {
         if (table.isVisible()) {
@@ -117,6 +151,12 @@ public class CropController {
         }
     }
 
+    /**
+     * Navigates the user back to the main Home Page
+     *
+     * @param event ActionEvent triggered by clicking the back to Home button
+     * @throws IOException If the homepage-view.fxml file cannot be loaded
+     */
     @FXML
     void handleBack(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("homepage-view.fxml"));
@@ -124,12 +164,22 @@ public class CropController {
         stage.setScene(new Scene(loader.load(), 1000, 800));
     }
 
+    /**
+     * refreshes the TableView fetching data from the database
+     * also updates the PieChart data
+     */
     private void refreshTable() {
         ObservableList<Crop> cropList = FXCollections.observableArrayList(cropDAO.getAll());
         table.setItems(cropList);
         updateChartData(cropList);
     }
 
+    /**
+     * Calculates the total amount for each unique plant name
+     * updates the PieChart with the aggregated data
+     *
+     * @param cropList The current list of crops retrieved from the database
+     */
     private void updateChartData(ObservableList<Crop> cropList) {
         Map<String, Integer> summary = new HashMap<>();
         for (Crop crop : cropList) {

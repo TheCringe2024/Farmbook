@@ -33,6 +33,6 @@ public class Livestock {
      */
     @Override
     public String toString() {
-        return species + " — " + identifier + " (acquired " + dateAcquired + ")";
+        return species + " - " + identifier + " (acquired " + dateAcquired + ")";
     }
 }

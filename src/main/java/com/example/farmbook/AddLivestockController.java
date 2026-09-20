@@ -41,20 +41,33 @@ public class AddLivestockController {
         String identifier = identifierField.getText();
         String dateAcquired = dateAcquiredField.getText();
 
+        // Required fields should be checked before format validation.
+        if (LivestockValidator.hasBlankRequiredFields(
+                species,
+                identifier,
+                dateAcquired)) {
+
+            statusLabel.setStyle("-fx-text-fill: red;");
+            statusLabel.setText("Please fill in all fields.");
+            return;
+        }
+
         if (!LivestockValidator.isValidDate(dateAcquired)) {
             statusLabel.setStyle("-fx-text-fill: red;");
             statusLabel.setText("Date must use YYYY-MM-DD format.");
             return;
         }
 
-        if (species.isBlank() || identifier.isBlank() || dateAcquired.isBlank()) {
+        Livestock livestock =
+                new Livestock(species, identifier, dateAcquired);
+
+        boolean saved = livestockDAO.save(livestock);
+
+        if (!saved) {
             statusLabel.setStyle("-fx-text-fill: red;");
-            statusLabel.setText("Please fill in all fields.");
+            statusLabel.setText("Failed to save livestock. Please try again.");
             return;
         }
-
-        Livestock livestock = new Livestock(species, identifier, dateAcquired);
-        livestockDAO.save(livestock);
 
         statusLabel.setStyle("-fx-text-fill: green;");
         statusLabel.setText("Saved: " + livestock);
@@ -71,10 +84,17 @@ public class AddLivestockController {
     private void handleBack() {
         try {
             Stage stage = (Stage) backButton.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("livestock-list-view.fxml"));
+            FXMLLoader loader =
+                    new FXMLLoader(
+                            HelloApplication.class.getResource(
+                                    "livestock-list-view.fxml"
+                            )
+                    );
+
             Scene scene = new Scene(loader.load(), 800, 600);
             stage.setScene(scene);
             stage.setTitle("Farmbook - Livestock List");
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
