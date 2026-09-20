@@ -8,12 +8,20 @@ public class SqliteInventoryDAO implements IInventoryDAO {
 
     private Connection connection;
 
+    /**
+     * Gets the shared database connection and makes sure the inventory table exists
+     * so items can be saved and loaded straight away.
+     */
     public SqliteInventoryDAO() {
         connection = SqliteConnection.getInstance();
         createTable();
 
     }
 
+    /**
+     * creates an inventory table in the database if it doesnt already exist
+     * with an id, item name, category, unit and quantity for each item.
+     */
     private void createTable() {
         // Create table if not exists
         try {
@@ -31,6 +39,11 @@ public class SqliteInventoryDAO implements IInventoryDAO {
         }
     }
 
+    /**
+     * Saves a new inventory item into the database and sets the items id
+     * to the id the database generated for it.
+     * @param inventory the item to add to the inventory
+     */
     @Override
     public void addInventoryItem(Inventory inventory){
         try {
@@ -49,6 +62,12 @@ public class SqliteInventoryDAO implements IInventoryDAO {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Updates an existing inventory item in the database with the items
+     * current name, category, unit and quantity, matched by its ID
+     * @param inventory the item with its updated details
+     */
     @Override
     public void updateInventoryItem(Inventory inventory)
     {
@@ -65,6 +84,11 @@ public class SqliteInventoryDAO implements IInventoryDAO {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Deletes an inventory item from the database using its id.
+     * @param inventory the item to delete
+     */
     @Override
     public void deleteInventoryItem(Inventory inventory) {
         try {
@@ -76,6 +100,11 @@ public class SqliteInventoryDAO implements IInventoryDAO {
         }
     }
 
+    /**
+     * Finds a single inventory item in the database by its ID
+     * @param id the id of the item to find
+     * @return the matching item or null if not item has that id
+     */
     @Override
     public Inventory getInventory(int id) {
         try {
@@ -97,6 +126,10 @@ public class SqliteInventoryDAO implements IInventoryDAO {
         return null;
     }
 
+    /**
+     * Loads every item from the inventory table in the database.
+     * @return a list of all inventory items or an empty list if there are no items
+     */
     public List<Inventory> getInventoryItems() {
         List<Inventory> inventorys = new ArrayList<>();
         try {
