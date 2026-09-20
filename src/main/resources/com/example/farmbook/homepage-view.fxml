@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #232838;"
+           xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.example.farmbook.HomePageController">
+   <children>
+      <Region opacity="0.6"
+              style="-fx-background-image: url('/FarmBookBackground2.jpg');
+                     -fx-background-size: cover;
+                     -fx-background-position: center center;
+                     -fx-background-repeat: no-repeat;" />
+
+      <BorderPane>
+         <right>
+            <VBox prefWidth="140.0" style="-fx-background-color: rgba(59, 67, 95, 0.6);" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5;" text="Account" textAlignment="CENTER" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#onCrops" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5;" text="Crops" textAlignment="CENTER" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#onInventory" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5;" text="Inventory" textAlignment="CENTER" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#onLivestock" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5;" text="Livestock" textAlignment="CENTER" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#onSettings" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5;" text="Settings" textAlignment="CENTER" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#onExit" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5;" text="Logout" textAlignment="CENTER" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </right>
+         <top>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" style="-fx-background-color: #3B435F;" BorderPane.alignment="CENTER_RIGHT">
+               <children>
+                  <Label text="WEATHER" textFill="WHITE">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="100.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="TIME" textFill="WHITE">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="80.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="Welcome back USER" textFill="WHITE">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="40.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ImageView fitHeight="100.0" fitWidth="144.0">
+                     <image>
+                        <Image url="@../../../FarmBook.PNG" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </top>
+      </BorderPane>
+
+   </children>
+</StackPane>
