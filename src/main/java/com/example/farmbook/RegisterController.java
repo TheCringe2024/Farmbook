@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 
 public class RegisterController {
@@ -57,8 +58,10 @@ public class RegisterController {
             try (PreparedStatement stmt = connection.prepareStatement(sql)) {
                 stmt.setString(1, username);
                 stmt.setString(2, email);
-                stmt.setString(3, password);
+                stmt.setString(3, PasswordHash.hash(password));
                 stmt.executeUpdate();
+            } catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException(e);
             }
 
             showSuccess("Registration successful!");
