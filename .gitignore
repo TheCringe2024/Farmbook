@@ -43,3 +43,6 @@ build/
 .db
 farmbook.db
 inventory.db
+
+#idea files
+.idea/
