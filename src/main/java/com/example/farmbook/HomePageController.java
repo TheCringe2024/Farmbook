@@ -34,9 +34,15 @@ public class HomePageController {
     @FXML
     protected void onLivestock(ActionEvent event) throws IOException {
         Stage stage = stageOf(event);
-        FXMLLoader loader = new FXMLLoader(HomeController.class.getResource("livestock-list-view.fxml"));
+
+        FXMLLoader loader = new FXMLLoader(
+                HomePageController.class.getResource("livestock-list-view.fxml")
+        );
+
         stage.setScene(new Scene(loader.load(), 800, 600));
-        stage.setTitle("FarmBook - Add Livestock");
+        stage.setTitle("FarmBook - Livestock");
+        stage.sizeToScene();
+        stage.centerOnScreen();
     }
 
     @FXML
