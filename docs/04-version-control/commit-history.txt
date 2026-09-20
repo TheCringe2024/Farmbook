@@ -1,0 +1,100 @@
+﻿33f8e35 | 2026-09-20 | Vy Nguyen | Merge branch 'main' of https://github.com/TheCringe2024/Farmbook
+0e30084 | 2026-09-20 | Vy Nguyen | docs: add low-fidelity UI wireframes from Figma
+f9e8e8f | 2026-09-20 | kevintrap-16 | Enhance livestock OO architecture documentation
+5b9f63b | 2026-09-20 | kevintrap-16 | Update kevin-video-map.md
+d255a1d | 2026-09-20 | kevintrap-16 | Revise livestock save feedback README content
+05a87f7 | 2026-09-20 | kevintrap-16 | Update README.md
+8c181ba | 2026-09-20 | kevintrap-16 | Merge pull request #27 from TheCringe2024/docs/week9-kevin-javadocs
+939008a | 2026-09-20 | Kevin Duy | docs: improve Livestock OO evidence and Javadocs
+c873c63 | 2026-09-20 | Rohan | creates livestock table if it doesn't exist
+afd5759 | 2026-09-20 | J-Dev | Merge pull request #26 from TheCringe2024/feature/fr01-login
+81fa9b4 | 2026-09-20 | Jeremy Johns | Added tests for login, register and password hashing
+9953ce6 | 2026-09-20 | Vy Nguyen | docs: add release plan and sprint plan for video segment
+55bf919 | 2026-09-20 | J-Dev | Merge pull request #25 from TheCringe2024/feature/fr05-inventory
+739b4f3 | 2026-09-20 | Jeremy Johns | Added comments to the login page files
+ac9d00f | 2026-09-20 | Vy Nguyen | Merge branch 'main' of https://github.com/TheCringe2024/Farmbook
+d13b82e | 2026-09-20 | Vy Nguyen | fix: change LivestockDAO.save() to return boolean so callers can check success
+b169868 | 2026-09-20 | J-Dev | Merge pull request #24 from TheCringe2024/feature/fr05-inventory
+7e98894 | 2026-09-20 | Jeremy Johns | Added comments to Inventory System
+eb28b8e | 2026-09-20 | Jeremy Johns | Merge branch 'main' of https://github.com/TheCringe2024/Farmbook into feature/fr05-inventory
+5c2c96f | 2026-09-20 | J-Dev | Merge pull request #22 from TheCringe2024/feature/fr01-register
+3cc00e9 | 2026-09-20 | Jeremy Johns | Added javadocs comments to register files
+275cbd7 | 2026-09-20 | kevintrap-16 | Merge pull request #23 from TheCringe2024/docs/week9-kevin-video-prep
+a461b5b | 2026-09-20 | Kevin Duy | docs: fix Week 9 video map formatting
+ffd2c6b | 2026-09-20 | Kevin Duy | docs: prepare Week 9 OO and testing walkthrough evidence
+d9f1c2f | 2026-09-20 | Vy Nguyen | docs: add Javadoc to Stock controllers; test: add TDD tests for CropDAO delete
+395ce4e | 2026-09-20 | Vy Nguyen | Merge branch 'main' of https://github.com/TheCringe2024/Farmbook
+e8637b3 | 2026-09-20 | Vy Nguyen | docs: add short Javadoc comments; test: add TDD tests for ItemDAO negative stock check
+80ba560 | 2026-09-20 | Jeremy Johns | Added SHA-256 password hashing for passwords
+9d4655d | 2026-09-20 | Jeremy Johns | Merge branch 'main' of https://github.com/TheCringe2024/Farmbook into feature/fr01-register
+fba7308 | 2026-09-20 | Jeremy Johns | Merge branch 'main' of https://github.com/TheCringe2024/Farmbook into feature/fr01-register
+84e2465 | 2026-09-20 | kevintrap-16 | Merge pull request #20 from TheCringe2024/fix/fr07-livestock-save-feedback
+fe9b833 | 2026-09-20 | kevintrap-16 | Add files via upload
+8986ce1 | 2026-09-20 | Jeremy Johns | Added basic password hashing for security
+dbea51c | 2026-09-20 | Jeremy Johns | Added basic password hashing for security
+955365d | 2026-09-20 | Kevin Duy | fix: improve livestock validation and save feedback
+9ebd1f6 | 2026-09-20 | Rohan Karki | Merge pull request #19 from TheCringe2024/Rohan Added Crop test
+3cce9ff | 2026-09-20 | Rohan | Added tests for crop
+edf6a29 | 2026-09-20 | Rohan | Merge remote-tracking branch 'origin/main' into Rohan
+167ed81 | 2026-09-20 | kevintrap-16 | Merge pull request #18 from TheCringe2024/test/fr07-livestock-persistence-verification
+2be81e6 | 2026-09-20 | Rohan | Merge remote-tracking branch 'origin/main' into Rohan
+df3761c | 2026-09-20 | Vy Nguyen | Merge branch 'main' of https://github.com/TheCringe2024/Farmbook
+38024e4 | 2026-09-20 | Kevin Duy | fix: remove misplaced livestock persistence test
+a64dd55 | 2026-09-20 | Kevin Duy | test: verify livestock SQLite persistence
+103aa72 | 2026-09-20 | Vy Nguyen | docs: add simple Javadoc comments explaining what each class and method does
+9f4d888 | 2026-09-20 | kevintrap-16 | Merge pull request #17 from TheCringe2024/fix/fr07-livestock-dashboard-navigation
+1635235 | 2026-09-20 | Kevin Duy | fix: improve livestock dashboard navigation
+f95132f | 2026-09-20 | Rohan | Merge remote-tracking branch 'origin/main' into Rohan
+648ea95 | 2026-09-20 | kevintrap-16 | Merge pull request #16 from TheCringe2024/test/fr07-livestock-date-validation
+11afbca | 2026-09-20 | Kevin Duy | fix: enforce livestock acquisition date validation
+77cc7e2 | 2026-09-20 | kevintrap-16 | Add documentation for livestock acquisition date validation
+c2b5373 | 2026-09-20 | kevintrap-16 | Add files via upload
+9b4c09f | 2026-09-20 | kevintrap-16 | Add files via upload
+d709ee5 | 2026-09-20 | kevintrap-16 | docs: create livestock validation evidence folder
+52e814d | 2026-09-20 | Rohan | merged origin/main, added javadocs style comments fro Crop, CropController, CropDAO
+ffa10c1 | 2026-09-20 | kevintrap-16 | Create livestock-date-validation
+8a43f3e | 2026-09-20 | kevintrap-16 | test: validate livestock acquisition date using RGR
+9395f23 | 2026-09-20 | Kevin Duy | refactor: clarify livestock date validation
+c204cd5 | 2026-09-20 | Kevin Duy | test: specify livestock acquisition date validation
+88bb3d6 | 2026-09-20 | kevintrap-16 | Merge pull request #14 from TheCringe2024/feature/GUIColours
+10ed68c | 2026-09-20 | Kevin Duy | On fix/fr07-livestock-persistence: local IntelliJ workspace settings
+699f83d | 2026-09-20 | Kevin Duy | index on fix/fr07-livestock-persistence: ef71e31 fix: initialise livestock persistence and report save failures
+56eb904 | 2026-09-20 | Jeremy Johns | Added colours to GUI to fit assessment 2 requirements
+9625d94 | 2026-09-19 | Jeremy Johns | Added register page and database for storing users
+a29eced | 2026-09-19 | Jeremy Johns | Added register page and database for storing users
+d6d575c | 2026-09-18 | Vy Nguyen | feat: add Livestock List screen, fix Back button navigation flow
+50e7137 | 2026-09-18 | Vy Nguyen | chore: minor interface formatting from IDE
+49c1851 | 2026-09-18 | Vy Nguyen | style: match Add Livestock screen to Login page format, add Back button
+0735928 | 2026-09-18 | kevintrap-16 | Merge pull request #12 from TheCringe2024/fix/fr07-livestock-persistence
+ef71e31 | 2026-09-18 | Kevin Duy | fix: initialise livestock persistence and report save failures
+305c1e7 | 2026-09-18 | vynguyen28 | Merge pull request #5 from TheCringe2024/feature/fr06-stock-movement
+62e4f6e | 2026-09-18 | vynguyen28 | merge: resolve conflicts between FR06 stock movement and main
+9a96f5d | 2026-09-18 | vynguyen28 | Merge pull request #6 from TheCringe2024/feature/fr07-livestock-records
+85ad192 | 2026-09-18 | vynguyen28 | merge: resolve conflicts between FR07 livestock and main (login, crops, inventory)
+7b7fa2b | 2026-09-18 | vynguyen28 | feat: wire Livestock buttons to open Add Livestock screen
+3eb49f5 | 2026-09-18 | Vy Nguyen | chore: stop tracking local IDE files and database
+91bcf8b | 2026-09-18 | Vy Nguyen | chore: remove temporary test launcher
+15fcf3a | 2026-09-18 | Vy Nguyen | feat: wire Livestock buttons to open Add Livestock screen
+23a53eb | 2026-09-18 | Rohan Karki | merged Rohan into main
+23b3e9d | 2026-09-18 | Rohan | Merge remote-tracking branch 'origin/main' into Rohan
+2750312 | 2026-09-18 | Rohan | made app closer to main in preperation to merge
+b110c92 | 2026-09-18 | Jeremy Johns | Moved test file so they can run
+0f5ed5f | 2026-09-18 | Rohan | Merge remote-tracking branch 'refs/remotes/origin/main' into Rohan
+92e0050 | 2026-09-18 | J-Dev | Merge pull request #10 from TheCringe2024/feature/fr05-inventory
+c8ce30c | 2026-09-18 | kevintrap-16 | Merge pull request #4 from TheCringe2024/feature/fr01-logout
+e77fda6 | 2026-09-18 | Kevin Duy | Merge latest main and integrate logout with login and inventory navigation
+09220f5 | 2026-09-18 | Kevin Duy | test: add logout session regression tests and configure JUnit runner
+e53aa89 | 2026-09-18 | My name | improve login design and exit button functionality
+7dfc9fd | 2026-09-18 | My name | Improve login page design and exit button functionality
+038c6dd | 2026-09-17 | Jeremy Johns | Merge remote-tracking branch 'origin/main' into feature/fr05-inventory Adding inventory system to main branch with basic test cases
+0ac19ed | 2026-09-17 | Jeremy Johns | Feature/FR05 Inventory system tests
+ceb6379 | 2026-09-17 | J-Dev | Merge pull request #9 from TheCringe2024/feature/fr05-inventory
+8d0eb42 | 2026-09-17 | Jeremy Johns | Feature/FR05 Inventory system. Added page with table with view, add, edit, delete and returning to main dashboard page.
+b93c3a8 | 2026-09-17 | J-Dev | Merge pull request #8 from TheCringe2024/feature/fr01-login
+ac08d70 | 2026-09-17 | Jeremy Johns | Feature/fr01 login page
+0ea7e86 | 2026-09-17 | Rohan | piechart summary for crops
+7c5868e | 2026-09-17 | J-Dev | Merge pull request #2 from TheCringe2024/feature/fr02-record-crops
+24d562a | 2026-09-17 | Kevin Duy | Merge origin/main and connect homepage to logout flow
+9308833 | 2026-09-17 | Rohan | CRUD for Crops and clickable Table based Crop UI Page
+12b5a1f | 2026-09-17 | vynguyen28 | style: add shared stylesheet and apply to Add Livestock screen
+6108b7c | 2026-09-17 | vynguyen28 | chore: stop tracking local database file
