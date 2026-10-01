@@ -6,10 +6,28 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import javafx.scene.control.Label;
 import java.io.IOException;
 
+
+
 public class HomePageController {
+
+    // Identification variables for API
+    @FXML
+    private Label weatherLabel;
+
+    @FXML
+    private Label timeLabel;
+
+    // Connecting the app to the backend of the API
+    public void initialize() throws IOException, InterruptedException{
+        WeatherAPI weatherAPI = new WeatherAPI();
+        weatherData weather = weatherAPI.getWeather();
+
+        weatherLabel.setText(weather.getTemperature() + "'c");
+        timeLabel.setText(weather.getTime());
+    }
 
     @FXML
     protected void onCrops(ActionEvent event) throws IOException {
