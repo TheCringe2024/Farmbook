@@ -22,6 +22,9 @@ class LivestockServiceTest {
         private boolean saveResult = true;
         private Livestock savedLivestock;
 
+        private final List<Livestock> livestockRecords =
+                new ArrayList<>();
+
         @Override
         public boolean save(Livestock livestock) {
             saveCalled = true;
@@ -31,13 +34,35 @@ class LivestockServiceTest {
 
         @Override
         public List<Livestock> findAll() {
-            return new ArrayList<>();
+            return new ArrayList<>(livestockRecords);
         }
 
         @Override
         public void delete(int id) {
             // Not required for these service tests.
         }
+    }
+    @Test
+    void returnsLivestockRecordsFromDao() {
+        FakeLivestockDAO dao = new FakeLivestockDAO();
+
+        Livestock expected =
+                new Livestock(
+                        "Cattle",
+                        "CATTLE-02",
+                        "2026-10-06"
+                );
+
+        dao.livestockRecords.add(expected);
+
+        LivestockService service =
+                new LivestockService(dao);
+
+        List<Livestock> result =
+                service.getAllLivestock();
+
+        assertEquals(1, result.size());
+        assertSame(expected, result.get(0));
     }
 
     @Test

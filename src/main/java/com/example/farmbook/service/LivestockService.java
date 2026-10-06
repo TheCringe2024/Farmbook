@@ -3,6 +3,7 @@ package com.example.farmbook.service;
 import com.example.farmbook.LivestockValidator;
 import com.example.farmbook.dao.ILivestockDAO;
 import com.example.farmbook.model.Livestock;
+import java.util.List;
 
 /**
  * Contains business logic for livestock operations.
@@ -31,6 +32,17 @@ public class LivestockService {
      */
     public LivestockService(ILivestockDAO livestockDAO) {
         this.livestockDAO = livestockDAO;
+    }
+    /**
+     * Returns all stored livestock records.
+     *
+     * The service exposes livestock retrieval to controllers
+     * without requiring them to depend directly on the DAO.
+     *
+     * @return all stored livestock records
+     */
+    public List<Livestock> getAllLivestock() {
+        return livestockDAO.findAll();
     }
 
     /**
