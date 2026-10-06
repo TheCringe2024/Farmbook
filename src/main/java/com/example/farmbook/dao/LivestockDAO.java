@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Saves and loads livestock records from the database.
  */
-public class LivestockDAO {
+public class LivestockDAO implements ILivestockDAO {
     public LivestockDAO() {
         createTable();
     }
@@ -34,6 +34,7 @@ public class LivestockDAO {
      * @param livestock the animal to save
      * @return true if saved successfully
      */
+    @Override
     public boolean save(Livestock livestock) {
         String sql = "INSERT INTO livestock (species, identifier, date_acquired) VALUES (?, ?, ?)";
         try (Connection conn = DatabaseConnection.connect();
@@ -53,6 +54,7 @@ public class LivestockDAO {
      * Returns all saved animals.
      * @return list of every livestock record
      */
+    @Override
     public List<Livestock> findAll() {
         List<Livestock> list = new ArrayList<>();
         String sql = "SELECT * FROM livestock";
@@ -78,6 +80,7 @@ public class LivestockDAO {
      * Deletes an animal record by ID.
      * @param id the record to delete
      */
+    @Override
     public void delete(int id) {
         String sql = "DELETE FROM livestock WHERE id = ?";
         try (Connection conn = DatabaseConnection.connect();

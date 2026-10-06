@@ -2,6 +2,7 @@ package com.example.farmbook;
 
 import com.example.farmbook.dao.LivestockDAO;
 import com.example.farmbook.model.Livestock;
+import com.example.farmbook.service.LivestockService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,7 +28,8 @@ public class LivestockListController {
     @FXML
     private Button backButton;
 
-    private final LivestockDAO livestockDAO = new LivestockDAO();
+    private final LivestockService livestockService =
+            new LivestockService(new LivestockDAO());
 
     /**
      * Loads the list when the screen opens.
@@ -41,7 +43,8 @@ public class LivestockListController {
      * Fetches and displays all saved animals.
      */
     private void loadLivestock() {
-        List<Livestock> animals = livestockDAO.findAll();
+        List<Livestock> animals =
+                livestockService.getAllLivestock();
         livestockListView.setItems(FXCollections.observableArrayList());
         for (Livestock animal : animals) {
             livestockListView.getItems().add(animal.toString());
