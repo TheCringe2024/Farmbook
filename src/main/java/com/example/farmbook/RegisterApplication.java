@@ -19,7 +19,7 @@ public class RegisterApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(RegisterApplication.class.getResource("register-view.fxml"));
-        Scene scene = new Scene(loader.load(), 450, 550);
+        Scene scene = new Scene(loader.load(), 1920, 1080);
         stage.setTitle("FarmBook - Register");
         stage.setScene(scene);
         stage.show();

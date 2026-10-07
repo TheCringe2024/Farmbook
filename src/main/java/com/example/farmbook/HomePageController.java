@@ -25,7 +25,7 @@ public class HomePageController {
     protected void onInventory(ActionEvent event) throws IOException {
         Stage stage = stageOf(event);
         FXMLLoader loader = new FXMLLoader(HomeController.class.getResource("inventory-add-view.fxml"));
-        stage.setScene(new Scene(loader.load(), 800, 500));
+        stage.setScene(new Scene(loader.load(), 1920, 1080));
         stage.setTitle("Inventory");
         stage.sizeToScene();
         stage.centerOnScreen();

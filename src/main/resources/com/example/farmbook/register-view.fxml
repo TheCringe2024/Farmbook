@@ -4,55 +4,70 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #3B435F;"
-      xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26"
-      fx:controller="com.example.farmbook.RegisterController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" spacing="10.0" style="-fx-background-color: #3B435F;" styleClass="root-pane" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.farmbook.RegisterController">
 
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
+   <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.98" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #3B435F; -fx-background-radius: 20;">
+      <children>
+         <VBox alignment="CENTER" prefHeight="219.0" prefWidth="800.0">
+            <children>
+               <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../FarmBook.PNG" />
+                  </image>
+               </ImageView>
+            
+                <!-- Farmbook header -->
+                <Label style="-fx-font-size: 35px; -fx-font-weight: bold;" text="Welcome to Farmbook" textFill="WHITE" />
+                <Label style="-fx-font-size: 16px;" text="Farming Management System" textFill="WHITE" />
+                <Label style="-fx-font-size: 25px; -fx-font-weight: bold;" textFill="WHITE" />
+            </children>
+         </VBox>
+         <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="400.0">
+            <children>
+         
+                          <Label style="-fx-font-size: 15px" text="Username" textFill="WHITE" />
+                 <TextField fx:id="usernameField" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="400.0" promptText="Enter username" style="-fx-background-color: #1c202e; -fx-text-fill: white;" />
+            </children>
+         </VBox>
+         <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="400.0">
+            <children>
+         
+                          <Label style="-fx-font-size: 15px" text="Password" textFill="WHITE" />
+                 <PasswordField fx:id="passwordField" alignment="CENTER" prefWidth="300.0" promptText="Enter password" style="-fx-background-color: #1c202e; -fx-text-fill: white;" />
+            </children>
+         </VBox>
+      
+                                  <!-- Register section -->
+          <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="400.0" spacing="6.0">
+      
+                                      <Label style="-fx-font-size: 15px" text="Email" textFill="WHITE" />
+              <TextField fx:id="emailField" alignment="CENTER" prefWidth="327.0" promptText="Enter email" style="-fx-background-color: #1c202e; -fx-text-fill: white;" />
+          </VBox>
+         <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="100.0">
+            <children>
+            
+                <!-- Register Status -->
+                <Label fx:id="messageLabel" style="-fx-font-size: 14px;" textFill="WHITE" wrapText="true" />
+            </children>
+         </VBox>
+      
+                <!-- Buttons -->
+          <HBox alignment="CENTER" spacing="10">
+              <Button alignment="CENTER" onAction="#onRegisterClick" prefHeight="40.0" prefWidth="300.0" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: green;" text="Register" textFill="WHITE" />
+              <Button alignment="CENTER" onAction="#onGoBack" prefHeight="40.0" prefWidth="300.0" style="-fx-font-size: 16px; -fx-background-color: #1c202e; -fx-font-weight: bold;" text="Back" textFill="WHITE" />
+          </HBox>
+      </children>
+   </VBox>
 
     <ImageView fitHeight="80.0" preserveRatio="true">
-        <image>
-            <Image url="/FarmBook.PNG" />
-        </image>
     </ImageView>
-
-    <!-- Farmbook header -->
-    <Label style="-fx-font-size: 35px; -fx-font-weight: bold;" text="Welcome to Farmbook" textFill="WHITE" />
-    <Label style="-fx-font-size: 16px;" text="Farming Management System" textFill="WHITE" />
-
-    <Separator />
-    <Label style="-fx-font-size: 25px; -fx-font-weight: bold;" text="Register" textFill="WHITE" />
-
-    <!-- Register section -->
-    <VBox alignment="CENTER" spacing="6.0">
-
-        <Label style="-fx-font-size: 15px" text="username:" textFill="WHITE" />
-        <TextField fx:id="usernameField" prefWidth="300.0" promptText="Enter username" />
-
-        <Label style="-fx-font-size: 15px" text="email:" textFill="WHITE" />
-        <TextField fx:id="emailField" prefWidth="300.0" promptText="Enter email" />
-
-        <Label style="-fx-font-size: 15px" text="password:" textFill="WHITE" />
-        <PasswordField fx:id="passwordField" prefWidth="300.0" promptText="Enter password" />
-    </VBox>
-
-    <!-- Buttons -->
-    <HBox alignment="CENTER" spacing="10">
-        <Button onAction="#onRegisterClick" prefHeight="40.0" prefWidth="300.0"
-                style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Register" />
-        <Button onAction="#onGoBack" prefHeight="40.0" prefWidth="300.0"
-                style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Back" />
-    </HBox>
-
-    <!-- Register Status -->
-    <Label fx:id="messageLabel" wrapText="true" style="-fx-font-size: 14px;" textFill="WHITE" />
 </VBox>
