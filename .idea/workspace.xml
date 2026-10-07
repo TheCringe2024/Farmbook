@@ -5,9 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5681c7ed-e31e-42c8-b477-5ed5ad61575c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/CropTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/farmbook/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/farmbook/HomePageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/farmbook/LoginApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/farmbook/LoginApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/farmbook/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/farmbook/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/farmbook/RegisterApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/farmbook/RegisterApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/farmbook/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/farmbook/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FarmBookBackground1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FarmBookBackground1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/farmbook/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/farmbook/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/farmbook/inventory-add-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/farmbook/inventory-add-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/farmbook/login-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/farmbook/login-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/farmbook/register-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/farmbook/register-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,36 +63,53 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.HomePage_application.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CropTest (1).executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CropTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InventoryTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LivestockValidatorTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SessionStateTest.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Rohan&quot;,
-    &quot;git.auto.fetch.suggestion.counter&quot;: &quot;1&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.HelloApplication.executor": "Run",
+    "Application.HomePage_application.executor": "Run",
+    "Application.Launcher.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.CropTest (1).executor": "Run",
+    "JUnit.CropTest.executor": "Run",
+    "JUnit.InventoryTest.executor": "Run",
+    "JUnit.LivestockValidatorTest.executor": "Run",
+    "JUnit.SessionStateTest.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "jeremy-modern",
+    "git.auto.fetch.suggestion.counter": "1",
+    "kotlin-language-version-configured": "true",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CropTest (1)">
+  <component name="RunManager" selected="Application.Launcher">
+    <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.farmbook.Launcher" />
+      <module name="Farmbook" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.farmbook.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CropTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Farmbook" />
       <option name="PACKAGE_NAME" value="" />
@@ -118,21 +143,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LivestockValidatorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Farmbook" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.farmbook.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.farmbook" />
-      <option name="MAIN_CLASS_NAME" value="com.example.farmbook.LivestockValidatorTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="SessionStateTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Farmbook" />
       <extension name="coverage">
@@ -148,13 +158,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Launcher" />
+      <item itemvalue="JUnit.CropTest" />
+      <item itemvalue="JUnit.CropTest (1)" />
+      <item itemvalue="JUnit.SessionStateTest" />
+      <item itemvalue="JUnit.InventoryTest" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Launcher" />
         <item itemvalue="JUnit.CropTest (1)" />
         <item itemvalue="JUnit.CropTest" />
         <item itemvalue="JUnit.InventoryTest" />
         <item itemvalue="JUnit.SessionStateTest" />
-        <item itemvalue="JUnit.LivestockValidatorTest" />
       </list>
     </recent_temporary>
   </component>
