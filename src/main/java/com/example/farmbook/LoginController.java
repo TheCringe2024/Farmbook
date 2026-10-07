@@ -64,7 +64,7 @@ public class LoginController {
     protected void onRegisterClick() throws IOException {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("register-view.fxml"));
         Stage stage = (Stage) usernameField.getScene().getWindow();
-        stage.setScene(new Scene(loader.load(), 450, 550));
+        stage.setScene(new Scene(loader.load(), 1920, 1080));
     }
 
     /**
