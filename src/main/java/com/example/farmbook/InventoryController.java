@@ -60,7 +60,7 @@ public class InventoryController {
     public void initialize() {
 
         //temNameColumn.setCellValueFactory(new PropertyValueFactory<>("inventoryItemName"));
-        itemNameColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getinventoryItemName()));
+        itemNameColumn.setCellValueFactory(new PropertyValueFactory<>("inventoryItemName"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("inventoryCategory"));
         unitColumn.setCellValueFactory(new PropertyValueFactory<>("inventoryUnit"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("inventoryQuantity"));
@@ -90,7 +90,7 @@ public class InventoryController {
      */
     private void selectInventory(Inventory inventory) {
         inventoryTableView.getSelectionModel().select(inventory);
-        itemNameTextField.setText(inventory.getinventoryItemName());
+        itemNameTextField.setText(inventory.getInventoryItemName());
         categoryTextField.setText(inventory.getInventoryCategory());
         unitTextField.setText(inventory.getInventoryUnit());
         quantityTextField.setText(String.valueOf(inventory.getInventoryQuantity()));
@@ -115,10 +115,10 @@ public class InventoryController {
     private void onEditConfirm() {
         Inventory selected = inventoryTableView.getSelectionModel().getSelectedItem();
         if (selected != null) {
-            selected.setinventoryItemName(itemNameTextField.getText());
-            selected.setinventoryCategory(categoryTextField.getText());
-            selected.setinventoryUnit(unitTextField.getText());
-            selected.setinventoryQuantity(Integer.parseInt(quantityTextField.getText()));
+            selected.setInventoryItemName(itemNameTextField.getText());
+            selected.setInventoryCategory(categoryTextField.getText());
+            selected.setInventoryUnit(unitTextField.getText());
+            selected.setInventoryQuantity(Integer.parseInt(quantityTextField.getText()));
             inventoryDAO.updateInventoryItem(selected);
             syncInventorys();
         }

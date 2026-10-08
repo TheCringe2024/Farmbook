@@ -48,7 +48,7 @@ public class SqliteInventoryDAO implements IInventoryDAO {
     public void addInventoryItem(Inventory inventory){
         try {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO inventory (itemName, category, unit, quantity) VALUES (?, ?, ?, ?)");
-            statement.setString(1, inventory.getinventoryItemName());
+            statement.setString(1, inventory.getInventoryItemName());
             statement.setString(2, inventory.getInventoryCategory());
             statement.setString(3, inventory.getInventoryUnit());
             statement.setInt(4, inventory.getInventoryQuantity());
@@ -73,7 +73,7 @@ public class SqliteInventoryDAO implements IInventoryDAO {
     {
         try {
             PreparedStatement statement = connection.prepareStatement("UPDATE inventory SET itemName = ?, category = ?, unit = ?, quantity = ? WHERE id = ?");
-            statement.setString(1, inventory.getinventoryItemName());
+            statement.setString(1, inventory.getInventoryItemName());
             statement.setString(2, inventory.getInventoryCategory());
             statement.setString(3, inventory.getInventoryUnit());
             statement.setInt(4, inventory.getInventoryQuantity());
