@@ -28,15 +28,15 @@ public class Inventory {
     }
     public void setId(int id) {this.id = id;}
 
-    public String getinventoryItemName() { return inventoryItemName;}
-    public void setinventoryItemName(String inventoryItemName) { this.inventoryItemName = inventoryItemName; }
+    public String getInventoryItemName() { return inventoryItemName;}
+    public void setInventoryItemName(String inventoryItemName) { this.inventoryItemName = inventoryItemName; }
 
     public String getInventoryCategory() { return inventoryCategory;}
-    public void setinventoryCategory(String inventoryCategory) { this.inventoryCategory = inventoryCategory; }
+    public void setInventoryCategory(String inventoryCategory) { this.inventoryCategory = inventoryCategory; }
 
     public String getInventoryUnit() { return inventoryUnit;}
-    public void setinventoryUnit(String inventoryUnit) { this.inventoryUnit = inventoryUnit; }
+    public void setInventoryUnit(String inventoryUnit) { this.inventoryUnit = inventoryUnit; }
 
     public int getInventoryQuantity() { return inventoryQuantity;}
-    public void setinventoryQuantity(int inventoryQuantity) { this.inventoryQuantity = inventoryQuantity; }
+    public void setInventoryQuantity(int inventoryQuantity) { this.inventoryQuantity = inventoryQuantity; }
 }
