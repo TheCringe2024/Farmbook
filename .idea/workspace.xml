@@ -80,7 +80,8 @@
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.notifications"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -91,7 +92,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Launcher">
+  <component name="RunManager" selected="JavaScript Debug.help-doc.html">
     <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.farmbook.Launcher" />
       <module name="Farmbook" />
@@ -153,6 +154,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.help-doc.html" />
         <item itemvalue="Application.Launcher" />
         <item itemvalue="JUnit.weatherDataTest.shouldReturnCorrectTemperature" />
         <item itemvalue="JUnit.PasswordHashTest.emptyPasswordStillHashes" />
