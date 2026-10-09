@@ -1,5 +1,6 @@
 package com.example.farmbook;
 
+import com.example.farmbook.dao.IItemDAO;
 import com.example.farmbook.dao.ItemDAO;
 import com.example.farmbook.model.Item;
 import javafx.collections.FXCollections;
@@ -27,7 +28,7 @@ public class OutgoingStockController {
     @FXML
     private Label statusLabel;
 
-    private final ItemDAO itemDAO = new ItemDAO();
+    private final IItemDAO itemDAO = new ItemDAO();
 
     /**
      * Loads items into the dropdown when the screen opens.

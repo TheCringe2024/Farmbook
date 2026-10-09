@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Saves and updates inventory items in the database.
  */
-public class ItemDAO {
+public class ItemDAO implements IItemDAO {
 
     /**
      * Saves a new item.
