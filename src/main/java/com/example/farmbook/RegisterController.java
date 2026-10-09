@@ -9,8 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.sql.*;
+import java.sql.SQLException;
 
 public class RegisterController {
 
@@ -19,21 +18,28 @@ public class RegisterController {
     @FXML private PasswordField passwordField;
     @FXML private Label messageLabel;
 
-    private final Connection connection = SqliteConnection.getInstance();
+    private final IUserDAO userDAO;
 
     /**
-     *Runs when the register page is loaded and makes sure the user
-     * tables exists in the database.
+     * Creates the controller with the SQLite user DAO, which also makes sure
+     * the users table exists. JavaFX uses this constructor.
      */
-    @FXML
-    public void initialize() {
-        createTable();
+    public RegisterController() {
+        this(new SqliteUserDAO());
+    }
+
+    /**
+     * Creates the controller with any IUserDAO, e.g. a fake one for testing.
+     * @param userDAO the DAO used to check and save users
+     */
+    public RegisterController(IUserDAO userDAO) {
+        this.userDAO = userDAO;
     }
 
     /**
      * Gets the username, email and password from the text fields and checks
-     * the email is a valid email through regex and hashes the password
-     * and stores it's into the database.
+     * the email is a valid email through regex, then saves the new user
+     * through the DAO.
      */
     @FXML
     protected void onRegisterClick() {
@@ -58,25 +64,17 @@ public class RegisterController {
         }
 
         try {
-            if (usernameExists(username)) {
+            if (userDAO.usernameExists(username)) {
                 showError("That username is already taken.");
                 return;
             }
 
-            if (emailExists(email)) {
+            if (userDAO.emailExists(email)) {
                 showError("That email is already taken.");
                 return;
             }
 
-            String sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
-            try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-                stmt.setString(1, username);
-                stmt.setString(2, email);
-                stmt.setString(3, PasswordHash.hash(password));
-                stmt.executeUpdate();
-            } catch (NoSuchAlgorithmException e) {
-                throw new RuntimeException(e);
-            }
+            userDAO.addUser(username, email, password);
 
             showSuccess("Registration successful!");
             usernameField.clear();
@@ -88,59 +86,6 @@ public class RegisterController {
     }
 
     /**
-     * Checks the database to see if a user with a username has already been
-     * taken so each account has a unique username
-     * @param username the username that is entered in the register form
-     * @return true if the username is already taken and false if its available.
-     * @throws SQLException if the database query fails
-     */
-    private boolean usernameExists(String username) throws SQLException {
-        String sql = "SELECT 1 FROM users WHERE username = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, username);
-            try (ResultSet rs = stmt.executeQuery()) {
-                return rs.next();
-            }
-        }
-    }
-
-    /**
-     * Checks the database to see if a user with an email has already been
-     * taken so each account has a unique email
-     * @param email the email that is entered in the register form
-     * @return true if the email is already taken and false if its available.
-     * @throws SQLException if the database query fails
-     */
-    private boolean emailExists(String email) throws SQLException {
-        String sql = "SELECT 1 FROM users WHERE email = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, email);
-            try (ResultSet rs = stmt.executeQuery()) {
-                return rs.next();
-            }
-        }
-    }
-
-
-    /**
-     * Creates the users table in the database if it doesnt already exist with an id,
-     * a unique username, unique email and the hashed password. Displays an error message if the table cant be reached.
-     */
-    private void createTable() {
-        String userSQL = "CREATE TABLE IF NOT EXISTS users ("
-                + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + "username TEXT NOT NULL UNIQUE,"
-                + "email TEXT NOT NULL UNIQUE,"
-                + "password TEXT"
-                + ")";
-        try (Statement stmt = connection.createStatement()) {
-            stmt.execute(userSQL);
-        } catch (SQLException e) {
-            showError("Could not create users table: " + e.getMessage());
-        }
-    }
-
-    /**
      * Loads the logon page and swaps it into the current window when the back button is clicked
      * @throws IOException if the login-view.fxml file cant be loaded
      */
@@ -148,7 +93,7 @@ public class RegisterController {
     protected void onGoBack() throws IOException {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
         Stage stage = (Stage) usernameField.getScene().getWindow();
-        stage.setScene(new Scene(loader.load(), 450, 550));
+        stage.setScene(new Scene(loader.load(), 1920, 1080));
     }
 
     /**

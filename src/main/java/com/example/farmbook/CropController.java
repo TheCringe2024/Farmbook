@@ -6,15 +6,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 /**
  * Controller for  Crop UI view
@@ -33,16 +33,21 @@ public class CropController {
     @FXML private TableColumn<Crop, String> notesCol;
 
     @FXML private PieChart summaryChart;
-    @FXML private HBox formLayout;
+    @FXML private BarChart<String, Number> timeChart;
+    @FXML private GridPane formLayout;
+
     @FXML private TextField nameInput;
-    @FXML private TextField typeInput;
-    @FXML private TextField amountInput;
-    @FXML private DatePicker dateInput;
     @FXML private TextField notesInput;
+    @FXML private DatePicker dateInput;
+
+    @FXML private ComboBox<String> typeInput;
+    @FXML private ComboBox<String> amountInput;
+
     @FXML private Button btnToggleView;
     @FXML private Button btnBack;
 
     private final CropDAO cropDAO = new CropDAO();
+    private int viewState = 0;
 
     /**
      * Initialize method automatically called after the FXML file.
@@ -53,7 +58,10 @@ public class CropController {
     public void initialize() {
         cropDAO.createTable();
 
-        // Bind table columns to Crop object properties
+        // Populate predefined items for the ComboBox dropdowns
+        typeInput.getItems().addAll("Grain", "Vegetable", "Fruit", "Legume", "Root", "Forage");
+        amountInput.getItems().addAll("10", "50", "100", "500", "1000", "5000");
+
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("plantName"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("cropType"));
@@ -67,9 +75,12 @@ public class CropController {
         table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 nameInput.setText(newSelection.getPlantName());
-                typeInput.setText(newSelection.getCropType());
-                amountInput.setText(String.valueOf(newSelection.getAmount()));
-                dateInput.setValue(java.time.LocalDate.parse(newSelection.getDatePlanted()));
+                typeInput.setValue(newSelection.getCropType());
+                amountInput.setValue(String.valueOf(newSelection.getAmount()));
+
+                if (newSelection.getDatePlanted() != null && !newSelection.getDatePlanted().isEmpty()) {
+                    dateInput.setValue(java.time.LocalDate.parse(newSelection.getDatePlanted()));
+                }
                 notesInput.setText(newSelection.getNotes());
             }
         });
@@ -84,9 +95,17 @@ public class CropController {
      */
     @FXML
     void handleAddCrop(ActionEvent event) {
+        String type = typeInput.getEditor().getText();
+        String amountText = amountInput.getEditor().getText();
+
+        int parsedAmount = 0;
+        try {
+            parsedAmount = Integer.parseInt(amountText);
+        } catch (NumberFormatException ignored) {}
+
         Crop newCrop = new Crop(
-                nameInput.getText(), typeInput.getText(),
-                Integer.parseInt(amountInput.getText()),
+                nameInput.getText(), type,
+                parsedAmount,
                 dateInput.getValue() != null ? dateInput.getValue().toString() : "",
                 notesInput.getText()
         );
@@ -104,9 +123,17 @@ public class CropController {
     void handleUpdateCrop(ActionEvent event) {
         Crop selected = table.getSelectionModel().getSelectedItem();
         if (selected != null) {
+            String type = typeInput.getEditor().getText();
+            String amountText = amountInput.getEditor().getText();
+
+            int parsedAmount = 0;
+            try {
+                parsedAmount = Integer.parseInt(amountText);
+            } catch (NumberFormatException ignored) {}
+
             selected.setPlantName(nameInput.getText());
-            selected.setCropType(typeInput.getText());
-            selected.setAmount(Integer.parseInt(amountInput.getText()));
+            selected.setCropType(type);
+            selected.setAmount(parsedAmount);
             selected.setDatePlanted(dateInput.getValue() != null ? dateInput.getValue().toString() : "");
             selected.setNotes(notesInput.getText());
 
@@ -138,16 +165,22 @@ public class CropController {
      */
     @FXML
     void handleToggleView(ActionEvent event) {
-        if (table.isVisible()) {
-            table.setVisible(false);
-            summaryChart.setVisible(true);
-            btnToggleView.setText("Show Table");
+        // Cycle through states: 0 -> 1 -> 2 -> 0
+        viewState = (viewState + 1) % 3;
+
+        table.setVisible(viewState == 0);
+        summaryChart.setVisible(viewState == 1);
+        timeChart.setVisible(viewState == 2);
+
+        if (viewState == 0) {
+            btnToggleView.setText("Show Distribution (Pie Chart)");
+            formLayout.setDisable(false);
+        } else if (viewState == 1) {
+            btnToggleView.setText("Show Timeline (Bar Chart)");
             formLayout.setDisable(true);
         } else {
-            summaryChart.setVisible(false);
-            table.setVisible(true);
-            btnToggleView.setText("Show Chart");
-            formLayout.setDisable(false);
+            btnToggleView.setText("Show Data Table");
+            formLayout.setDisable(true);
         }
     }
 
@@ -160,8 +193,9 @@ public class CropController {
     @FXML
     void handleBack(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("homepage-view.fxml"));
-        Stage stage = (Stage) nameInput.getScene().getWindow();
-        stage.setScene(new Scene(loader.load(), 1000, 800));
+        Stage stage = (Stage) btnBack.getScene().getWindow();
+        stage.setScene(new Scene(loader.load()));
+        stage.setMaximized(true);
     }
 
     /**
@@ -169,28 +203,12 @@ public class CropController {
      * also updates the PieChart data
      */
     private void refreshTable() {
-        ObservableList<Crop> cropList = FXCollections.observableArrayList(cropDAO.getAll());
+        List<Crop> rawList = cropDAO.getAll();
+        ObservableList<Crop> cropList = FXCollections.observableArrayList(rawList);
         table.setItems(cropList);
-        updateChartData(cropList);
-    }
 
-    /**
-     * Calculates the total amount for each unique plant name
-     * updates the PieChart with the aggregated data
-     *
-     * @param cropList The current list of crops retrieved from the database
-     */
-    private void updateChartData(ObservableList<Crop> cropList) {
-        Map<String, Integer> summary = new HashMap<>();
-        for (Crop crop : cropList) {
-            String name = crop.getPlantName();
-            summary.put(name, summary.getOrDefault(name, 0) + crop.getAmount());
-        }
-
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
-        for (Map.Entry<String, Integer> entry : summary.entrySet()) {
-            pieChartData.add(new PieChart.Data(entry.getKey() + " (" + entry.getValue() + ")", entry.getValue()));
-        }
-        summaryChart.setData(pieChartData);
+        summaryChart.setData(CropAnalytics.generatePieChartData(rawList));
+        timeChart.getData().clear();
+        timeChart.getData().add(CropAnalytics.generateTimelineData(rawList));
     }
 }

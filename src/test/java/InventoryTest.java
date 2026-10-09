@@ -13,7 +13,7 @@ public class InventoryTest {
 
     @Test
     void constructor_setsItemName() {
-        assertEquals("Wheat", inventory.getinventoryItemName());
+        assertEquals("Wheat", inventory.getInventoryItemName());
     }
 
     @Test
@@ -45,31 +45,31 @@ public class InventoryTest {
 
     @Test
     void setItemName_updatesItemName() {
-        inventory.setinventoryItemName("Potato");
-        assertEquals("Potato", inventory.getinventoryItemName());
+        inventory.setInventoryItemName("Potato");
+        assertEquals("Potato", inventory.getInventoryItemName());
     }
 
     @Test
     void setCategory_updatesCategory() {
-        inventory.setinventoryCategory("Fertiliser");
+        inventory.setInventoryCategory("Fertiliser");
         assertEquals("Fertiliser", inventory.getInventoryCategory());
     }
 
     @Test
     void setUnit_updatesUnit() {
-        inventory.setinventoryUnit("Kilograms");
+        inventory.setInventoryUnit("Kilograms");
         assertEquals("Kilograms", inventory.getInventoryUnit());
     }
 
     @Test
     void setQuantity_updatesQuantity() {
-        inventory.setinventoryQuantity(100);
+        inventory.setInventoryQuantity(100);
         assertEquals(100, inventory.getInventoryQuantity());
     }
 
     @Test
     void setQuantity_acceptsZero() {
-        inventory.setinventoryQuantity(0);
+        inventory.setInventoryQuantity(0);
         assertEquals(0, inventory.getInventoryQuantity());
     }
 }
