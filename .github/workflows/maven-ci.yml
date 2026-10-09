@@ -6,7 +6,9 @@ on:
     branches:
       - main
   workflow_dispatch:
-
+permissions:
+  contents: write
+  
 jobs:
   build-and-test:
     name: Build and Test
@@ -28,3 +30,11 @@ jobs:
 
       - name: Build and run tests
         run: mvn --batch-mode clean test
+        
+      - name: Generate Javadoc
+        run: mvn javadoc:javadoc
+
+      - name: Publish Javadoc
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: target/docs/javadoc
