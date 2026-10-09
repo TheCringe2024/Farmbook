@@ -9,8 +9,6 @@ import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import java.io.IOException;
 
-
-
 public class HomePageController {
 
     // Identification variables for API
@@ -25,7 +23,7 @@ public class HomePageController {
         WeatherAPI weatherAPI = new WeatherAPI();
         weatherData weather = weatherAPI.getWeather();
 
-        weatherLabel.setText(weather.getTemperature() + "'c");
+        weatherLabel.setText(weather.getTemperature() + "°C");
         timeLabel.setText(weather.getTime());
     }
 

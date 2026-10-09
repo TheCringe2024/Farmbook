@@ -69,7 +69,7 @@ public class WeatherAPI {
         WeatherAPI weatherAPI = new WeatherAPI();
         weatherData weather = weatherAPI.getWeather();
 
-        System.out.println("Temperature: " + weather.getTemperature() + "'c");
+        System.out.println("Temperature: " + weather.getTemperature() + "°C");
         System.out.println("Time: " + weather.getTime());
         System.out.println("Cloud cover: " + weather.getCloudCover() + "'m");
         System.out.println("Weather Code: " + weather.getWeatherCode() + "'m");

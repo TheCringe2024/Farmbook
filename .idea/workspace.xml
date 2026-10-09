@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5681c7ed-e31e-42c8-b477-5ed5ad61575c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/farmbook/WeatherAPI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/farmbook/weatherData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/weatherDataTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/farmbook/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/farmbook/HomePageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/farmbook/homepage-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/farmbook/homepage-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/farmbook/WeatherAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/farmbook/WeatherAPI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,9 +65,13 @@
     "Application.weatherAPI.executor": "Run",
     "JUnit.CropTest (1).executor": "Run",
     "JUnit.CropTest.executor": "Run",
+    "JUnit.CropTest.setCropType_updatesCropType.executor": "Run",
     "JUnit.InventoryTest.executor": "Run",
     "JUnit.LivestockValidatorTest.executor": "Run",
+    "JUnit.PasswordHashTest.emptyPasswordStillHashes.executor": "Run",
+    "JUnit.PasswordHashTest.hashIsNotThePlainPassword.executor": "Run",
     "JUnit.SessionStateTest.executor": "Run",
+    "JUnit.weatherDataTest.shouldReturnCorrectTemperature.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -79,6 +80,8 @@
     "git-widget-placeholder": "weather-api",
     "git.auto.fetch.suggestion.counter": "1",
     "kotlin-language-version-configured": "true",
+    "node.js.detected.package.jshint": "true",
+    "node.js.selected.package.jshint": "",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
@@ -86,11 +89,14 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ronel\IdeaProjects\Farmbook\src\test\java\com\example\farmbook" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Launcher">
+  <component name="RunManager" selected="JUnit.weatherDataTest.shouldReturnCorrectTemperature">
     <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.farmbook.Launcher" />
       <module name="Farmbook" />
@@ -104,59 +110,59 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WeatherAPI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.farmbook.WeatherAPI" />
-      <module name="Farmbook" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.farmbook.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CropTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CropTest.setCropType_updatesCropType" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Farmbook" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="CropTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="setCropType_updatesCropType" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CropTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PasswordHashTest.emptyPasswordStillHashes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Farmbook" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PasswordHashTest" />
+      <option name="METHOD_NAME" value="emptyPasswordStillHashes" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PasswordHashTest.hashIsNotThePlainPassword" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Farmbook" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PasswordHashTest" />
+      <option name="METHOD_NAME" value="hashIsNotThePlainPassword" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="weatherDataTest.shouldReturnCorrectTemperature" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Farmbook" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.farmbook.*" />
+          <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.example.farmbook" />
-      <option name="MAIN_CLASS_NAME" value="com.example.farmbook.CropTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="InventoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Farmbook" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="InventoryTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="weatherDataTest" />
+      <option name="METHOD_NAME" value="shouldReturnCorrectTemperature" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.weatherDataTest.shouldReturnCorrectTemperature" />
+        <item itemvalue="JUnit.PasswordHashTest.emptyPasswordStillHashes" />
+        <item itemvalue="JUnit.PasswordHashTest.hashIsNotThePlainPassword" />
+        <item itemvalue="JUnit.CropTest.setCropType_updatesCropType" />
         <item itemvalue="Application.Launcher" />
-        <item itemvalue="Application.WeatherAPI" />
-        <item itemvalue="JUnit.CropTest (1)" />
-        <item itemvalue="JUnit.CropTest" />
-        <item itemvalue="JUnit.InventoryTest" />
       </list>
     </recent_temporary>
   </component>
