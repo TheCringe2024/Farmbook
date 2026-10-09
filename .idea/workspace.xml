@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5681c7ed-e31e-42c8-b477-5ed5ad61575c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/weatherDataTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/farmbook/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/farmbook/HomePageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/farmbook/WeatherAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/farmbook/WeatherAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/farmbook/homepage-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/farmbook/homepage-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +95,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.weatherDataTest.shouldReturnCorrectTemperature">
+  <component name="RunManager" selected="Application.Launcher">
     <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.farmbook.Launcher" />
       <module name="Farmbook" />
@@ -158,11 +157,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Launcher" />
         <item itemvalue="JUnit.weatherDataTest.shouldReturnCorrectTemperature" />
         <item itemvalue="JUnit.PasswordHashTest.emptyPasswordStillHashes" />
         <item itemvalue="JUnit.PasswordHashTest.hashIsNotThePlainPassword" />
         <item itemvalue="JUnit.CropTest.setCropType_updatesCropType" />
-        <item itemvalue="Application.Launcher" />
       </list>
     </recent_temporary>
   </component>

@@ -106,7 +106,7 @@
                         <Insets right="100.0" />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="timeLabel" text="TIME" textFill="WHITE">
+                  <Label fx:id="timeLabel" text="00:00:00" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
