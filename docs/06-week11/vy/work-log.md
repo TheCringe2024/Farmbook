@@ -1,27 +1,29 @@
-# Vy - Individual Work Log
+# Vy - Work Log
 
-## Before Week 10 (18-20 Sept)
+## What I built
 
-| What I did | Time |
-|---|---|
-| Built Crops, Stock in/out and Livestock features | about 12 hours |
-| Fixed merge conflicts with the team's login and crops work | about 2 hours |
-| Added short Javadoc comments to my classes | about 2 hours |
-| Wrote tests first for Livestock delete, Item negative stock and Crop delete | about 2 hours |
-| Fixed two build-breaking bugs (LivestockDAO save, CropApplication name typo) | about 1 hour |
-| Made the release plan, sprint plan and wireframes for the video | about 3 hours |
+- **Crops:** add a crop and see a list of crops
+- **Stock in and out:** add stock, remove stock, and it won't let stock go below zero
+- **Livestock:** add an animal, see the list, and go back between screens
+- **Tests:** tests for crops, items and livestock. For the delete and negative-stock tests I wrote the test first, then the code.
+- **Refactor:** I tidied up ItemDAO (commit `e7149cc`). The same code was copied in three places, so I put it in one helper. All 60 tests passed before and after.
+- **Planning:** release plan, sprint plan and wireframes
+- **Fixes:** sorted out merge conflicts and two bugs that broke the build
 
-## Week 10-11 (25 Sept - 9 Oct)
+## My time
 
-| What I did | Time |
-|---|---|
-| Pulled the team's changes and checked the build still passed (60 tests) | about 1 hour |
-| Checked the GitHub Actions build server and confirmed run #19 passed | about 30 min |
-| Refactored ItemDAO (commit `e7149cc`): moved repeated database code into helpers, tests stayed green | about 2 hours |
-| Wrote my Week 11 evidence folder with screenshots | about 2 hours |
+| When | What I did | Hours |
+|---|---|---|
+| 18-20 Sept | Built crops, stock and livestock | 12 |
+| 18-20 Sept | Fixed merge conflicts and bugs | 3 |
+| 18-20 Sept | Comments and tests | 4 |
+| 18-20 Sept | Release plan, sprint plan, wireframes | 3 |
+| 25 Sept - 9 Oct | Pulled team changes and checked the tests | 1 |
+| 25 Sept - 9 Oct | Refactored ItemDAO and checked the build server | 2.5 |
+| 25 Sept - 9 Oct | Wrote my evidence | 2 |
 
 ## What I learned
 
-- Refactoring is safer when the tests pass before and after.
-- Pull before pushing, because teammates push all the time.
-- Don't paste commands while the app is running, because they go to the app and not the terminal.
+- Refactoring feels safe when the tests pass before and after.
+- Pull before you push, because teammates push all the time.
+- Don't paste commands while the app is running, because they go to the app, not the terminal.
