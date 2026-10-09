@@ -1,6 +1,7 @@
 package com.example.farmbook;
 
 import com.example.farmbook.dao.IItemDAO;
+import com.example.farmbook.dao.IItemDAO;
 import com.example.farmbook.dao.ItemDAO;
 import com.example.farmbook.model.Item;
 import javafx.collections.FXCollections;
