@@ -16,7 +16,6 @@ My parts: Crops, Inventory and Stock, Livestock.
 
 Every time someone pushes, GitHub Actions builds the project and runs all the tests. Run #19 was my refactor commit and every step passed.
 
-Screenshot: `01-ci-run-19-green.png`
 
 ## 2. Refactoring
 
@@ -33,7 +32,6 @@ Commit `e7149cc` - ItemDAO.
 
 **Nothing broke.** 60 tests passed before and the same 60 passed after.
 
-Screenshots: `02-refactor-commit-e7149cc.png`, `03-tests-60-passing.png`
 
 ## 3. My tests
 
