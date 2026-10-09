@@ -25,7 +25,7 @@ public class LoginApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(LoginController.class.getResource("login-view.fxml"));
 
         // The page of the login application
-        Scene scene = new Scene(fxmlLoader.load(), 450, 550);
+        Scene scene = new Scene(fxmlLoader.load(), 1920, 1080);
 
         // Settings
         stage.setTitle("Farmbook - Login");

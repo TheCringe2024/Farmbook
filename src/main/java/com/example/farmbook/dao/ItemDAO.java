@@ -9,24 +9,17 @@ import java.util.List;
 /**
  * Saves and updates inventory items in the database.
  */
-public class ItemDAO {
+public class ItemDAO implements IItemDAO {
 
     /**
      * Saves a new item.
      * @param item the item to save
      */
     public void save(Item item) {
-        String sql = "INSERT INTO items (name, category, unit, quantity) VALUES (?, ?, ?, ?)";
-        try (Connection conn = DatabaseConnection.connect();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, item.getName());
-            ps.setString(2, item.getCategory());
-            ps.setString(3, item.getUnit());
-            ps.setInt(4, item.getQuantity());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Failed to save item: " + e.getMessage());
-        }
+        executeUpdate(
+                "INSERT INTO items (name, category, unit, quantity) VALUES (?, ?, ?, ?)",
+                "Failed to save item",
+                item.getName(), item.getCategory(), item.getUnit(), item.getQuantity());
     }
 
     /**
@@ -35,19 +28,11 @@ public class ItemDAO {
      */
     public List<Item> findAll() {
         List<Item> items = new ArrayList<>();
-        String sql = "SELECT * FROM items";
         try (Connection conn = DatabaseConnection.connect();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+             ResultSet rs = stmt.executeQuery("SELECT * FROM items")) {
             while (rs.next()) {
-                Item item = new Item(
-                        rs.getString("name"),
-                        rs.getString("category"),
-                        rs.getString("unit"),
-                        rs.getInt("quantity")
-                );
-                item.setId(rs.getInt("id"));
-                items.add(item);
+                items.add(mapRow(rs));
             }
         } catch (SQLException e) {
             System.err.println("Failed to load items: " + e.getMessage());
@@ -59,23 +44,16 @@ public class ItemDAO {
      * Adds stock to an item.
      * @param itemId item to update
      * @param amount stock to add
-     * @return true if successful
+     * @return true if successful, false if the amount is negative
      */
     public boolean addStock(int itemId, int amount) {
         if (amount < 0) {
             return false;
         }
-        String sql = "UPDATE items SET quantity = quantity + ? WHERE id = ?";
-        try (Connection conn = DatabaseConnection.connect();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, amount);
-            ps.setInt(2, itemId);
-            ps.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            System.err.println("Failed to add stock: " + e.getMessage());
-            return false;
-        }
+        return executeUpdate(
+                "UPDATE items SET quantity = quantity + ? WHERE id = ?",
+                "Failed to add stock",
+                amount, itemId);
     }
 
     /**
@@ -85,32 +63,57 @@ public class ItemDAO {
      * @return true if successful, false if not enough stock
      */
     public boolean removeStock(int itemId, int amount) {
-        String checkSql = "SELECT quantity FROM items WHERE id = ?";
+        if (!hasEnoughStock(itemId, amount)) {
+            return false;
+        }
+        return executeUpdate(
+                "UPDATE items SET quantity = quantity - ? WHERE id = ?",
+                "Failed to remove stock",
+                amount, itemId);
+    }
+
+    /**
+     * Runs one INSERT/UPDATE with the given values.
+     * @return true if it worked, false if the database reported an error
+     */
+    private boolean executeUpdate(String sql, String errorMessage, Object... values) {
         try (Connection conn = DatabaseConnection.connect();
-             PreparedStatement checkPs = conn.prepareStatement(checkSql)) {
-            checkPs.setInt(1, itemId);
-            ResultSet rs = checkPs.executeQuery();
-            if (rs.next()) {
-                int current = rs.getInt("quantity");
-                if (current < amount) {
-                    return false;
-                }
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            for (int i = 0; i < values.length; i++) {
+                ps.setObject(i + 1, values[i]);
             }
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.err.println(errorMessage + ": " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Checks the item has at least this much stock.
+     * @return false if there isn't enough, or the check fails
+     */
+    private boolean hasEnoughStock(int itemId, int amount) {
+        try (Connection conn = DatabaseConnection.connect();
+             PreparedStatement ps = conn.prepareStatement("SELECT quantity FROM items WHERE id = ?")) {
+            ps.setInt(1, itemId);
+            ResultSet rs = ps.executeQuery();
+            return !rs.next() || rs.getInt("quantity") >= amount;
         } catch (SQLException e) {
             System.err.println("Failed to check stock: " + e.getMessage());
             return false;
         }
+    }
 
-        String updateSql = "UPDATE items SET quantity = quantity - ? WHERE id = ?";
-        try (Connection conn = DatabaseConnection.connect();
-             PreparedStatement ps = conn.prepareStatement(updateSql)) {
-            ps.setInt(1, amount);
-            ps.setInt(2, itemId);
-            ps.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            System.err.println("Failed to remove stock: " + e.getMessage());
-            return false;
-        }
+    /** Turns one database row into an Item. */
+    private Item mapRow(ResultSet rs) throws SQLException {
+        Item item = new Item(
+                rs.getString("name"),
+                rs.getString("category"),
+                rs.getString("unit"),
+                rs.getInt("quantity"));
+        item.setId(rs.getInt("id"));
+        return item;
     }
 }
