@@ -46,3 +46,6 @@ inventory.db
 
 #idea files
 .idea/
+
+# Prevent committing large javadocs
+/docs/javadoc/

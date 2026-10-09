@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5681c7ed-e31e-42c8-b477-5ed5ad61575c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/farmbook/CropAnalytics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/farmbook/CropController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/farmbook/CropController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/farmbook/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/farmbook/HomePageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/farmbook/crop-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/farmbook/crop-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/farmbook/CropAnalytics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/farmbook/CropAnalytics.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,12 +34,12 @@
     &quot;assignee&quot;: &quot;TheCringe2024&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/TheCringe2024/Farmbook.git",
-    "accountId": "911e4580-f7ec-4907-9b1d-5c1d94046cdb"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/TheCringe2024/Farmbook.git&quot;,
+    &quot;accountId&quot;: &quot;911e4580-f7ec-4907-9b1d-5c1d94046cdb&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -69,6 +69,10 @@
     "JUnit.InventoryTest.executor": "Run",
     "JUnit.LivestockValidatorTest.executor": "Run",
     "JUnit.SessionStateTest.executor": "Run",
+    "JavaScript Debug.help-doc.html.executor": "Run",
+    "Maven.Farmbook [clean].executor": "Run",
+    "Maven.Farmbook [org.apache.maven.plugins:maven-javadoc-plugin:3.4.0:javadoc].executor": "Run",
+    "Maven.Farmbook [package].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
@@ -85,7 +89,8 @@
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.notifications"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -93,7 +98,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Launcher">
+  <component name="RunManager" selected="JavaScript Debug.help-doc.html">
     <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.farmbook.Launcher" />
       <module name="Farmbook" />
@@ -140,35 +145,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SessionStateTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Farmbook" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.farmbook.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.farmbook" />
-      <option name="MAIN_CLASS_NAME" value="com.example.farmbook.SessionStateTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="help-doc.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Farmbook-cloned/Farmbook/docs/javadoc/help-doc.html" useBuiltInWebServerPort="true">
+      <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Application.Launcher" />
+      <item itemvalue="JavaScript Debug.help-doc.html" />
       <item itemvalue="JUnit.CropTest" />
       <item itemvalue="JUnit.CropTest (1)" />
-      <item itemvalue="JUnit.SessionStateTest" />
       <item itemvalue="JUnit.InventoryTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.help-doc.html" />
         <item itemvalue="Application.Launcher" />
         <item itemvalue="JUnit.CropTest (1)" />
         <item itemvalue="JUnit.CropTest" />
         <item itemvalue="JUnit.InventoryTest" />
-        <item itemvalue="JUnit.SessionStateTest" />
       </list>
     </recent_temporary>
   </component>
@@ -192,5 +185,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

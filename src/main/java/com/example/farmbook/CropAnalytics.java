@@ -12,10 +12,16 @@ import java.util.TreeMap;
 
 /**
  * Handles data processing and analytics for Crops.
- * Separating this from the controller adheres to the Single Responsibility Principle.
+ * Separating this from the controller adheres to the Single Responsibility Principle,
+ * isolating calculations from UI logic.
  */
 public class CropAnalytics {
-
+    /**
+     * Calculates the total amount for each unique plant name to be displayed in a Pie Chart.
+     *
+     * @param cropList The list of crops to analyze.
+     * @return An ObservableList containing formatted PieChart data slices.
+     */
     public static ObservableList<PieChart.Data> generatePieChartData(List<Crop> cropList) {
         Map<String, Integer> summary = new HashMap<>();
         for (Crop crop : cropList) {
@@ -30,6 +36,13 @@ public class CropAnalytics {
         return pieChartData;
     }
 
+    /**
+     * Groups crops chronologically by their planted date to be displayed in a Bar Chart.
+     * Missing or empty dates are ignored.
+     *
+     * @param cropList The list of crops to analyze.
+     * @return A data series mapped with dates on the X-axis and total amounts on the Y-axis.
+     */
     public static XYChart.Series<String, Number> generateTimelineData(List<Crop> cropList) {
         // TreeMap automatically sorts the dates chronologically
         Map<String, Integer> timeline = new TreeMap<>();
