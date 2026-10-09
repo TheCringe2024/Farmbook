@@ -15,10 +15,9 @@ public class HomePageController {
     protected void onCrops(ActionEvent event) throws IOException {
         Stage stage = stageOf(event);
         FXMLLoader loader = new FXMLLoader(HomeController.class.getResource("crop-view.fxml"));
-        stage.setScene(new Scene(loader.load(), 800, 600));
-        stage.setTitle("Crops");
-        stage.sizeToScene();
-        stage.centerOnScreen();
+        stage.setScene(new Scene(loader.load()));
+        stage.setTitle("FarmBook - Crops");
+        stage.setMaximized(true);
     }
 
     @FXML
