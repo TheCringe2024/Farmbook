@@ -1,15 +1,53 @@
 package com.example.farmbook;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.control.Label;
+import javafx.util.Duration;
 
 import java.io.IOException;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class HomePageController {
+
+    // Identification variables for API
+    @FXML
+    private Label weatherLabel;
+
+    @FXML
+    private Label timeLabel;
+
+    private Timeline liveClock;
+
+    private void startLiveClock() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+        liveClock = new Timeline(
+                new KeyFrame(Duration.ZERO, e -> {
+                    timeLabel.setText(
+                            LocalTime.now().format(formatter)
+                    );
+                }),
+                new KeyFrame(Duration.seconds(1))
+        );
+        liveClock.setCycleCount(Timeline.INDEFINITE);
+        liveClock.play();
+    }
+    // Connecting the app to the backend of the API
+    public void initialize() throws IOException, InterruptedException{
+        WeatherAPI weatherAPI = new WeatherAPI();
+        weatherData weather = weatherAPI.getWeather();
+
+        weatherLabel.setText(weather.getTemperature() + "°C");
+        startLiveClock();
+    }
 
     @FXML
     protected void onCrops(ActionEvent event) throws IOException {

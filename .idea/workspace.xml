@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5681c7ed-e31e-42c8-b477-5ed5ad61575c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/farmbook/CropAnalytics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/farmbook/CropAnalytics.java" afterDir="false" />
-    </list>
+    <list default="true" id="5681c7ed-e31e-42c8-b477-5ed5ad61575c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,7 +14,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -36,8 +29,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/TheCringe2024/Farmbook.git&quot;,
-    &quot;accountId&quot;: &quot;911e4580-f7ec-4907-9b1d-5c1d94046cdb&quot;
+    &quot;url&quot;: &quot;https://github.com/TheCringe2024/Farmbook&quot;,
+    &quot;accountId&quot;: &quot;8bff8081-33cc-46c9-8607-b12210e8f93e&quot;
   }
 }</component>
   <component name="MavenImportPreferences">
@@ -63,29 +56,27 @@
     "Application.HelloApplication.executor": "Run",
     "Application.HomePage_application.executor": "Run",
     "Application.Launcher.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
+    "Application.WeatherAPI.executor": "Run",
+    "Application.weatherAPI.executor": "Run",
     "JUnit.CropTest (1).executor": "Run",
     "JUnit.CropTest.executor": "Run",
+    "JUnit.CropTest.setCropType_updatesCropType.executor": "Run",
     "JUnit.InventoryTest.executor": "Run",
     "JUnit.LivestockValidatorTest.executor": "Run",
+    "JUnit.PasswordHashTest.emptyPasswordStillHashes.executor": "Run",
+    "JUnit.PasswordHashTest.hashIsNotThePlainPassword.executor": "Run",
     "JUnit.SessionStateTest.executor": "Run",
-    "JavaScript Debug.help-doc.html.executor": "Run",
-    "Maven.Farmbook [clean].executor": "Run",
-    "Maven.Farmbook [org.apache.maven.plugins:maven-javadoc-plugin:3.4.0:javadoc].executor": "Run",
-    "Maven.Farmbook [package].executor": "Run",
+    "JUnit.weatherDataTest.shouldReturnCorrectTemperature.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "#36 on weather-api",
     "git.auto.fetch.suggestion.counter": "1",
-    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/PC/Documents/REX/FarmBook",
+    "node.js.detected.package.jshint": "true",
+    "node.js.selected.package.jshint": "",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
@@ -94,6 +85,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ronel\IdeaProjects\Farmbook\src\test\java\com\example\farmbook" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
@@ -112,64 +106,68 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CropTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CropTest.setCropType_updatesCropType" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Farmbook" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="CropTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="setCropType_updatesCropType" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CropTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PasswordHashTest.emptyPasswordStillHashes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Farmbook" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PasswordHashTest" />
+      <option name="METHOD_NAME" value="emptyPasswordStillHashes" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PasswordHashTest.hashIsNotThePlainPassword" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Farmbook" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PasswordHashTest" />
+      <option name="METHOD_NAME" value="hashIsNotThePlainPassword" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="weatherDataTest.shouldReturnCorrectTemperature" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Farmbook" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.farmbook.*" />
+          <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.example.farmbook" />
-      <option name="MAIN_CLASS_NAME" value="com.example.farmbook.CropTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="InventoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Farmbook" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="InventoryTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="weatherDataTest" />
+      <option name="METHOD_NAME" value="shouldReturnCorrectTemperature" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="help-doc.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Farmbook-cloned/Farmbook/docs/javadoc/help-doc.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Application.Launcher" />
-      <item itemvalue="JavaScript Debug.help-doc.html" />
-      <item itemvalue="JUnit.CropTest" />
-      <item itemvalue="JUnit.CropTest (1)" />
-      <item itemvalue="JUnit.InventoryTest" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JavaScript Debug.help-doc.html" />
         <item itemvalue="Application.Launcher" />
-        <item itemvalue="JUnit.CropTest (1)" />
-        <item itemvalue="JUnit.CropTest" />
-        <item itemvalue="JUnit.InventoryTest" />
+        <item itemvalue="JUnit.weatherDataTest.shouldReturnCorrectTemperature" />
+        <item itemvalue="JUnit.PasswordHashTest.emptyPasswordStillHashes" />
+        <item itemvalue="JUnit.PasswordHashTest.hashIsNotThePlainPassword" />
+        <item itemvalue="JUnit.CropTest.setCropType_updatesCropType" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10968.63" />
-        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10968.63" />
+        <option value="bundled-jdk-30f59d01ecdd-63390994e64e-intellij.indexing.shared.core-IU-262.8665.337" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.8665.337" />
       </set>
     </attachedChunks>
   </component>
@@ -186,8 +184,15 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

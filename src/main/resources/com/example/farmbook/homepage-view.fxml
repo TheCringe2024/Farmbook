@@ -98,17 +98,17 @@
          <top>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" style="-fx-background-color: #3B435F;" BorderPane.alignment="CENTER_RIGHT">
                <children>
-                  <Label text="WEATHER" textFill="WHITE">
+                  <Label fx:id="weatherLabel" text="WEATHER" textFill="WHITE">
                      <font>
-                        <Font size="40.0" />
+                        <Font size="25.0" />
                      </font>
                      <HBox.margin>
                         <Insets right="100.0" />
                      </HBox.margin>
                   </Label>
-                  <Label text="TIME" textFill="WHITE">
+                  <Label fx:id="timeLabel" text="00:00:00" textFill="WHITE">
                      <font>
-                        <Font size="40.0" />
+                        <Font size="25.0" />
                      </font>
                      <HBox.margin>
                         <Insets right="80.0" />
