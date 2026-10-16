@@ -1,7 +1,6 @@
 package com.example.farmbook;
 
 import javafx.animation.KeyFrame;
-import javafx.application.Platform;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,15 +41,11 @@ public class HomePageController {
         liveClock.play();
     }
     // Connecting the app to the backend of the API
-    public void initialize() {
+    public void initialize() throws IOException, InterruptedException{
         WeatherAPI weatherAPI = new WeatherAPI();
-        weatherLabel.setText("Loading weather...");
-        Thread weatherThread = new Thread(() -> {
-            String text = WeatherText.temperatureText(weatherAPI::getWeather);
-            Platform.runLater(() -> weatherLabel.setText(text));
-        });
-        weatherThread.setDaemon(true);
-        weatherThread.start();
+        weatherData weather = weatherAPI.getWeather();
+
+        weatherLabel.setText(weather.getTemperature() + "°C");
         startLiveClock();
     }
 
