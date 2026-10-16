@@ -86,33 +86,26 @@
             </VBox>
          </right>
          <top>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" style="-fx-background-color: #3B435F;" BorderPane.alignment="CENTER_RIGHT">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" spacing="30.0" style="-fx-background-color: #3B435F;" BorderPane.alignment="CENTER_LEFT">
+               <padding><Insets left="16.0" right="16.0" /></padding>
                <children>
-                  <Label fx:id="weatherLabel" text="WEATHER" textFill="WHITE">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="100.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label fx:id="timeLabel" text="TIME" textFill="WHITE">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="80.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Button onAction="#onToggleMenu" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 34px; -fx-cursor: hand;" text="☰" />
                   <ImageView fitHeight="100.0" fitWidth="144.0">
                      <image>
                         <Image url="@../../../FarmBook.PNG" />
                      </image>
                   </ImageView>
+                  <Label fx:id="weatherLabel" text="WEATHER" textFill="WHITE">
+                     <font><Font size="25.0" /></font>
+                  </Label>
+                  <Label fx:id="timeLabel" text="TIME" textFill="WHITE">
+                     <font><Font size="25.0" /></font>
+                  </Label>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button onAction="#onToggleMenu" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 34px; -fx-cursor: hand;" text="☰" />
                </children>
             </HBox>
          </top>
+
          <center>
             <VBox alignment="CENTER" spacing="26.0">
                <children>
