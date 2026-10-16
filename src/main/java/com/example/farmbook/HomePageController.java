@@ -132,7 +132,7 @@ public class HomePageController {
     private void updateGreeting() {
         String name = SessionState.getCurrentUsername();
         String greeting = Greeting.forHour(LocalTime.now().getHour());
-        welcomeLabel.setText(name == null ? greeting : greeting + ", " + name);
+        welcomeLabel.setText((name == null ? greeting : greeting + ", " + name) + "!");
     }
 
     /** Checks the time every minute, so the greeting changes while the page stays open. */
