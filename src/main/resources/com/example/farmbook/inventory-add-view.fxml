@@ -26,7 +26,7 @@
           </HBox>
           <HBox prefHeight="886.0" prefWidth="1880.0" spacing="20.0" VBox.vgrow="ALWAYS">
               <VBox spacing="10.0">
-                  <TableView fx:id="inventoryTableView" prefHeight="1004.0" prefWidth="1448.0" style="-fx-control-inner-background: #3B435F; -fx-control-inner-background-alt: #424A69; -fx-base: #2A3047;" VBox.vgrow="ALWAYS">
+                  <TableView fx:id="inventoryTableView" columnResizePolicy="CONSTRAINED_RESIZE_POLICY" prefHeight="1004.0" prefWidth="1448.0" style="-fx-control-inner-background: #3B435F; -fx-control-inner-background-alt: #424A69; -fx-base: #2A3047;" VBox.vgrow="ALWAYS">
                       <columns>
                           <TableColumn fx:id="itemNameColumn" prefWidth="120" text="Item" />
                           <TableColumn fx:id="categoryColumn" prefWidth="110" text="Category" />
