@@ -29,6 +29,17 @@ public class DashboardSummary {
 
     /** Counts what the cards show. A missing list counts as zero. */
     public static DashboardSummary from(List<?> animals, List<Inventory> items, List<?> crops) {
-        return new DashboardSummary(0, 0, 0, 0);
+        int itemCount = 0;
+        int low = 0;
+        if (items != null) {
+            itemCount = items.size();
+            for (Inventory item : items) {
+                if (item.getInventoryQuantity() <= LOW_STOCK_LIMIT) {
+                    low++;
+                }
+            }
+        }
+        return new DashboardSummary(
+                animals == null ? 0 : animals.size(), itemCount, low, crops == null ? 0 : crops.size());
     }
 }
