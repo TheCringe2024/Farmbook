@@ -26,6 +26,12 @@ public class HomePageController {
 
     private Timeline liveClock;
 
+    @FXML private Label welcomeLabel;
+    @FXML private Label animalCountLabel;
+    @FXML private Label itemCountLabel;
+    @FXML private Label lowStockLabel;
+    @FXML private Label cropCountLabel;
+
     private void startLiveClock() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
@@ -47,6 +53,7 @@ public class HomePageController {
 
         weatherLabel.setText(weather.getTemperature() + "°C");
         startLiveClock();
+        loadDashboard();
     }
 
     @FXML
@@ -94,5 +101,29 @@ public class HomePageController {
 
     private static Stage stageOf(ActionEvent event) {
         return (Stage) ((Node) event.getSource()).getScene().getWindow();
+    }
+
+    /** Fills the welcome line and the cards with the user's real data. */
+    private void loadDashboard() {
+        String name = SessionState.getCurrentUsername();
+        welcomeLabel.setText(name == null ? "Welcome back" : "Welcome back, " + name);
+
+        DashboardSummary summary;
+        try {
+            com.example.farmbook.dao.DatabaseConnection.initialiseLivestockTable();
+            CropDAO crops = new CropDAO();
+            crops.createTable();
+            summary = DashboardSummary.from(
+                    new com.example.farmbook.dao.LivestockDAO().findAll(),
+                    new SqliteInventoryDAO().getInventoryItems(),
+                    crops.getAll());
+        } catch (Exception e) {
+            summary = DashboardSummary.from(null, null, null);
+        }
+
+        animalCountLabel.setText(String.valueOf(summary.getAnimals()));
+        itemCountLabel.setText(String.valueOf(summary.getItems()));
+        lowStockLabel.setText(summary.getLowStock() + " low on stock");
+        cropCountLabel.setText(String.valueOf(summary.getCrops()));
     }
 }
