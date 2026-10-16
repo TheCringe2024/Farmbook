@@ -37,7 +37,7 @@
     <Button fx:id="saveButton" onAction="#handleSaveLivestock" prefHeight="42.0" prefWidth="340.0" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: #2193c4; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand;" text="Save Animal" />
 
     <!-- Back Button -->
-    <Button fx:id="backButton" onAction="#handleBack" prefHeight="38.0" prefWidth="340.0" style="-fx-font-size: 14px; -fx-background-color: #1c202e; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand;" text="Back to Home" />
+    <Button fx:id="backButton" onAction="#handleBack" prefHeight="38.0" prefWidth="340.0" style="-fx-font-size: 14px; -fx-background-color: #1c202e; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand;" text="Back to list" />
 
     <!-- Status -->
     <Label fx:id="statusLabel" maxWidth="340.0" minHeight="40.0" style="-fx-font-size: 14px;" textFill="WHITE" wrapText="true" />
