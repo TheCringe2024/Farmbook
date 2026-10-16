@@ -26,6 +26,10 @@ public class HomePageController {
 
     private Timeline liveClock;
 
+    @FXML private javafx.scene.layout.HBox forecastBox;
+
+    @FXML private javafx.scene.layout.VBox menuPanel;
+
     @FXML private Label welcomeLabel;
     @FXML private Label animalCountLabel;
     @FXML private Label itemCountLabel;
@@ -54,6 +58,7 @@ public class HomePageController {
         weatherLabel.setText(weather.getTemperature() + "°C");
         startLiveClock();
         loadDashboard();
+        loadForecast();
     }
 
     @FXML
@@ -140,5 +145,57 @@ public class HomePageController {
         Timeline greetingClock = new Timeline(new KeyFrame(Duration.minutes(1), e -> updateGreeting()));
         greetingClock.setCycleCount(Timeline.INDEFINITE);
         greetingClock.play();
+    }
+
+    /** Shows or hides the menu when the three-lines button is clicked. */
+    @FXML
+    protected void onToggleMenu() {
+        boolean show = !menuPanel.isVisible();
+        menuPanel.setVisible(show);
+        menuPanel.setManaged(show);
+    }
+
+    /** Loads the 7-day forecast in the background so the home page opens straight away. */
+    private void loadForecast() {
+        if (forecastBox == null) {
+            return;
+        }
+        forecastBox.getChildren().add(forecastLabel("Loading forecast..."));
+        Thread forecastThread = new Thread(() -> {
+            java.util.List<WeeklyForecast.Day> days;
+            try {
+                days = WeeklyForecast.fetch();
+            } catch (Exception e) {
+                days = java.util.List.of();
+            }
+            java.util.List<WeeklyForecast.Day> result = days;
+            javafx.application.Platform.runLater(() -> showForecast(result));
+        });
+        forecastThread.setDaemon(true);
+        forecastThread.start();
+    }
+
+    private void showForecast(java.util.List<WeeklyForecast.Day> days) {
+        forecastBox.getChildren().clear();
+        if (days.isEmpty()) {
+            forecastBox.getChildren().add(forecastLabel("Forecast unavailable"));
+            return;
+        }
+        for (WeeklyForecast.Day day : days) {
+            javafx.scene.layout.VBox cell = new javafx.scene.layout.VBox(2.0,
+                    forecastLabel(day.getDayName()),
+                    forecastLabel(day.getIcon()),
+                    forecastLabel(Math.round(day.getMax()) + "° / " + Math.round(day.getMin()) + "°"));
+            cell.setAlignment(javafx.geometry.Pos.CENTER);
+            cell.setPrefWidth(110.0);
+            cell.setStyle("-fx-background-color: rgba(255,255,255,0.08); -fx-background-radius: 12; -fx-padding: 6 8 6 8;");
+            forecastBox.getChildren().add(cell);
+        }
+    }
+
+    private Label forecastLabel(String text) {
+        Label label = new Label(text);
+        label.setStyle("-fx-text-fill: white; -fx-font-size: 14px;");
+        return label;
     }
 }

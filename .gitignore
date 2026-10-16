@@ -49,3 +49,4 @@ inventory.db
 
 # Prevent committing large javadocs
 /docs/javadoc/
+farmbook-location.properties
