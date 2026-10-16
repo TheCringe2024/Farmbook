@@ -180,4 +180,16 @@ public class InventoryController {
         Stage stage = (Stage) itemNameTextField.getScene().getWindow();
         stage.setScene(new Scene(loader.load(), 1000, 800));
     }
+
+    /**
+     * Opens the stock in and out screen.
+     * @throws IOException if stock-movement-view.fxml can't be loaded
+     */
+    public void onStockInOut(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("stock-movement-view.fxml"));
+        Stage stage = (Stage) itemNameTextField.getScene().getWindow();
+        stage.setScene(new Scene(loader.load(), 600, 450));
+        stage.sizeToScene();
+        stage.centerOnScreen();
+    }
 }

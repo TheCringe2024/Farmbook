@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="14.0" style="-fx-background-color: #3B435F;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.farmbook.StockMovementController">
+    <padding>
+        <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+    </padding>
+
+    <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Stock in / out" textFill="WHITE" />
+    <Label text="Choose an item, enter an amount, then add or remove stock." textFill="WHITE" />
+
+    <ComboBox fx:id="itemComboBox" prefWidth="360.0" promptText="Choose an item" />
+    <TextField fx:id="amountField" maxWidth="360.0" promptText="Amount (whole number)" />
+
+    <HBox alignment="CENTER" spacing="12.0">
+        <Button onAction="#onAddStock" prefWidth="170.0" style="-fx-background-color: green;" text="Add stock" textFill="WHITE" />
+        <Button onAction="#onRemoveStock" prefWidth="170.0" style="-fx-background-color: #ff5959;" text="Remove stock" textFill="WHITE" />
+    </HBox>
+
+    <Label fx:id="statusLabel" textFill="WHITE" />
+    <Button onAction="#onBack" prefWidth="360.0" style="-fx-background-color: #1c202e;" text="Back to inventory" textFill="WHITE" />
+</VBox>
