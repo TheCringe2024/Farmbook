@@ -24,9 +24,9 @@
 
       <BorderPane>
          <right>
-            <VBox prefWidth="140.0" style="-fx-background-color: rgba(59, 67, 95, 0.6);" BorderPane.alignment="CENTER">
+            <VBox fx:id="menuPanel" alignment="TOP_CENTER" visible="false" managed="false" prefWidth="190.0" spacing="6.0" style="-fx-background-color: rgba(44, 50, 71, 0.95); -fx-background-radius: 16 0 0 16;" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onSettings" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5; -fx-background-radius: 12; -fx-cursor: hand;" text="Account" textAlignment="CENTER" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#onCrops" prefHeight="52.0" prefWidth="170.0" style="-fx-background-color: #7080b5; -fx-background-radius: 12; -fx-cursor: hand;" text="Crops" textAlignment="CENTER" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
@@ -37,7 +37,7 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onCrops" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5; -fx-background-radius: 12; -fx-cursor: hand;" text="Crops" textAlignment="CENTER" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#onInventory" prefHeight="52.0" prefWidth="170.0" style="-fx-background-color: #7080b5; -fx-background-radius: 12; -fx-cursor: hand;" text="Inventory" textAlignment="CENTER" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
@@ -48,7 +48,7 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onInventory" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5; -fx-background-radius: 12; -fx-cursor: hand;" text="Inventory" textAlignment="CENTER" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#onLivestock" prefHeight="52.0" prefWidth="170.0" style="-fx-background-color: #7080b5; -fx-background-radius: 12; -fx-cursor: hand;" text="Livestock" textAlignment="CENTER" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
@@ -59,7 +59,7 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onLivestock" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5; -fx-background-radius: 12; -fx-cursor: hand;" text="Livestock" textAlignment="CENTER" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#onSettings" prefHeight="52.0" prefWidth="170.0" style="-fx-background-color: #7080b5; -fx-background-radius: 12; -fx-cursor: hand;" text="Settings" textAlignment="CENTER" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
@@ -70,18 +70,8 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onSettings" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5; -fx-background-radius: 12; -fx-cursor: hand;" text="Settings" textAlignment="CENTER" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#onExit" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5; -fx-background-radius: 12; -fx-cursor: hand;" text="Logout" textAlignment="CENTER" textFill="WHITE">
+                  <Region VBox.vgrow="ALWAYS" />
+                  <Button mnemonicParsing="false" onAction="#onExit" prefHeight="52.0" prefWidth="170.0" style="-fx-background-color: #ff5959; -fx-background-radius: 12; -fx-cursor: hand;" text="Logout" textAlignment="CENTER" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
@@ -114,6 +104,7 @@
                         <Insets right="80.0" />
                      </HBox.margin>
                   </Label>
+                  <Button onAction="#onToggleMenu" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 34px; -fx-cursor: hand;" text="☰" />
                   <ImageView fitHeight="100.0" fitWidth="144.0">
                      <image>
                         <Image url="@../../../FarmBook.PNG" />
