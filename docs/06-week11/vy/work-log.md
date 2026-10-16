@@ -3,7 +3,7 @@
 ## What I built
 
 - **Crops:** add a crop and see a list of crops
-- **Stock in and out:** add stock, remove stock, and it won't let stock go below zero
+- **Stock in and out:** add stock, remove stock, and it won't let stock go below zero (screens built and tested, but not linked into the app yet)
 - **Livestock:** add an animal, see the list, and go back between screens
 - **Tests:** tests for crops, items and livestock. For the delete and negative-stock tests I wrote the test first, then the code.
 - **Refactor:** I tidied up ItemDAO (commit `e7149cc`). The same code was copied in three places, so I put it in one helper. All 60 tests passed before and after.
