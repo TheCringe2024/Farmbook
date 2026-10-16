@@ -7,38 +7,38 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #3B435F;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="com.example.farmbook.AddLivestockController">
+<VBox alignment="CENTER" spacing="18.0" style="-fx-background-color: #3B435F;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="com.example.farmbook.AddLivestockController">
 
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+        <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
     </padding>
 
     <!-- Farmbook header -->
     <Label style="-fx-font-size: 35px; -fx-font-weight: bold;" text="Farmbook" textFill="WHITE" />
-    <Label style="-fx-font-size: 16px;" text="Livestock Records" textFill="WHITE" />
+    <Label style="-fx-font-size: 16px;" text="Livestock Records" textFill="#C5CAE0" />
 
-    <Separator />
+    <Separator maxWidth="420.0" style="-fx-opacity: 0.4;" />
     <Label style="-fx-font-size: 25px; -fx-font-weight: bold;" text="Add Livestock" textFill="WHITE" />
 
     <!-- Form section -->
     <VBox alignment="CENTER" spacing="8.0">
 
-        <Label style="-fx-font-size: 15px" text="species:" textFill="WHITE" />
-        <TextField fx:id="speciesField" prefWidth="300.0" promptText="e.g. Cow" />
+        <Label style="-fx-font-size: 15px;" text="Species" textFill="WHITE" />
+        <TextField fx:id="speciesField" maxWidth="340.0" prefWidth="340.0" promptText="e.g. Cow" style="-fx-background-radius: 6; -fx-font-size: 14px;" />
 
-        <Label style="-fx-font-size: 15px" text="identifier / tag:" textFill="WHITE" />
-        <TextField fx:id="identifierField" prefWidth="300.0" promptText="e.g. #A12" />
+        <Label style="-fx-font-size: 15px;" text="Identifier / tag" textFill="WHITE" />
+        <TextField fx:id="identifierField" maxWidth="340.0" prefWidth="340.0" promptText="e.g. #A12" style="-fx-background-radius: 6; -fx-font-size: 14px;" />
 
-        <Label style="-fx-font-size: 15px" text="date acquired / born:" textFill="WHITE" />
-        <TextField fx:id="dateAcquiredField" prefWidth="300.0" promptText="e.g. 2025-02-03" />
+        <Label style="-fx-font-size: 15px;" text="Date acquired / born (YYYY-MM-DD)" textFill="WHITE" />
+        <TextField fx:id="dateAcquiredField" maxWidth="340.0" prefWidth="340.0" promptText="e.g. 2025-02-03" style="-fx-background-radius: 6; -fx-font-size: 14px;" />
     </VBox>
 
     <!-- Save Button -->
-    <Button fx:id="saveButton" onAction="#handleSaveLivestock" prefHeight="40.0" prefWidth="300.0" style="-fx-font-size: 16px; -fx-background-color: green; -fx-font-weight: bold;" text="Save Animal" />
+    <Button fx:id="saveButton" onAction="#handleSaveLivestock" prefHeight="42.0" prefWidth="340.0" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: #2193c4; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand;" text="Save Animal" />
 
     <!-- Back Button -->
-    <Button fx:id="backButton" onAction="#handleBack" prefHeight="35.0" prefWidth="300.0" style="-fx-font-size: 14px;" text="Back to Home" />
+    <Button fx:id="backButton" onAction="#handleBack" prefHeight="38.0" prefWidth="340.0" style="-fx-font-size: 14px; -fx-background-color: #1c202e; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand;" text="Back to Home" />
 
     <!-- Status -->
-    <Label fx:id="statusLabel" style="-fx-font-size: 14px;" />
+    <Label fx:id="statusLabel" maxWidth="340.0" minHeight="40.0" style="-fx-font-size: 14px;" textFill="WHITE" wrapText="true" />
 </VBox>
