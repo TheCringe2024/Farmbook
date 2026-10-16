@@ -7,21 +7,21 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #3B435F;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="com.example.farmbook.LivestockListController">
+<VBox alignment="CENTER" spacing="18.0" style="-fx-background-color: #3B435F;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="com.example.farmbook.LivestockListController">
 
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+        <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
     </padding>
 
     <Label style="-fx-font-size: 35px; -fx-font-weight: bold;" text="Farmbook" textFill="WHITE" />
-    <Label style="-fx-font-size: 16px;" text="Livestock Records" textFill="WHITE" />
+    <Label style="-fx-font-size: 16px;" text="Livestock Records" textFill="#C5CAE0" />
 
-    <Separator />
+    <Separator maxWidth="420.0" style="-fx-opacity: 0.4;" />
     <Label style="-fx-font-size: 25px; -fx-font-weight: bold;" text="All Livestock" textFill="WHITE" />
 
-    <ListView fx:id="livestockListView" prefHeight="250.0" prefWidth="400.0" />
+    <ListView fx:id="livestockListView" maxWidth="520.0" prefHeight="280.0" prefWidth="520.0" style="-fx-control-inner-background: #2A3047; -fx-base: #2A3047; -fx-font-size: 15px; -fx-background-radius: 6;" />
 
-    <Button fx:id="addButton" onAction="#handleAddNew" prefHeight="40.0" prefWidth="300.0" style="-fx-font-size: 16px; -fx-background-color: green; -fx-font-weight: bold;" text="Add New Animal" />
+    <Button fx:id="addButton" onAction="#handleAddNew" prefHeight="42.0" prefWidth="320.0" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: #2193c4; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand;" text="Add New Animal" />
 
-    <Button fx:id="backButton" onAction="#handleBack" prefHeight="35.0" prefWidth="300.0" style="-fx-font-size: 14px;" text="Back to Home" />
+    <Button fx:id="backButton" onAction="#handleBack" prefHeight="38.0" prefWidth="320.0" style="-fx-font-size: 14px; -fx-background-color: #1c202e; -fx-text-fill: white; -fx-background-radius: 6; -fx-cursor: hand;" text="Back to Home" />
 </VBox>
