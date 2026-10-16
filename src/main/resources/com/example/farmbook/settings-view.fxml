@@ -48,7 +48,6 @@
             <Separator style="-fx-opacity: 0.4;" />
 
             <Button onAction="#handleBack" maxWidth="Infinity" prefHeight="40.0" style="-fx-background-color: #1c202e; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Return to dashboard" />
-            <Button onAction="#handleLogout" maxWidth="Infinity" prefHeight="40.0" style="-fx-background-color: #ff5959; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Logout" />
         </VBox>
     </VBox>
 </ScrollPane>
