@@ -106,7 +106,8 @@ public class HomePageController {
     /** Fills the welcome line and the cards with the user's real data. */
     private void loadDashboard() {
         String name = SessionState.getCurrentUsername();
-        welcomeLabel.setText(name == null ? "Welcome back" : "Welcome back, " + name);
+        updateGreeting();
+        startGreetingUpdates();
 
         DashboardSummary summary;
         try {
@@ -125,5 +126,19 @@ public class HomePageController {
         itemCountLabel.setText(String.valueOf(summary.getItems()));
         lowStockLabel.setText(summary.getLowStock() + " low on stock");
         cropCountLabel.setText(String.valueOf(summary.getCrops()));
+    }
+
+    /** Shows the greeting for the current time, for example "Good morning, Sam". */
+    private void updateGreeting() {
+        String name = SessionState.getCurrentUsername();
+        String greeting = Greeting.forHour(LocalTime.now().getHour());
+        welcomeLabel.setText(name == null ? greeting : greeting + ", " + name);
+    }
+
+    /** Checks the time every minute, so the greeting changes while the page stays open. */
+    private void startGreetingUpdates() {
+        Timeline greetingClock = new Timeline(new KeyFrame(Duration.minutes(1), e -> updateGreeting()));
+        greetingClock.setCycleCount(Timeline.INDEFINITE);
+        greetingClock.play();
     }
 }
