@@ -9,12 +9,11 @@ public class weatherData {
     private double precipitationProbability;
 
     // Constructor
-    public weatherData(String time, double temperature, double cloudCover, double weatherCode, double windDirection, double precipitationProbability) {
-        this.time = time;
+    public weatherData(double temperature, double cloudCover, double weatherCode, /*double windDirection,*/ double precipitationProbability) {
         this.temperature = temperature;
         this.cloudCover = cloudCover;
         this.weatherCode = weatherCode;
-        this.windDirection = windDirection;
+        //this.windDirection = windDirection;
         this.precipitationProbability = precipitationProbability;
     }
 

@@ -8,12 +8,12 @@ class weatherDataTest {
     @Test
     void shouldReturnCorrectTemperature() {
         weatherData weather = new weatherData(
-                "2026-10-09T15;00",
+                //"2026-10-09T15;00",
                 22.0,
                 40.0,
                 1.0,
-                180.0,
-                20
+                20.0
+               // 20
         );
 
         double TempResult = weather.getTemperature();
@@ -25,8 +25,8 @@ class weatherDataTest {
         double WCodeResult  = weather.getWeatherCode();
         assertEquals(1.0,WCodeResult);
 
-        double WindDirResult = weather.getWindDirection();
-        assertEquals(180.0,WindDirResult);
+        //double WindDirResult = weather.getWindDirection();
+       // assertEquals(180.0,WindDirResult);
 
         double precipResult = weather.getPrecipitationProbability();
         assertEquals(20,precipResult);
