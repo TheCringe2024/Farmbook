@@ -19,12 +19,41 @@ public class HomePageController {
 
     // Identification variables for API
     @FXML
-    private Label weatherLabel;
+    private Label temp_max_min;
 
     @FXML
     private Label timeLabel;
 
+    @FXML
+    private Label wind_speedLabel;
+
+    @FXML
+    private Label precipitationLabel;
+
+    @FXML
+    private Label UV_indexLabel;
+
+    @FXML
     private Timeline liveClock;
+
+    // farmer weather stats
+    @FXML
+    private Label relative_humidityLabel;
+
+    @FXML
+    private Label ref_ET;
+
+    @FXML
+    private Label vapour_pressureLabel;
+
+    @FXML
+    private Label meanDewpointLabel;
+
+    @FXML
+    private Label grow_degree_days_baseLabel;
+
+    @FXML
+    private Label grow_leaf_wetnessLabel;
 
     private void startLiveClock() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -45,7 +74,47 @@ public class HomePageController {
         WeatherAPI weatherAPI = new WeatherAPI();
         weatherData weather = weatherAPI.getWeather();
 
-        weatherLabel.setText(weather.getTemperature() + "°C");
+        temp_max_min.setText(
+                weather.getMax_temp() + "/" + weather.getMin_temp() + "°C"
+        );
+
+        wind_speedLabel.setText(
+                weather.getWind_speed() + "km/h"
+        );
+
+        precipitationLabel.setText(
+                weather.getPrecipitation_prob() + "%"
+        );
+
+        UV_indexLabel.setText(
+                weather.getUV_index() + ""
+        );
+
+        // weather farmer stats
+        relative_humidityLabel.setText(
+                weather.getRelative_humidity() + "%"
+        );
+
+        ref_ET.setText(
+                weather.getRef_ET() + ""
+        );
+
+        vapour_pressureLabel.setText(
+                weather.getVapour_pressure_def() + ""
+        );
+
+        meanDewpointLabel.setText(
+                weather.getMean_dewpoint() + ""
+        );
+
+        grow_degree_days_baseLabel.setText(
+                weather.getGrow_degree_days_base() + ""
+        );
+
+        grow_leaf_wetnessLabel.setText(
+                weather.getMean_leaf_wetness() + ""
+        );
+
         startLiveClock();
     }
 
@@ -96,4 +165,5 @@ public class HomePageController {
     private static Stage stageOf(ActionEvent event) {
         return (Stage) ((Node) event.getSource()).getScene().getWindow();
     }
+
 }

@@ -1,135 +1,278 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<StackPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #232838;"
-           xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="com.example.farmbook.HomePageController">
+<StackPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #232838;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.farmbook.HomePageController">
    <children>
-      <Region opacity="0.6"
-              style="-fx-background-image: url('/FarmBookBackground2.jpg');
-                     -fx-background-size: cover;
-                     -fx-background-position: center center;
-                     -fx-background-repeat: no-repeat;" />
-
+      <Region opacity="0.6" style="-fx-background-image: url('/FarmBookBackground2.jpg');                      -fx-background-size: cover;                      -fx-background-position: center center;                      -fx-background-repeat: no-repeat;" />
       <BorderPane>
-         <right>
-            <VBox prefWidth="140.0" style="-fx-background-color: rgba(59, 67, 95, 0.6);" BorderPane.alignment="CENTER">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5;" text="Account" textAlignment="CENTER" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#onCrops" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5;" text="Crops" textAlignment="CENTER" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#onInventory" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5;" text="Inventory" textAlignment="CENTER" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#onLivestock" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5;" text="Livestock" textAlignment="CENTER" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#onSettings" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5;" text="Settings" textAlignment="CENTER" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#onExit" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5;" text="Logout" textAlignment="CENTER" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-               </children>
-            </VBox>
-         </right>
          <top>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" style="-fx-background-color: #3B435F;" BorderPane.alignment="CENTER_RIGHT">
+            <HBox alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="104.0" prefWidth="882.0" spacing="20.0" style="-fx-background-color: #3B435F;" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="weatherLabel" text="WEATHER" textFill="WHITE">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
+                  <VBox alignment="CENTER" prefHeight="104.0" prefWidth="208.0" spacing="5.0">
+                     <children>
+                        <Label text="Wind" />
+                        <Label fx:id="wind_speedLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="200.0" text="WindLabel" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </Label>
+                        <Label text="Maximum speed" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="104.0" prefWidth="174.0" spacing="5.0">
+                     <children>
+                        <Label text="Temperature" />
+                        <Label fx:id="temp_max_min" prefHeight="30.0" prefWidth="154.0" text="Max/Min temp" textFill="WHITE">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </Label>
+                        <Label alignment="CENTER" text="Max / Min" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets left="20.0" right="20.0" />
+                     </opaqueInsets>
                      <HBox.margin>
-                        <Insets right="100.0" />
+                        <Insets left="20.0" right="20.0" />
                      </HBox.margin>
-                  </Label>
-                  <Label fx:id="timeLabel" text="TIME" textFill="WHITE">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="80.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label text="Welcome back USER" textFill="WHITE">
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="40.0" />
-                     </HBox.margin>
-                  </Label>
-                  <ImageView fitHeight="100.0" fitWidth="144.0">
-                     <image>
-                        <Image url="@../../../FarmBook.PNG" />
-                     </image>
-                  </ImageView>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Time" textFill="#aea3a3" />
+                        <Label fx:id="timeLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="148.0" text="TIME" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="104.0" prefWidth="144.0" spacing="5.0">
+                     <children>
+                        <Label text="UV index" />
+                        <Label fx:id="UV_indexLabel" alignment="CENTER" contentDisplay="CENTER" text="UV" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </Label>
+                        <Label text="Daily maximum" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="104.0" prefWidth="179.0" spacing="5.0">
+                     <children>
+                        <Label text="Precipitation Chance" />
+                        <Label fx:id="precipitationLabel" alignment="CENTER" prefHeight="30.0" prefWidth="200.0" text="Precip chance" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </Label>
+                        <Label text="Maximum probability" />
+                     </children>
+                  </VBox>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <top>
+                        <ImageView fitHeight="100.0" fitWidth="146.0" BorderPane.alignment="TOP_RIGHT">
+                           <image>
+                              <Image url="@../../../FarmBook.PNG" />
+                           </image>
+                           <BorderPane.margin>
+                              <Insets />
+                           </BorderPane.margin>
+                        </ImageView>
+                     </top>
+                  </BorderPane>
                </children>
             </HBox>
          </top>
+         <right>
+               <VBox alignment="TOP_RIGHT" prefWidth="140.0" spacing="20.0" style="-fx-background-color: rgba(59, 67, 95, 0.6);" BorderPane.alignment="TOP_RIGHT">
+                  <children>
+                     <Button mnemonicParsing="false" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5;" text="Account" textAlignment="CENTER" textFill="WHITE">
+                        <VBox.margin>
+                           <Insets top="15.0" />
+                        </VBox.margin>
+                        <padding>
+                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        </padding>
+                        <font>
+                           <Font name="System Bold" size="15.0" />
+                        </font>
+                     </Button>
+                     <Button mnemonicParsing="false" onAction="#onCrops" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5;" text="Crops" textAlignment="CENTER" textFill="WHITE">
+                        <VBox.margin>
+                           <Insets top="15.0" />
+                        </VBox.margin>
+                        <padding>
+                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        </padding>
+                        <font>
+                           <Font name="System Bold" size="15.0" />
+                        </font>
+                     </Button>
+                     <Button mnemonicParsing="false" onAction="#onInventory" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5;" text="Inventory" textAlignment="CENTER" textFill="WHITE">
+                        <VBox.margin>
+                           <Insets top="15.0" />
+                        </VBox.margin>
+                        <padding>
+                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        </padding>
+                        <font>
+                           <Font name="System Bold" size="15.0" />
+                        </font>
+                     </Button>
+                     <Button mnemonicParsing="false" onAction="#onLivestock" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5;" text="Livestock" textAlignment="CENTER" textFill="WHITE">
+                        <VBox.margin>
+                           <Insets top="15.0" />
+                        </VBox.margin>
+                        <padding>
+                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        </padding>
+                        <font>
+                           <Font name="System Bold" size="15.0" />
+                        </font>
+                     </Button>
+                     <Button mnemonicParsing="false" onAction="#onSettings" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5;" text="Settings" textAlignment="CENTER" textFill="WHITE">
+                        <VBox.margin>
+                           <Insets top="15.0" />
+                        </VBox.margin>
+                        <padding>
+                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        </padding>
+                        <font>
+                           <Font name="System Bold" size="15.0" />
+                        </font>
+                     </Button>
+                     <Button mnemonicParsing="false" onAction="#onExit" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5;" text="Logout" textAlignment="CENTER" textFill="WHITE">
+                        <VBox.margin>
+                           <Insets top="15.0" />
+                        </VBox.margin>
+                        <padding>
+                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        </padding>
+                        <font>
+                           <Font name="System Bold" size="15.0" />
+                        </font>
+                     </Button>
+                  </children>
+               </VBox>
+         </right>
+         <opaqueInsets>
+            <Insets left="40.0" right="40.0" />
+         </opaqueInsets>
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-image: white;" BorderPane.alignment="CENTER">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="282.0" layoutX="7.0" layoutY="88.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" styleClass="parent" width="271.0" />
+                  <Accordion layoutX="412.0" layoutY="92.0" />
+                  <Pane layoutX="296.0" layoutY="86.0" prefHeight="66.0" prefWidth="265.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="296.0" AnchorPane.rightAnchor="299.0" AnchorPane.topAnchor="86.0">
+                     <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" height="5.25" radius="0.8125" width="0.0">
+                           <color>
+                              <Color red="0.28421053290367126" green="0.28421053290367126" blue="0.28421053290367126" />
+                           </color></DropShadow>
+                     </effect></Pane>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="282.0" layoutX="577.0" layoutY="88.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="271.0" />
+                  <Pane layoutX="8.0" layoutY="86.0" prefHeight="67.0" prefWidth="270.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="582.0" AnchorPane.topAnchor="86.0">
+                     <effect>
+                        <DropShadow height="10.5" radius="2.125" width="0.0" />
+                     </effect>
+                     <children>
+                        <Text layoutX="57.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reference Evapotranspiration" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="579.0" layoutY="86.0" prefHeight="67.0" prefWidth="268.0" style="-fx-background-color: white;">
+                     <effect>
+                        <DropShadow radius="4.75" width="0.0" />
+                     </effect>
+                     <children>
+                        <Text layoutX="44.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maximum Vapour Pressure Deficit" />
+                     </children>
+                  </Pane>
+                  <Circle fill="#b8bec4" layoutX="796.0" layoutY="40.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="282.0" layoutX="8.0" layoutY="388.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="271.0" />
+                  <Pane layoutX="9.0" layoutY="388.0" prefHeight="67.0" prefWidth="268.0" style="-fx-background-color: white;">
+                     <effect>
+                        <DropShadow radius="4.75" width="0.0" />
+                     </effect>
+                     <children>
+                        <Text layoutX="78.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mean Dewpoint (2m)" />
+                     </children>
+                  </Pane>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="282.0" layoutX="295.0" layoutY="88.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="267.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="282.0" layoutX="296.0" layoutY="388.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="267.0" />
+                  <Pane layoutX="296.0" layoutY="386.0" prefHeight="70.0" prefWidth="268.0" style="-fx-background-color: white;">
+                     <effect>
+                        <DropShadow radius="4.75" width="0.0" />
+                     </effect>
+                     <children>
+                        <Text layoutX="36.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Growing Degree days Base 0 Limit 50" />
+                     </children>
+                  </Pane>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="280.0" layoutX="579.0" layoutY="386.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="269.0" />
+                  <Pane layoutX="580.0" layoutY="386.0" prefHeight="70.0" prefWidth="268.0" style="-fx-background-color: white;">
+                     <effect>
+                        <DropShadow radius="4.75" width="0.0" />
+                     </effect>
+                     <children>
+                        <Text layoutX="52.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mean Leaf Wetness Probability" />
+                     </children>
+                  </Pane>
+                  <Text layoutX="353.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mean Relative Humidity (2m)" />
+                  <Label fx:id="ref_ET" alignment="CENTER" contentDisplay="CENTER" layoutX="7.0" layoutY="217.0" prefHeight="66.0" prefWidth="269.0" text="Evatrans Label">
+                     <font>
+                        <Font size="45.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="relative_humidityLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="296.0" layoutY="217.0" prefHeight="66.0" prefWidth="260.0" text="Rel_Hum_label">
+                     <font>
+                        <Font size="45.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="vapour_pressureLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="577.0" layoutY="217.0" prefHeight="66.0" prefWidth="270.0" text="Vapour Pressure Label">
+                     <font>
+                        <Font size="45.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="meanDewpointLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="526.0" prefHeight="66.0" prefWidth="269.0" text="Dewpoint Label">
+                     <font>
+                        <Font size="45.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="grow_degree_days_baseLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="297.0" layoutY="526.0" prefHeight="66.0" prefWidth="266.0" text="Growing Label">
+                     <font>
+                        <Font size="45.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="grow_leaf_wetnessLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="580.0" layoutY="526.0" prefHeight="66.0" prefWidth="269.0" text="Leaf wetness label">
+                     <font>
+                        <Font size="45.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </AnchorPane>
+         </center>
       </BorderPane>
 
    </children>
