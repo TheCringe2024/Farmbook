@@ -96,23 +96,23 @@ public class HomePageController {
         );
 
         ref_ET.setText(
-                weather.getRef_ET() + ""
+                weather.getRef_ET() + "mm"
         );
 
         vapour_pressureLabel.setText(
-                weather.getVapour_pressure_def() + ""
+                weather.getVapour_pressure_def() + "kPa"
         );
 
         meanDewpointLabel.setText(
-                weather.getMean_dewpoint() + ""
+                weather.getMean_dewpoint() + "°C"
         );
 
         grow_degree_days_baseLabel.setText(
-                weather.getGrow_degree_days_base() + ""
+                weather.getGrow_degree_days_base() + "°C per day"
         );
 
         grow_leaf_wetnessLabel.setText(
-                weather.getMean_leaf_wetness() + ""
+                weather.getMean_leaf_wetness() + "%"
         );
 
         startLiveClock();
