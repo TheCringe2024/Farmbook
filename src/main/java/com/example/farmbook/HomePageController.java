@@ -108,7 +108,7 @@ public class HomePageController {
         );
 
         grow_degree_days_baseLabel.setText(
-                weather.getGrow_degree_days_base() + "°C per day"
+                weather.getGrow_degree_days_base() + "°C/day"
         );
 
         grow_leaf_wetnessLabel.setText(
