@@ -3,18 +3,51 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #3B435F;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="com.example.farmbook.SettingsController">
+<ScrollPane fitToWidth="true" fitToHeight="true" style="-fx-background: transparent; -fx-background-color: transparent;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.example.farmbook.SettingsController">
+    <VBox alignment="CENTER" styleClass="root-pane" stylesheets="@css/style.css">
+        <padding>
+            <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+        </padding>
 
-    <padding>
-        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-    </padding>
+        <VBox alignment="TOP_CENTER" maxWidth="560.0" spacing="10.0" style="-fx-background-color: #3B435F; -fx-background-radius: 20;">
+            <padding>
+                <Insets bottom="26.0" left="30.0" right="30.0" top="26.0" />
+            </padding>
 
-    <Label text="Settings" textFill="WHITE" />
+            <Label style="-fx-font-size: 30px; -fx-font-weight: bold;" text="Settings" textFill="WHITE" />
+            <Label style="-fx-font-size: 16px;" text="Manage your account" textFill="#C5CAE0" />
 
-    <Label text="Account Settings" textFill="WHITE" />
+            <Separator style="-fx-opacity: 0.4;" />
 
-    <Button onAction="#handleLogout" text="Logout" />
+            <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Your account" textFill="WHITE" />
+            <Label fx:id="usernameLabel" style="-fx-font-size: 14px;" textFill="#C5CAE0" />
+            <Label fx:id="emailLabel" style="-fx-font-size: 14px;" textFill="#C5CAE0" />
 
-</VBox>
+            <Separator style="-fx-opacity: 0.4;" />
+
+            <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Change email" textFill="WHITE" />
+            <TextField fx:id="newEmailField" promptText="New email" style="-fx-background-color: #1c202e; -fx-text-fill: white; -fx-prompt-text-fill: #8a90ad;" />
+            <Button onAction="#handleChangeEmail" maxWidth="Infinity" prefHeight="40.0" style="-fx-background-color: #7080b5; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-cursor: hand;" text="Save email" />
+            <Label fx:id="emailMessage" maxWidth="480.0" wrapText="true" />
+
+            <Separator style="-fx-opacity: 0.4;" />
+
+            <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Change password" textFill="WHITE" />
+            <PasswordField fx:id="currentPasswordField" promptText="Current password" style="-fx-background-color: #1c202e; -fx-text-fill: white; -fx-prompt-text-fill: #8a90ad;" />
+            <PasswordField fx:id="newPasswordField" promptText="New password (6+ characters)" style="-fx-background-color: #1c202e; -fx-text-fill: white; -fx-prompt-text-fill: #8a90ad;" />
+            <PasswordField fx:id="confirmPasswordField" promptText="Confirm new password" style="-fx-background-color: #1c202e; -fx-text-fill: white; -fx-prompt-text-fill: #8a90ad;" />
+            <Button onAction="#handleChangePassword" maxWidth="Infinity" prefHeight="40.0" style="-fx-background-color: #7080b5; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-cursor: hand;" text="Save password" />
+            <Label fx:id="passwordMessage" maxWidth="480.0" wrapText="true" />
+
+            <Separator style="-fx-opacity: 0.4;" />
+
+            <Button onAction="#handleBack" maxWidth="Infinity" prefHeight="40.0" style="-fx-background-color: #1c202e; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;" text="Return to dashboard" />
+        </VBox>
+    </VBox>
+</ScrollPane>

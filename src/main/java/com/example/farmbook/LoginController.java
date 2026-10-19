@@ -51,7 +51,7 @@ public class LoginController {
         try {
             if (userDAO.isValidLogin(enteredUsername, enteredPassword)) {
                 accessLabel.setText("Login success");
-                SessionState.login();
+                SessionState.login(enteredUsername);
                 FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("homepage-view.fxml"));
                 Stage stage = (Stage) usernameField.getScene().getWindow();
                 stage.setScene(new Scene(loader.load(), 1000, 800));
