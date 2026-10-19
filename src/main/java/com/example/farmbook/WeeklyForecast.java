@@ -89,4 +89,18 @@ public class WeeklyForecast {
                 .send(request, HttpResponse.BodyHandlers.ofString());
         return parse(response.body());
     }
+
+    /** Builds the forecast web address for a place. */
+    public static String urlFor(double latitude, double longitude) {
+        return "https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude
+                + "&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=7";
+    }
+
+    /** Downloads the forecast for a place. Throws if there is no internet. */
+    public static List<Day> fetch(double latitude, double longitude) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(urlFor(latitude, longitude))).build();
+        HttpResponse<String> response = HttpClient.newHttpClient()
+                .send(request, HttpResponse.BodyHandlers.ofString());
+        return parse(response.body());
+    }
 }
