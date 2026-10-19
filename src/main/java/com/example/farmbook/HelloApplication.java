@@ -1,8 +1,11 @@
 package com.example.farmbook;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,10 +18,24 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
 
+        // Whenever a screen is swapped in, put the window back to the same size
+        stage.sceneProperty().addListener((observable, oldScene, newScene) ->
+                Platform.runLater(() -> fillScreen(stage)));
+
         stage.setTitle("FarmBook");
         showLogin();
 
         stage.show();
+        fillScreen(stage);
+    }
+
+    /** Makes the window fill the usable part of the screen, so every screen is the same size. */
+    private static void fillScreen(Stage stage) {
+        Rectangle2D area = Screen.getPrimary().getVisualBounds();
+        stage.setX(area.getMinX());
+        stage.setY(area.getMinY());
+        stage.setWidth(area.getWidth());
+        stage.setHeight(area.getHeight());
     }
 
     private static void changeScene(String fxmlFile) throws IOException {
