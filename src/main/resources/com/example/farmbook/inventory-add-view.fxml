@@ -22,7 +22,6 @@
           <HBox alignment="CENTER_LEFT">
               <Label prefHeight="35.0" prefWidth="191.0" style="-fx-background-color: #2c3247;" text="   Select an item to edit or add." textFill="WHITE" />
               <Region style="-fx-background-color: #2c3247;" HBox.hgrow="ALWAYS" />
-              <Button onAction="#onReturn" prefHeight="37.0" style="-fx-background-color: #1c202e; -fx-cursor: hand;" text="Back to dashboard" textFill="WHITE" />
               <Button onAction="#onReturn" prefHeight="37.0" prefWidth="135.0" style="-fx-background-color: #1c202e;" text="Return to dashboard" textFill="WHITE" />
           </HBox>
           <HBox prefHeight="886.0" prefWidth="1880.0" spacing="20.0" VBox.vgrow="ALWAYS">
