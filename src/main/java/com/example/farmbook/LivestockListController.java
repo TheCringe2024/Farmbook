@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,6 +19,8 @@ import java.util.List;
  * Controls the Livestock List screen.
  */
 public class LivestockListController {
+    @FXML
+    private TextField searchField;
 
     @FXML
     private ListView<String> livestockListView;
@@ -37,6 +40,10 @@ public class LivestockListController {
     @FXML
     public void initialize() {
         loadLivestock();
+
+        searchField.textProperty().addListener(
+                (observable, oldValue, newValue) -> loadLivestock()
+        );
     }
 
     /**
@@ -44,13 +51,20 @@ public class LivestockListController {
      */
     private void loadLivestock() {
         List<Livestock> animals =
-                livestockService.getAllLivestock();
-        livestockListView.setItems(FXCollections.observableArrayList());
+                livestockService.searchLivestock(searchField.getText());
+
+        livestockListView.setItems(
+                FXCollections.observableArrayList()
+        );
+
         for (Livestock animal : animals) {
             livestockListView.getItems().add(animal.toString());
         }
+
         if (animals.isEmpty()) {
-            livestockListView.getItems().add("No animals recorded yet.");
+            livestockListView.getItems().add(
+                    "No matching livestock records."
+            );
         }
     }
 
