@@ -157,4 +157,38 @@ class LivestockServiceTest {
                 result
         );
     }
+    @Test
+    void searchMatchesSpeciesIgnoringCase() {
+        FakeLivestockDAO dao = new FakeLivestockDAO();
+
+        dao.livestockRecords.add(
+                new Livestock("Cattle", "C01", "2026-10-01")
+        );
+        dao.livestockRecords.add(
+                new Livestock("Sheep", "S01", "2026-10-02")
+        );
+
+        LivestockService service = new LivestockService(dao);
+
+        List<Livestock> result = service.searchLivestock("cattle");
+
+        assertEquals(1, result.size());
+        assertEquals("C01", result.get(0).getIdentifier());
+    }
+
+    @Test
+    void emptySearchReturnsAllLivestock() {
+        FakeLivestockDAO dao = new FakeLivestockDAO();
+
+        dao.livestockRecords.add(
+                new Livestock("Cattle", "C01", "2026-10-01")
+        );
+        dao.livestockRecords.add(
+                new Livestock("Sheep", "S01", "2026-10-02")
+        );
+
+        LivestockService service = new LivestockService(dao);
+
+        assertEquals(2, service.searchLivestock("").size());
+    }
 }

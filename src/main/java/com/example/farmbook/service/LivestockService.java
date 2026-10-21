@@ -4,6 +4,7 @@ import com.example.farmbook.LivestockValidator;
 import com.example.farmbook.dao.ILivestockDAO;
 import com.example.farmbook.model.Livestock;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Contains business logic for livestock operations.
@@ -84,5 +85,30 @@ public class LivestockService {
         }
 
         return SaveResult.SUCCESS;
+    }
+    /**
+     * Searches livestock by species or identifier.
+     *
+     * @param query search keyword
+     * @return matching livestock records
+     */
+    public List<Livestock> searchLivestock(String query) {
+        String keyword = query == null
+                ? ""
+                : query.trim().toLowerCase(Locale.ROOT);
+
+        if (keyword.isEmpty()) {
+            return getAllLivestock();
+        }
+
+        return getAllLivestock().stream()
+                .filter(animal ->
+                        animal.getSpecies()
+                                .toLowerCase(Locale.ROOT)
+                                .contains(keyword)
+                                || animal.getIdentifier()
+                                .toLowerCase(Locale.ROOT)
+                                .contains(keyword))
+                .toList();
     }
 }
