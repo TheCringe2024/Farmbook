@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
@@ -114,14 +115,35 @@ public class InventoryController {
     @FXML
     private void onEditConfirm() {
         Inventory selected = inventoryTableView.getSelectionModel().getSelectedItem();
-        if (selected != null) {
-            selected.setInventoryItemName(itemNameTextField.getText());
-            selected.setInventoryCategory(categoryTextField.getText());
-            selected.setInventoryUnit(unitTextField.getText());
-            selected.setInventoryQuantity(Integer.parseInt(quantityTextField.getText()));
-            inventoryDAO.updateInventoryItem(selected);
-            syncInventorys();
+        if (selected == null) {
+            return;
         }
+
+        String name = itemNameTextField.getText().trim();
+        String category = categoryTextField.getText().trim();
+        String unit = unitTextField.getText().trim();
+        if (name.isBlank() || category.isBlank() || unit.isBlank()) {
+            new Alert(Alert.AlertType.WARNING, "Name, category and unit are required.").showAndWait();
+            return;
+        }
+
+        final int quantity;
+        try {
+            quantity = Integer.parseInt(quantityTextField.getText().trim());
+        } catch (NumberFormatException ex) {
+            new Alert(Alert.AlertType.WARNING, "Quantity must be a whole number.").showAndWait();
+            return;
+        }
+        if (quantity < 0) {
+            new Alert(Alert.AlertType.WARNING, "Quantity cannot be negative.").showAndWait();
+            return;
+        }
+        selected.setInventoryItemName(name);
+        selected.setInventoryCategory(category);
+        selected.setInventoryUnit(unit);
+        selected.setInventoryQuantity(quantity);
+        inventoryDAO.updateInventoryItem(selected);
+        syncInventorys();
     }
 
     /**

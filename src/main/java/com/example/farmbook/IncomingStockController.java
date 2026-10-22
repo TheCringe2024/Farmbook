@@ -63,8 +63,17 @@ public class IncomingStockController {
         }
 
         try {
-            int quantity = Integer.parseInt(quantityText);
-            itemDAO.addStock(selectedItem.getId(), quantity);
+            int quantity = Integer.parseInt(quantityText.trim());
+            if (quantity <= 0) {
+                statusLabel.setStyle("-fx-text-fill: red;");
+                statusLabel.setText("Quantity must be greater than zero.");
+                return;
+            }
+            if (!itemDAO.addStock(selectedItem.getId(), quantity)) {
+                statusLabel.setStyle("-fx-text-fill: red;");
+                statusLabel.setText("Could not add stock. Check the selected item.");
+                return;
+            }
 
             statusLabel.setStyle("-fx-text-fill: green;");
             statusLabel.setText("Added " + quantity + " " + selectedItem.getUnit()
