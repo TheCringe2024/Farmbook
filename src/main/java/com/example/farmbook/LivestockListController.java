@@ -20,6 +20,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 
+import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.Dialog;
+import javafx.scene.layout.GridPane;
 /**
  * Controls the Livestock List screen.
  * Supports listing, searching, adding and deleting livestock.
@@ -118,6 +123,105 @@ public class LivestockListController {
             ).showAndWait();
         }
     }
+
+    /**
+     * Allows the user to edit a selected livestock record.
+     * Validation is handled by LivestockService.
+     */
+    @FXML
+    private void handleEditSelected() {
+        Livestock selected =
+                livestockListView.getSelectionModel().getSelectedItem();
+
+        if (selected == null) {
+            new Alert(
+                    Alert.AlertType.WARNING,
+                    "Please select an animal to edit."
+            ).showAndWait();
+            return;
+        }
+
+        TextField speciesField =
+                new TextField(selected.getSpecies());
+
+        TextField identifierField =
+                new TextField(selected.getIdentifier());
+
+        TextField dateField =
+                new TextField(selected.getDateAcquired());
+
+        dateField.setPromptText("YYYY-MM-DD");
+
+        Label errorLabel = new Label();
+        errorLabel.setStyle("-fx-text-fill: red;");
+
+        GridPane form = new GridPane();
+        form.setHgap(10);
+        form.setVgap(10);
+        form.setPadding(new Insets(15));
+
+        form.addRow(0, new Label("Species:"), speciesField);
+        form.addRow(1, new Label("Identifier:"), identifierField);
+        form.addRow(2, new Label("Date acquired:"), dateField);
+        form.add(errorLabel, 1, 3);
+
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setTitle("Edit Livestock");
+        dialog.setHeaderText(
+                "Editing: " + selected.getIdentifier()
+        );
+
+        dialog.getDialogPane().setContent(form);
+
+        ButtonType saveType = new ButtonType(
+                "Save Changes",
+                ButtonBar.ButtonData.OK_DONE
+        );
+
+        dialog.getDialogPane().getButtonTypes().addAll(
+                saveType,
+                ButtonType.CANCEL
+        );
+
+        Button saveButton = (Button)
+                dialog.getDialogPane().lookupButton(saveType);
+
+        saveButton.addEventFilter(
+                ActionEvent.ACTION,
+                event -> {
+                    LivestockService.UpdateResult result =
+                            livestockService.updateLivestock(
+                                    selected.getId(),
+                                    speciesField.getText(),
+                                    identifierField.getText(),
+                                    dateField.getText()
+                            );
+
+                    if (result ==
+                            LivestockService.UpdateResult.SUCCESS) {
+                        loadLivestock();
+                    } else {
+                        String message = switch (result) {
+                            case INVALID_ID ->
+                                    "Invalid livestock record.";
+                            case MISSING_FIELDS ->
+                                    "Please fill in all fields.";
+                            case INVALID_DATE ->
+                                    "Date must use YYYY-MM-DD format.";
+                            case PERSISTENCE_ERROR ->
+                                    "Could not update the record.";
+                            case SUCCESS -> "";
+                        };
+
+                        errorLabel.setText(message);
+                        event.consume();
+                    }
+                }
+        );
+
+        dialog.showAndWait();
+    }
+
 
     /**
      * Opens the Add Livestock screen.

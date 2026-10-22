@@ -124,4 +124,47 @@ public class LivestockService {
 
         return livestockDAO.delete(id);
     }
+    public enum UpdateResult {
+        SUCCESS,
+        INVALID_ID,
+        MISSING_FIELDS,
+        INVALID_DATE,
+        PERSISTENCE_ERROR
+    }
+    /**
+     * Validates and updates an existing livestock record.
+     *
+     * @return the update outcome
+     */
+    public UpdateResult updateLivestock(
+            int id,
+            String species,
+            String identifier,
+            String dateAcquired) {
+
+        if (id <= 0) {
+            return UpdateResult.INVALID_ID;
+        }
+
+        if (LivestockValidator.hasBlankRequiredFields(
+                species, identifier, dateAcquired)) {
+            return UpdateResult.MISSING_FIELDS;
+        }
+
+        if (!LivestockValidator.isValidDate(dateAcquired)) {
+            return UpdateResult.INVALID_DATE;
+        }
+
+        Livestock updated = new Livestock(
+                species.trim(),
+                identifier.trim(),
+                dateAcquired.trim()
+        );
+
+        updated.setId(id);
+
+        return livestockDAO.update(updated)
+                ? UpdateResult.SUCCESS
+                : UpdateResult.PERSISTENCE_ERROR;
+    }
 }

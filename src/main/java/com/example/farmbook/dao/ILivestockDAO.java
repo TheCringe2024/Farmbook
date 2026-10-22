@@ -18,4 +18,6 @@ public interface ILivestockDAO {
     List<Livestock> findAll();
 
     boolean delete(int id);
+
+    boolean update(Livestock livestock);
 }

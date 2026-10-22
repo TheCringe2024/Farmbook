@@ -46,6 +46,16 @@ class LivestockServiceTest {
                     animal -> animal.getId() == id
             );
         }
+        private boolean updateCalled;
+        private boolean updateResult = true;
+        private Livestock updatedLivestock;
+
+        @Override
+        public boolean update(Livestock livestock) {
+            updateCalled = true;
+            updatedLivestock = livestock;
+            return updateResult;
+        }
     }
 
     @Test
@@ -219,5 +229,37 @@ class LivestockServiceTest {
 
         assertFalse(service.deleteLivestock(-1));
         assertFalse(dao.deleteCalled);
+    }
+    @Test
+    void updatesValidLivestock() {
+        FakeLivestockDAO dao = new FakeLivestockDAO();
+        LivestockService service = new LivestockService(dao);
+
+        LivestockService.UpdateResult result =
+                service.updateLivestock(
+                        5, "Sheep", "S01", "2026-10-22"
+                );
+
+        assertEquals(LivestockService.UpdateResult.SUCCESS, result);
+        assertTrue(dao.updateCalled);
+        assertEquals(5, dao.updatedLivestock.getId());
+        assertEquals("Sheep", dao.updatedLivestock.getSpecies());
+    }
+
+    @Test
+    void rejectsInvalidUpdateDate() {
+        FakeLivestockDAO dao = new FakeLivestockDAO();
+        LivestockService service = new LivestockService(dao);
+
+        LivestockService.UpdateResult result =
+                service.updateLivestock(
+                        5, "Sheep", "S01", "invalid-date"
+                );
+
+        assertEquals(
+                LivestockService.UpdateResult.INVALID_DATE,
+                result
+        );
+        assertFalse(dao.updateCalled);
     }
 }

@@ -29,6 +29,16 @@
 
     <ListView fx:id="livestockListView" prefHeight="250.0" prefWidth="400.0" />
     <Button
+            text="Edit Selected"
+            onAction="#handleEditSelected"
+            prefHeight="40.0"
+            prefWidth="300.0"
+            style="-fx-background-color: #5278C8;
+           -fx-text-fill: white;
+           -fx-font-weight: bold;
+           -fx-font-size: 16px;"
+    />
+    <Button
             text="Delete Selected"
             onAction="#handleDeleteSelected"
             prefHeight="40.0"
