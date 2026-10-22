@@ -111,4 +111,17 @@ public class LivestockService {
                                 .contains(keyword))
                 .toList();
     }
+    /**
+     * Deletes a livestock record by ID.
+     *
+     * @param id livestock record ID
+     * @return true when deletion succeeds
+     */
+    public boolean deleteLivestock(int id) {
+        if (id <= 0) {
+            return false;
+        }
+
+        return livestockDAO.delete(id);
+    }
 }

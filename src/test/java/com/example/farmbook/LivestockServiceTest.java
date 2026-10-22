@@ -37,11 +37,17 @@ class LivestockServiceTest {
             return new ArrayList<>(livestockRecords);
         }
 
+        private boolean deleteCalled;
+
         @Override
-        public void delete(int id) {
-            // Not required for these service tests.
+        public boolean delete(int id) {
+            deleteCalled = true;
+            return livestockRecords.removeIf(
+                    animal -> animal.getId() == id
+            );
         }
     }
+
     @Test
     void returnsLivestockRecordsFromDao() {
         FakeLivestockDAO dao = new FakeLivestockDAO();
@@ -190,5 +196,28 @@ class LivestockServiceTest {
         LivestockService service = new LivestockService(dao);
 
         assertEquals(2, service.searchLivestock("").size());
+    }
+    @Test
+    void deletesLivestockById() {
+        FakeLivestockDAO dao = new FakeLivestockDAO();
+
+        Livestock animal =
+                new Livestock("Cow", "C01", "2026-10-20");
+        animal.setId(5);
+        dao.livestockRecords.add(animal);
+
+        LivestockService service = new LivestockService(dao);
+
+        assertTrue(service.deleteLivestock(5));
+        assertTrue(dao.livestockRecords.isEmpty());
+    }
+
+    @Test
+    void rejectsInvalidDeleteId() {
+        FakeLivestockDAO dao = new FakeLivestockDAO();
+        LivestockService service = new LivestockService(dao);
+
+        assertFalse(service.deleteLivestock(-1));
+        assertFalse(dao.deleteCalled);
     }
 }

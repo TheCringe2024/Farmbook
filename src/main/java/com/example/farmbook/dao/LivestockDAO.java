@@ -77,18 +77,26 @@ public class LivestockDAO implements ILivestockDAO {
     }
 
     /**
-     * Deletes an animal record by ID.
-     * @param id the record to delete
+     * Deletes a livestock record by its database ID.
+     *
+     * @param id ID of the livestock record
+     * @return true if exactly one record was deleted
      */
     @Override
-    public void delete(int id) {
+    public boolean delete(int id) {
         String sql = "DELETE FROM livestock WHERE id = ?";
+
         try (Connection conn = DatabaseConnection.connect();
              PreparedStatement ps = conn.prepareStatement(sql)) {
+
             ps.setInt(1, id);
-            ps.executeUpdate();
+            return ps.executeUpdate() == 1;
+
         } catch (SQLException e) {
-            System.err.println("Failed to delete livestock: " + e.getMessage());
+            System.err.println(
+                    "Failed to delete livestock: " + e.getMessage()
+            );
+            return false;
         }
     }
 }
