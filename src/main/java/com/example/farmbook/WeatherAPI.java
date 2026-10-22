@@ -6,6 +6,7 @@ package com.example.farmbook;
 // Importing the tools needed for the API
 import java.io.IOException;
 import java.net.URI;
+import java.time.Duration;
 import java.net.http.HttpClient; // "Internet messenger - the one your talking to"
 import java.net.http.HttpRequest; // "The message you're sending"
 import java.net.http.HttpResponse; // "The reply you get back"
@@ -16,7 +17,9 @@ import com.fasterxml.jackson.databind.ObjectMapper; // Jackson obtained. An onli
 
 public class WeatherAPI {
     //
-    private HttpClient client = HttpClient.newBuilder().build();
+    private HttpClient client = HttpClient.newBuilder()
+            .connectTimeout(java.time.Duration.ofSeconds(5))
+            .build();
 
     // The information needed from the API or third party source - "I wanted these data variables"
     // Additional note. Seperated it to make it more organised.
@@ -44,6 +47,7 @@ public class WeatherAPI {
     String url = baseURL + "?" + location + "&" + daily + "&" + hourly + "&" + current;
     private HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create(url))
+            .timeout(java.time.Duration.ofSeconds(8))
             .build();
 
     // The method that obtain the needed information - "Data variables delivered and is stored in this method"
@@ -54,8 +58,11 @@ public class WeatherAPI {
 
         );
 
-       System.out.println("Status: " + response.statusCode());
-       System.out.println("Response: " + response.body());
+        if (response.statusCode() != 200) {
+            throw new IOException(
+                    "Weather API returned HTTP " + response.statusCode()
+            );
+        }
 
         ObjectMapper mapper = new ObjectMapper(); // A tool that helps Java work with JSON FORMAT -> API gives JSON format and Java just see it as string
         JsonNode weatherData = mapper.readTree(response.body()); // Reading the JSON and creating a "tree". In this API there's Current and Hourly types or branches
