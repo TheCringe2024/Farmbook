@@ -5,7 +5,7 @@
 - PR #37 merged to `main` at 2026-10-22 16:45 AEST. Merge commit `83672931f828af209ce29d869b64e95a1ccac71e`.
 - All five feature commits are included: `26e63e6`, `a771900`, `86bfe77`, `286d2e5`, `7e1ef15`.
 - Actions run `39735297593`: 80 tests passed, Javadoc generation/deploy green.
-- Markdown evidence and copied conversation screenshots in `docs/07-submission2/kevin/` (this prepared package).
+- Markdown evidence and copied conversation screenshots in `docs/08-submission2/kevin/` (this prepared package).
 
 ## Still required by the *team*, not represented as done
 
@@ -22,7 +22,7 @@
 
 ## Ready-to-copy message to team
 
-> Hey guys, I’ve merged PR #37 for Livestock Search, Edit and Delete. Our latest verified PR workflow passed all 80 tests, and Javadoc was generated successfully. I’ve prepared my OOD, TDD, CI and UI evidence for Week 13. Please include `docs/07-submission2/kevin/` in the final ZIP. We still need the updated Git commit reports, PM export, complete generated HTML Javadoc, and the final video/ZIP consistency check. Let me know if anything needs adjusting before submission.
+> Hey guys, I’ve merged PR #37 for Livestock Search, Edit and Delete. Our latest verified PR workflow passed all 80 tests, and Javadoc was generated successfully. I’ve prepared my OOD, TDD, CI and UI evidence for Week 13. Please include `docs/08-submission2/kevin/` in the final ZIP. We still need the updated Git commit reports, PM export, complete generated HTML Javadoc, and the final video/ZIP consistency check. Let me know if anything needs adjusting before submission.
 
 ## High-risk remaining system issues to review separately
 

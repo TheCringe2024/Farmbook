@@ -4,7 +4,7 @@
 
 ## Suggested Kevin section, ~2:30–2:50
 
-**0:00–0:40 — OO evolution** (open `docs/07-submission2/kevin/01-ood-refactoring.md`, then `src/main/java/com/example/farmbook/service/LivestockService.java`)
+**0:00–0:40 — OO evolution** (open `docs/08-submission2/kevin/01-ood-refactoring.md`, then `src/main/java/com/example/farmbook/service/LivestockService.java`)
 
 > I focused on extending our Livestock feature using the architecture we introduced earlier. The JavaFX controller handles user interaction, while `LivestockService` owns the validation and business operations. The service depends on `ILivestockDAO` through constructor injection, and `LivestockDAO` implements SQLite persistence. The interface also makes it possible to use a fake DAO in tests, reducing coupling.
 
@@ -12,7 +12,7 @@
 
 > Earlier, the list displayed livestock as plain strings. We changed it to retain Livestock objects and their database IDs, allowing users to select a specific record. We added Search, Edit, and Delete with a confirmation before deletion. The DAO returns an operation result so the UI can show success or failure. The changes are traceable through five commits in PR #37.
 
-**1:20–1:55 — TDD and persistence** (open `docs/07-submission2/kevin/02-tdd-and-tests.md`, `src/test/java/com/example/farmbook/LivestockServiceTest.java`, and `LivestockPersistenceTest.java`)
+**1:20–1:55 — TDD and persistence** (open `docs/08-submission2/kevin/02-tdd-and-tests.md`, `src/test/java/com/example/farmbook/LivestockServiceTest.java`, and `LivestockPersistenceTest.java`)
 
 > We captured real failing and passing test runs for the new operations. Our persistence tests use SQLite to save records, then update or delete them, and read them again through a new DAO. The code is tested without claiming these service tests automate the complete JavaFX interface.
 
