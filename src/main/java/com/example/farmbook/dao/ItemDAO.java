@@ -47,7 +47,7 @@ public class ItemDAO implements IItemDAO {
      * @return true if successful, false if the amount is negative
      */
     public boolean addStock(int itemId, int amount) {
-        if (amount < 0) {
+        if (amount <= 0 || itemId <= 0) {
             return false;
         }
         return executeUpdate(
@@ -63,13 +63,14 @@ public class ItemDAO implements IItemDAO {
      * @return true if successful, false if not enough stock
      */
     public boolean removeStock(int itemId, int amount) {
-        if (!hasEnoughStock(itemId, amount)) {
+        if (amount <= 0 || itemId <= 0) {
             return false;
         }
+        // Atomic update: a concurrent change cannot cause negative stock.
         return executeUpdate(
-                "UPDATE items SET quantity = quantity - ? WHERE id = ?",
+                "UPDATE items SET quantity = quantity - ? WHERE id = ? AND quantity >= ?",
                 "Failed to remove stock",
-                amount, itemId);
+                amount, itemId, amount);
     }
 
     /**
@@ -82,26 +83,9 @@ public class ItemDAO implements IItemDAO {
             for (int i = 0; i < values.length; i++) {
                 ps.setObject(i + 1, values[i]);
             }
-            ps.executeUpdate();
-            return true;
+            return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             System.err.println(errorMessage + ": " + e.getMessage());
-            return false;
-        }
-    }
-
-    /**
-     * Checks the item has at least this much stock.
-     * @return false if there isn't enough, or the check fails
-     */
-    private boolean hasEnoughStock(int itemId, int amount) {
-        try (Connection conn = DatabaseConnection.connect();
-             PreparedStatement ps = conn.prepareStatement("SELECT quantity FROM items WHERE id = ?")) {
-            ps.setInt(1, itemId);
-            ResultSet rs = ps.executeQuery();
-            return !rs.next() || rs.getInt("quantity") >= amount;
-        } catch (SQLException e) {
-            System.err.println("Failed to check stock: " + e.getMessage());
             return false;
         }
     }

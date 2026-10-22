@@ -60,7 +60,12 @@ public class OutgoingStockController {
         }
 
         try {
-            int quantity = Integer.parseInt(quantityText);
+            int quantity = Integer.parseInt(quantityText.trim());
+            if (quantity <= 0) {
+                statusLabel.setStyle("-fx-text-fill: red;");
+                statusLabel.setText("Quantity must be greater than zero.");
+                return;
+            }
             boolean success = itemDAO.removeStock(selectedItem.getId(), quantity);
 
             if (success) {
