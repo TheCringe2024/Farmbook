@@ -77,18 +77,57 @@ public class LivestockDAO implements ILivestockDAO {
     }
 
     /**
-     * Deletes an animal record by ID.
-     * @param id the record to delete
+     * Deletes a livestock record by its database ID.
+     *
+     * @param id ID of the livestock record
+     * @return true if exactly one record was deleted
      */
     @Override
-    public void delete(int id) {
+    public boolean delete(int id) {
         String sql = "DELETE FROM livestock WHERE id = ?";
+
         try (Connection conn = DatabaseConnection.connect();
              PreparedStatement ps = conn.prepareStatement(sql)) {
+
             ps.setInt(1, id);
-            ps.executeUpdate();
+            return ps.executeUpdate() == 1;
+
         } catch (SQLException e) {
-            System.err.println("Failed to delete livestock: " + e.getMessage());
+            System.err.println(
+                    "Failed to delete livestock: " + e.getMessage()
+            );
+            return false;
+        }
+    }
+    /**
+     * Updates an existing livestock record.
+     *
+     * @param livestock record containing the existing ID
+     * @return true if exactly one record was updated
+     */
+    @Override
+    public boolean update(Livestock livestock) {
+        String sql = """
+            UPDATE livestock
+            SET species = ?, identifier = ?, date_acquired = ?
+            WHERE id = ?
+            """;
+
+        try (Connection conn = DatabaseConnection.connect();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, livestock.getSpecies());
+            ps.setString(2, livestock.getIdentifier());
+            ps.setString(3, livestock.getDateAcquired());
+            ps.setInt(4, livestock.getId());
+
+            return ps.executeUpdate() == 1;
+
+        } catch (SQLException e) {
+            System.err.println(
+                    "Failed to update livestock: " + e.getMessage()
+            );
+            return false;
         }
     }
 }

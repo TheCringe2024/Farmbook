@@ -4,6 +4,7 @@ import com.example.farmbook.LivestockValidator;
 import com.example.farmbook.dao.ILivestockDAO;
 import com.example.farmbook.model.Livestock;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Contains business logic for livestock operations.
@@ -84,5 +85,86 @@ public class LivestockService {
         }
 
         return SaveResult.SUCCESS;
+    }
+    /**
+     * Searches livestock by species or identifier.
+     *
+     * @param query search keyword
+     * @return matching livestock records
+     */
+    public List<Livestock> searchLivestock(String query) {
+        String keyword = query == null
+                ? ""
+                : query.trim().toLowerCase(Locale.ROOT);
+
+        if (keyword.isEmpty()) {
+            return getAllLivestock();
+        }
+
+        return getAllLivestock().stream()
+                .filter(animal ->
+                        animal.getSpecies()
+                                .toLowerCase(Locale.ROOT)
+                                .contains(keyword)
+                                || animal.getIdentifier()
+                                .toLowerCase(Locale.ROOT)
+                                .contains(keyword))
+                .toList();
+    }
+    /**
+     * Deletes a livestock record by ID.
+     *
+     * @param id livestock record ID
+     * @return true when deletion succeeds
+     */
+    public boolean deleteLivestock(int id) {
+        if (id <= 0) {
+            return false;
+        }
+
+        return livestockDAO.delete(id);
+    }
+    public enum UpdateResult {
+        SUCCESS,
+        INVALID_ID,
+        MISSING_FIELDS,
+        INVALID_DATE,
+        PERSISTENCE_ERROR
+    }
+    /**
+     * Validates and updates an existing livestock record.
+     *
+     * @return the update outcome
+     */
+    public UpdateResult updateLivestock(
+            int id,
+            String species,
+            String identifier,
+            String dateAcquired) {
+
+        if (id <= 0) {
+            return UpdateResult.INVALID_ID;
+        }
+
+        if (LivestockValidator.hasBlankRequiredFields(
+                species, identifier, dateAcquired)) {
+            return UpdateResult.MISSING_FIELDS;
+        }
+
+        if (!LivestockValidator.isValidDate(dateAcquired)) {
+            return UpdateResult.INVALID_DATE;
+        }
+
+        Livestock updated = new Livestock(
+                species.trim(),
+                identifier.trim(),
+                dateAcquired.trim()
+        );
+
+        updated.setId(id);
+
+        return livestockDAO.update(updated)
+                ? UpdateResult.SUCCESS
+                : UpdateResult.PERSISTENCE_ERROR;
     }
 }

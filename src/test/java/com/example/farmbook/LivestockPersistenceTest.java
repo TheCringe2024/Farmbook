@@ -11,6 +11,9 @@ import java.sql.PreparedStatement;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+import java.util.UUID;
+import static org.junit.jupiter.api.Assertions.*;
+
 class LivestockPersistenceTest {
 
     @Test
@@ -72,4 +75,83 @@ class LivestockPersistenceTest {
             }
         }
     }
+
+    @Test
+    void updatedLivestockPersistsInSQLite() {
+        String identifier = "TEST-UPDATE-" + UUID.randomUUID();
+        LivestockDAO dao = new LivestockDAO();
+
+        try {
+            assertTrue(dao.save(new Livestock(
+                    "Cattle", identifier, "2026-10-20"
+            )));
+
+            Livestock saved = dao.findAll().stream()
+                    .filter(l -> identifier.equals(l.getIdentifier()))
+                    .findFirst()
+                    .orElseThrow();
+
+            int originalId = saved.getId();
+
+            Livestock updated = new Livestock(
+                    "Sheep", identifier, "2026-10-22"
+            );
+            updated.setId(originalId);
+
+            assertTrue(dao.update(updated));
+
+            Livestock reloaded = new LivestockDAO()
+                    .findAll().stream()
+                    .filter(l -> l.getId() == originalId)
+                    .findFirst()
+                    .orElseThrow();
+
+            assertEquals("Sheep", reloaded.getSpecies());
+            assertEquals(identifier, reloaded.getIdentifier());
+            assertEquals(originalId, reloaded.getId());
+        } finally {
+            deleteTestRecord(identifier);
+        }
+    }
+
+    @Test
+    void deletedLivestockDoesNotReappear() {
+        String identifier = "TEST-DELETE-" + UUID.randomUUID();
+        LivestockDAO dao = new LivestockDAO();
+
+        try {
+            assertTrue(dao.save(new Livestock(
+                    "Goat", identifier, "2026-10-20"
+            )));
+
+            Livestock saved = dao.findAll().stream()
+                    .filter(l -> identifier.equals(l.getIdentifier()))
+                    .findFirst()
+                    .orElseThrow();
+
+            int id = saved.getId();
+
+            assertTrue(dao.delete(id));
+
+            assertTrue(new LivestockDAO().findAll().stream()
+                    .noneMatch(l -> l.getId() == id));
+        } finally {
+            deleteTestRecord(identifier);
+        }
+    }
+
+    private void deleteTestRecord(String identifier) {
+        try (Connection conn = DatabaseConnection.connect();
+             PreparedStatement ps = conn.prepareStatement(
+                     "DELETE FROM livestock WHERE identifier = ?"
+             )) {
+            ps.setString(1, identifier);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            throw new RuntimeException(
+                    "Could not clean up test record", e
+            );
+        }
+    }
+
 }

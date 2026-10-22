@@ -17,5 +17,7 @@ public interface ILivestockDAO {
 
     List<Livestock> findAll();
 
-    void delete(int id);
+    boolean delete(int id);
+
+    boolean update(Livestock livestock);
 }

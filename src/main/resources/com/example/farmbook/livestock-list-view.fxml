@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextField?>
 
 <VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #3B435F;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="com.example.farmbook.LivestockListController">
 
@@ -19,7 +20,34 @@
     <Separator />
     <Label style="-fx-font-size: 25px; -fx-font-weight: bold;" text="All Livestock" textFill="WHITE" />
 
+    <TextField
+            fx:id="searchField"
+            promptText="Search by species or identifier..."
+            prefWidth="400.0"
+            maxWidth="400.0"
+    />
+
     <ListView fx:id="livestockListView" prefHeight="250.0" prefWidth="400.0" />
+    <Button
+            text="Edit Selected"
+            onAction="#handleEditSelected"
+            prefHeight="40.0"
+            prefWidth="300.0"
+            style="-fx-background-color: #5278C8;
+           -fx-text-fill: white;
+           -fx-font-weight: bold;
+           -fx-font-size: 16px;"
+    />
+    <Button
+            text="Delete Selected"
+            onAction="#handleDeleteSelected"
+            prefHeight="40.0"
+            prefWidth="300.0"
+            style="-fx-background-color: #B3261E;
+           -fx-text-fill: white;
+           -fx-font-weight: bold;
+           -fx-font-size: 16px;"
+    />
 
     <Button fx:id="addButton" onAction="#handleAddNew" prefHeight="40.0" prefWidth="300.0" style="-fx-font-size: 16px; -fx-background-color: green; -fx-font-weight: bold;" text="Add New Animal" />
 

@@ -37,11 +37,27 @@ class LivestockServiceTest {
             return new ArrayList<>(livestockRecords);
         }
 
+        private boolean deleteCalled;
+
         @Override
-        public void delete(int id) {
-            // Not required for these service tests.
+        public boolean delete(int id) {
+            deleteCalled = true;
+            return livestockRecords.removeIf(
+                    animal -> animal.getId() == id
+            );
+        }
+        private boolean updateCalled;
+        private boolean updateResult = true;
+        private Livestock updatedLivestock;
+
+        @Override
+        public boolean update(Livestock livestock) {
+            updateCalled = true;
+            updatedLivestock = livestock;
+            return updateResult;
         }
     }
+
     @Test
     void returnsLivestockRecordsFromDao() {
         FakeLivestockDAO dao = new FakeLivestockDAO();
@@ -156,5 +172,94 @@ class LivestockServiceTest {
                 LivestockService.SaveResult.PERSISTENCE_ERROR,
                 result
         );
+    }
+    @Test
+    void searchMatchesSpeciesIgnoringCase() {
+        FakeLivestockDAO dao = new FakeLivestockDAO();
+
+        dao.livestockRecords.add(
+                new Livestock("Cattle", "C01", "2026-10-01")
+        );
+        dao.livestockRecords.add(
+                new Livestock("Sheep", "S01", "2026-10-02")
+        );
+
+        LivestockService service = new LivestockService(dao);
+
+        List<Livestock> result = service.searchLivestock("cattle");
+
+        assertEquals(1, result.size());
+        assertEquals("C01", result.get(0).getIdentifier());
+    }
+
+    @Test
+    void emptySearchReturnsAllLivestock() {
+        FakeLivestockDAO dao = new FakeLivestockDAO();
+
+        dao.livestockRecords.add(
+                new Livestock("Cattle", "C01", "2026-10-01")
+        );
+        dao.livestockRecords.add(
+                new Livestock("Sheep", "S01", "2026-10-02")
+        );
+
+        LivestockService service = new LivestockService(dao);
+
+        assertEquals(2, service.searchLivestock("").size());
+    }
+    @Test
+    void deletesLivestockById() {
+        FakeLivestockDAO dao = new FakeLivestockDAO();
+
+        Livestock animal =
+                new Livestock("Cow", "C01", "2026-10-20");
+        animal.setId(5);
+        dao.livestockRecords.add(animal);
+
+        LivestockService service = new LivestockService(dao);
+
+        assertTrue(service.deleteLivestock(5));
+        assertTrue(dao.livestockRecords.isEmpty());
+    }
+
+    @Test
+    void rejectsInvalidDeleteId() {
+        FakeLivestockDAO dao = new FakeLivestockDAO();
+        LivestockService service = new LivestockService(dao);
+
+        assertFalse(service.deleteLivestock(-1));
+        assertFalse(dao.deleteCalled);
+    }
+    @Test
+    void updatesValidLivestock() {
+        FakeLivestockDAO dao = new FakeLivestockDAO();
+        LivestockService service = new LivestockService(dao);
+
+        LivestockService.UpdateResult result =
+                service.updateLivestock(
+                        5, "Sheep", "S01", "2026-10-22"
+                );
+
+        assertEquals(LivestockService.UpdateResult.SUCCESS, result);
+        assertTrue(dao.updateCalled);
+        assertEquals(5, dao.updatedLivestock.getId());
+        assertEquals("Sheep", dao.updatedLivestock.getSpecies());
+    }
+
+    @Test
+    void rejectsInvalidUpdateDate() {
+        FakeLivestockDAO dao = new FakeLivestockDAO();
+        LivestockService service = new LivestockService(dao);
+
+        LivestockService.UpdateResult result =
+                service.updateLivestock(
+                        5, "Sheep", "S01", "invalid-date"
+                );
+
+        assertEquals(
+                LivestockService.UpdateResult.INVALID_DATE,
+                result
+        );
+        assertFalse(dao.updateCalled);
     }
 }
