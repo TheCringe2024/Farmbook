@@ -30,7 +30,28 @@ public class CropDAO implements ICropDAO {
                             + "cropType VARCHAR, "
                             + "amount INTEGER, "
                             + "datePlanted VARCHAR, "
-                            + "notes TEXT"
+                            + "notes TEXT, "
+                            + "location VARCHAR, "
+                            + "status VARCHAR"
+                            + ")"
+            );
+
+            Statement createNeedsTable = connection.createStatement();
+            createNeedsTable.execute(
+                    "CREATE TABLE IF NOT EXISTS crop_needs ("
+                            + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                            + "crop_id INTEGER, "
+                            + "description TEXT"
+                            + ")"
+            );
+
+            Statement createGrowthTable = connection.createStatement();
+            createGrowthTable.execute(
+                    "CREATE TABLE IF NOT EXISTS crop_growth ("
+                            + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                            + "crop_id INTEGER, "
+                            + "entry_date TEXT, "
+                            + "description TEXT"
                             + ")"
             );
         } catch (SQLException ex) {
@@ -46,13 +67,15 @@ public class CropDAO implements ICropDAO {
     public void insert(Crop crop) {
         try {
             PreparedStatement insertStmt = connection.prepareStatement(
-                    "INSERT INTO crops (plantName, cropType, amount, datePlanted, notes) VALUES (?, ?, ?, ?, ?)"
+                    "INSERT INTO crops (plantName, cropType, amount, datePlanted, notes, location, status) VALUES (?, ?, ?, ?, ?, ?, ?)"
             );
             insertStmt.setString(1, crop.getPlantName());
             insertStmt.setString(2, crop.getCropType());
             insertStmt.setInt(3, crop.getAmount());
             insertStmt.setString(4, crop.getDatePlanted());
             insertStmt.setString(5, crop.getNotes());
+            insertStmt.setString(6, crop.getLocation());
+            insertStmt.setString(7, crop.getStatus());
             insertStmt.execute();
         } catch (SQLException ex) {
             System.err.println(ex);
@@ -66,14 +89,16 @@ public class CropDAO implements ICropDAO {
     public void update(Crop crop) {
         try {
             PreparedStatement updateStmt = connection.prepareStatement(
-                    "UPDATE crops SET plantName = ?, cropType = ?, amount = ?, datePlanted = ?, notes = ? WHERE id = ?"
+                    "UPDATE crops SET plantName = ?, cropType = ?, amount = ?, datePlanted = ?, notes = ?, location = ?, status = ? WHERE id = ?"
             );
             updateStmt.setString(1, crop.getPlantName());
             updateStmt.setString(2, crop.getCropType());
             updateStmt.setInt(3, crop.getAmount());
             updateStmt.setString(4, crop.getDatePlanted());
             updateStmt.setString(5, crop.getNotes());
-            updateStmt.setInt(6, crop.getId());
+            updateStmt.setString(6, crop.getLocation());
+            updateStmt.setString(7, crop.getStatus());
+            updateStmt.setInt(8, crop.getId());
             updateStmt.execute();
         } catch (SQLException ex) {
             System.err.println(ex);
@@ -87,9 +112,17 @@ public class CropDAO implements ICropDAO {
     @Override
     public void delete(int id) {
         try {
-            PreparedStatement deleteStmt = connection.prepareStatement("DELETE FROM crops WHERE id = ?");
-            deleteStmt.setInt(1, id);
-            deleteStmt.execute();
+            PreparedStatement deleteCropStmt = connection.prepareStatement("DELETE FROM crops WHERE id = ?");
+            deleteCropStmt.setInt(1, id);
+            deleteCropStmt.execute();
+
+            PreparedStatement deleteNeedsStmt = connection.prepareStatement("DELETE FROM crop_needs WHERE crop_id = ?");
+            deleteNeedsStmt.setInt(1, id);
+            deleteNeedsStmt.execute();
+
+            PreparedStatement deleteGrowthStmt = connection.prepareStatement("DELETE FROM crop_growth WHERE crop_id = ?");
+            deleteGrowthStmt.setInt(1, id);
+            deleteGrowthStmt.execute();
         } catch (SQLException ex) {
             System.err.println(ex);
         }
@@ -103,8 +136,8 @@ public class CropDAO implements ICropDAO {
     public List<Crop> getAll() {
         List<Crop> crops = new ArrayList<>();
         try {
-            Statement getAll = connection.createStatement();
-            ResultSet rs = getAll.executeQuery("SELECT * FROM crops");
+            Statement getAllStmt = connection.createStatement();
+            ResultSet rs = getAllStmt.executeQuery("SELECT * FROM crops");
             while (rs.next()) {
                 crops.add(new Crop(
                         rs.getInt("id"),
@@ -112,7 +145,9 @@ public class CropDAO implements ICropDAO {
                         rs.getString("cropType"),
                         rs.getInt("amount"),
                         rs.getString("datePlanted"),
-                        rs.getString("notes")
+                        rs.getString("notes"),
+                        rs.getString("location"),
+                        rs.getString("status")
                 ));
             }
         } catch (SQLException ex) {
@@ -140,5 +175,62 @@ public class CropDAO implements ICropDAO {
         } catch (SQLException ex) {
             System.err.println(ex);
         }
+    }
+
+    // Sub-Table Methods
+
+    public void addNeed(int cropId, String description) {
+        try {
+            PreparedStatement insertNeedStmt = connection.prepareStatement(
+                    "INSERT INTO crop_needs (crop_id, description) VALUES (?, ?)"
+            );
+            insertNeedStmt.setInt(1, cropId);
+            insertNeedStmt.setString(2, description);
+            insertNeedStmt.execute();
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+    }
+
+    public List<String> getNeeds(int cropId) {
+        List<String> list = new ArrayList<>();
+        try {
+            Statement getNeedsStmt = connection.createStatement();
+            ResultSet rs = getNeedsStmt.executeQuery("SELECT description FROM crop_needs WHERE crop_id = " + cropId);
+            while (rs.next()) {
+                list.add(rs.getString("description"));
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+        return list;
+    }
+
+    public void addGrowth(int cropId, String date, String description) {
+        try {
+            PreparedStatement insertGrowthStmt = connection.prepareStatement(
+                    "INSERT INTO crop_growth (crop_id, entry_date, description) VALUES (?, ?, ?)"
+            );
+            insertGrowthStmt.setInt(1, cropId);
+            insertGrowthStmt.setString(2, date);
+            insertGrowthStmt.setString(3, description);
+            insertGrowthStmt.execute();
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+    }
+
+    public List<String> getGrowth(int cropId) {
+        List<String> list = new ArrayList<>();
+        try {
+            Statement getGrowthStmt = connection.createStatement();
+            ResultSet rs = getGrowthStmt.executeQuery("SELECT entry_date, description FROM crop_growth WHERE crop_id = " + cropId + " ORDER BY entry_date DESC");
+            while (rs.next()) {
+                list.add(rs.getString("entry_date") + ": " + rs.getString("description"));
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+        return list;
     }
 }
