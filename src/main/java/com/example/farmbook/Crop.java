@@ -12,6 +12,8 @@ public class Crop {
     private int amount;
     private String datePlanted;
     private String notes;
+    private String location;
+    private String status;
 
     /**
      * Constructs a new Crop without an ID. So the Database auto-generates it.
@@ -23,12 +25,14 @@ public class Crop {
      * @param datePlanted date the crop was planted, String
      * @param notes       additional notes about the crop
      */
-    public Crop(String plantName, String cropType, int amount, String datePlanted, String notes) {
+    public Crop(String plantName, String cropType, int amount, String datePlanted, String notes, String location, String status) {
         this.plantName = plantName;
         this.cropType = cropType;
         this.amount = amount;
         this.datePlanted = datePlanted;
         this.notes = notes;
+        this.location = location;
+        this.status = status;
     }
 
     /**
@@ -41,14 +45,19 @@ public class Crop {
      * @param amount      quantity planted
      * @param datePlanted date the crop was planted, String
      * @param notes       additional notes about the crop
+     * @param location    field/plot
+     * @param status      Growing, Harvested or Failed
+     *
      */
-    public Crop(int id, String plantName, String cropType, int amount, String datePlanted, String notes) {
+    public Crop(int id, String plantName, String cropType, int amount, String datePlanted, String notes, String location, String status) {
         this.id = id;
         this.plantName = plantName;
         this.cropType = cropType;
         this.amount = amount;
         this.datePlanted = datePlanted;
         this.notes = notes;
+        this.location = location;
+        this.status = status;
     }
 
     /**
@@ -66,4 +75,8 @@ public class Crop {
     public void setDatePlanted(String datePlanted) { this.datePlanted = datePlanted; }
     public String getNotes() { return notes; }
     public void setNotes(String notes) { this.notes = notes; }
+    public String getLocation() { return location; }
+    public void setLocation(String location) { this.location = location; }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 }

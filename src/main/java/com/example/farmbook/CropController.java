@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Controller for  Crop UI view
@@ -36,12 +37,22 @@ public class CropController {
     @FXML private BarChart<String, Number> timeChart;
     @FXML private GridPane formLayout;
 
+    @FXML private Label lblError;
     @FXML private TextField nameInput;
     @FXML private TextField notesInput;
+    @FXML private TextField locationInput;
     @FXML private DatePicker dateInput;
 
     @FXML private ComboBox<String> typeInput;
     @FXML private ComboBox<String> amountInput;
+    @FXML private ComboBox<String> statusInput;
+    @FXML private CheckBox chkShowInactive;
+
+    // Sub-menus
+    @FXML private ListView<String> needsList;
+    @FXML private TextField newNeedInput;
+    @FXML private ListView<String> growthList;
+    @FXML private TextField newGrowthInput;
 
     @FXML private Button btnToggleView;
     @FXML private Button btnBack;
@@ -61,6 +72,8 @@ public class CropController {
         // Populate predefined items for the ComboBox dropdowns
         typeInput.getItems().addAll("Grain", "Vegetable", "Fruit", "Legume", "Root", "Forage");
         amountInput.getItems().addAll("10", "50", "100", "500", "1000", "5000");
+        statusInput.getItems().addAll("Growing", "Harvested", "Failed");
+        statusInput.setValue("Growing");
 
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("plantName"));
@@ -74,6 +87,7 @@ public class CropController {
         // Listener to populate inputs when a table row is clicked
         table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
+                lblError.setText("");
                 nameInput.setText(newSelection.getPlantName());
                 typeInput.setValue(newSelection.getCropType());
                 amountInput.setValue(String.valueOf(newSelection.getAmount()));
@@ -82,6 +96,11 @@ public class CropController {
                     dateInput.setValue(java.time.LocalDate.parse(newSelection.getDatePlanted()));
                 }
                 notesInput.setText(newSelection.getNotes());
+                locationInput.setText(newSelection.getLocation());
+                statusInput.setValue(newSelection.getStatus());
+
+                needsList.setItems(FXCollections.observableArrayList(cropDAO.getNeeds(newSelection.getId())));
+                growthList.setItems(FXCollections.observableArrayList(cropDAO.getGrowth(newSelection.getId())));
             }
         });
     }
@@ -98,18 +117,34 @@ public class CropController {
         String type = typeInput.getEditor().getText();
         String amountText = amountInput.getEditor().getText();
 
-        int parsedAmount = 0;
-        try {
-            parsedAmount = Integer.parseInt(amountText);
-        } catch (NumberFormatException ignored) {}
+        if (CropValidator.hasBlankFields(nameInput.getText(), amountText)) {
+            lblError.setStyle("-fx-text-fill: #ff5959;"); //Red
+            lblError.setText("Error: Name and Amount are required.");
+            return;
+        }
+        if (!CropValidator.isNumeric(amountText)) {
+            lblError.setStyle("-fx-text-fill: #ff5959;"); //Red
+            lblError.setText("Error: Amount must be a number.");
+            return;
+        }
 
         Crop newCrop = new Crop(
                 nameInput.getText(), type,
-                parsedAmount,
+                Integer.parseInt(amountText),
                 dateInput.getValue() != null ? dateInput.getValue().toString() : "",
-                notesInput.getText()
+                notesInput.getText(), locationInput.getText(), statusInput.getValue()
         );
         cropDAO.insert(newCrop);
+
+        lblError.setStyle("-fx-text-fill: #00ff00;"); // Green for success
+        lblError.setText("Crop successfully added!");
+
+        // Clear the form fields after adding
+        nameInput.clear();
+        amountInput.getEditor().clear();
+        notesInput.clear();
+        locationInput.clear();
+
         refreshTable();
     }
 
@@ -125,19 +160,21 @@ public class CropController {
         if (selected != null) {
             String type = typeInput.getEditor().getText();
             String amountText = amountInput.getEditor().getText();
-
-            int parsedAmount = 0;
-            try {
-                parsedAmount = Integer.parseInt(amountText);
-            } catch (NumberFormatException ignored) {}
+            if (!CropValidator.isNumeric(amountText)) {
+                lblError.setText("Error: Amount must be a number.");
+                return;
+            }
 
             selected.setPlantName(nameInput.getText());
-            selected.setCropType(type);
-            selected.setAmount(parsedAmount);
+            selected.setCropType(typeInput.getEditor().getText());
+            selected.setAmount(Integer.parseInt(amountText));
             selected.setDatePlanted(dateInput.getValue() != null ? dateInput.getValue().toString() : "");
             selected.setNotes(notesInput.getText());
+            selected.setLocation(locationInput.getText());
+            selected.setStatus(statusInput.getValue());
 
             cropDAO.update(selected);
+            lblError.setText("Crop updated.");
             refreshTable();
         }
     }
@@ -155,6 +192,34 @@ public class CropController {
             cropDAO.delete(selected.getId());
             refreshTable();
         }
+    }
+
+    @FXML
+    void handleAddNeed(ActionEvent event) {
+        Crop selected = table.getSelectionModel().getSelectedItem();
+        String need = newNeedInput.getText();
+        if (selected != null && need != null && !need.isEmpty()) {
+            cropDAO.addNeed(selected.getId(), need);
+            newNeedInput.clear();
+            needsList.setItems(FXCollections.observableArrayList(cropDAO.getNeeds(selected.getId())));
+        }
+    }
+
+    @FXML
+    void handleAddGrowth(ActionEvent event) {
+        Crop selected = table.getSelectionModel().getSelectedItem();
+        String growth = newGrowthInput.getText();
+        if (selected != null && growth != null && !growth.isEmpty()) {
+            String today = java.time.LocalDate.now().toString();
+            cropDAO.addGrowth(selected.getId(), today, growth);
+            newGrowthInput.clear();
+            growthList.setItems(FXCollections.observableArrayList(cropDAO.getGrowth(selected.getId())));
+        }
+    }
+
+    @FXML
+    void onFilterToggled(ActionEvent event) {
+        refreshTable(); // Refresh whenever checkbox is clicked
     }
 
     /**
@@ -204,6 +269,14 @@ public class CropController {
      */
     private void refreshTable() {
         List<Crop> rawList = cropDAO.getAll();
+
+        // Filter out Harvested/Failed unless Checkbox is checked
+        if (!chkShowInactive.isSelected()) {
+            rawList = rawList.stream()
+                    .filter(c -> "Growing".equalsIgnoreCase(c.getStatus()))
+                    .collect(Collectors.toList());
+        }
+
         ObservableList<Crop> cropList = FXCollections.observableArrayList(rawList);
         table.setItems(cropList);
 

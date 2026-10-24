@@ -9,7 +9,8 @@ public class CropTest {
 
     @BeforeEach
     void setUp() {
-        crop = new Crop("Corn", "Grain", 500, "2023-10-01", "Test planting");
+
+        crop = new Crop("Corn", "Grain", 500, "2023-10-01", "Test planting", "Field A", "Growing");
     }
 
     @Test
@@ -38,15 +39,26 @@ public class CropTest {
     }
 
     @Test
+    void constructor_setsLocation() {
+        assertEquals("Field A", crop.getLocation());
+    }
+
+    @Test
+    void constructor_setsStatus() {
+        assertEquals("Growing", crop.getStatus());
+    }
+
+    @Test
     void newItem_hasDefaultIdOfZero() {
         assertEquals(0, crop.getId());
     }
 
     @Test
     void constructorWithId_setsIdCorrectly() {
-        Crop cropWithId = new Crop(10, "Wheat", "Cereal", 200, "2023-11-05", "Winter wheat");
+        Crop cropWithId = new Crop(10, "Wheat", "Cereal", 200, "2023-11-05", "Winter wheat", "Plot 2", "Harvested");
         assertEquals(10, cropWithId.getId());
         assertEquals("Wheat", cropWithId.getPlantName());
+        assertEquals("Harvested", cropWithId.getStatus());
     }
 
     @Test
@@ -89,5 +101,17 @@ public class CropTest {
     void setNotes_updatesNotes() {
         crop.setNotes("Updated notes for this crop.");
         assertEquals("Updated notes for this crop.", crop.getNotes());
+    }
+
+    @Test
+    void setLocation_updatesLocation() {
+        crop.setLocation("Greenhouse B");
+        assertEquals("Greenhouse B", crop.getLocation());
+    }
+
+    @Test
+    void setStatus_updatesStatus() {
+        crop.setStatus("Failed");
+        assertEquals("Failed", crop.getStatus());
     }
 }
