@@ -18,9 +18,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Controller for  Crop UI view
- * Handles user interactions. Updates the TableView and PieChart.
- * Communicates with the database via the CropDAO
+ * Controller for Crop UI view (MVC Pattern).
+ * Handles user interactions, delegates data fetching to the DAO layer,
+ * and leverages Factory instantiation and Dependency Injection.
  */
 public class CropController {
 
@@ -57,16 +57,25 @@ public class CropController {
     @FXML private Button btnToggleView;
     @FXML private Button btnBack;
 
-    private final CropDAO cropDAO = new CropDAO();
+    // Interface used for loose coupling
+    private ICropDAO cropDAO;
     private int viewState = 0;
 
     /**
-     * Initialize method automatically called after the FXML file.
-     * Sets up the database table, binds table columns to the Crop properties,
-     * loads data and starts row selection listener.
+     * Dependency Injection setup.
+     * Allows inserting a mock DAO for testing instead of relying on the concrete SQLite DB.
      */
+    public void setCropDAO(ICropDAO cropDAO) {
+        this.cropDAO = cropDAO;
+    }
+
     @FXML
     public void initialize() {
+        // Fallback to Singleton if no dependency was injected prior to init
+        if (this.cropDAO == null) {
+            this.cropDAO = CropDAO.getInstance();
+        }
+
         cropDAO.createTable();
 
         // Populate predefined items for the ComboBox dropdowns
@@ -75,6 +84,7 @@ public class CropController {
         statusInput.getItems().addAll("Growing", "Harvested", "Failed");
         statusInput.setValue("Growing");
 
+        // The Observer pattern here automatically reflects Model property updates to the View
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("plantName"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("cropType"));
@@ -84,7 +94,7 @@ public class CropController {
 
         refreshTable();
 
-        // Listener to populate inputs when a table row is clicked
+        // Register observer listener for selection changes
         table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 lblError.setText("");
@@ -99,8 +109,10 @@ public class CropController {
                 locationInput.setText(newSelection.getLocation());
                 statusInput.setValue(newSelection.getStatus());
 
-                needsList.setItems(FXCollections.observableArrayList(cropDAO.getNeeds(newSelection.getId())));
-                growthList.setItems(FXCollections.observableArrayList(cropDAO.getGrowth(newSelection.getId())));
+                if(cropDAO instanceof CropDAO daoConcrete) {
+                    needsList.setItems(FXCollections.observableArrayList(daoConcrete.getNeeds(newSelection.getId())));
+                    growthList.setItems(FXCollections.observableArrayList(daoConcrete.getGrowth(newSelection.getId())));
+                }
             }
         });
     }
@@ -128,7 +140,8 @@ public class CropController {
             return;
         }
 
-        Crop newCrop = new Crop(
+        // Factory Pattern applied here for dynamic instantiation
+        Crop newCrop = CropFactory.createNewCrop(
                 nameInput.getText(), type,
                 Integer.parseInt(amountText),
                 dateInput.getValue() != null ? dateInput.getValue().toString() : "",
@@ -165,6 +178,8 @@ public class CropController {
                 return;
             }
 
+            // Using Observer Pattern: Because properties are updated,
+            // the TableView updates in real-time as well, but we still commit to the DB.
             selected.setPlantName(nameInput.getText());
             selected.setCropType(typeInput.getEditor().getText());
             selected.setAmount(Integer.parseInt(amountText));
@@ -198,10 +213,10 @@ public class CropController {
     void handleAddNeed(ActionEvent event) {
         Crop selected = table.getSelectionModel().getSelectedItem();
         String need = newNeedInput.getText();
-        if (selected != null && need != null && !need.isEmpty()) {
-            cropDAO.addNeed(selected.getId(), need);
+        if (selected != null && need != null && !need.isEmpty() && cropDAO instanceof CropDAO daoConcrete) {
+            daoConcrete.addNeed(selected.getId(), need);
             newNeedInput.clear();
-            needsList.setItems(FXCollections.observableArrayList(cropDAO.getNeeds(selected.getId())));
+            needsList.setItems(FXCollections.observableArrayList(daoConcrete.getNeeds(selected.getId())));
         }
     }
 
@@ -209,17 +224,17 @@ public class CropController {
     void handleAddGrowth(ActionEvent event) {
         Crop selected = table.getSelectionModel().getSelectedItem();
         String growth = newGrowthInput.getText();
-        if (selected != null && growth != null && !growth.isEmpty()) {
+        if (selected != null && growth != null && !growth.isEmpty() && cropDAO instanceof CropDAO daoConcrete) {
             String today = java.time.LocalDate.now().toString();
-            cropDAO.addGrowth(selected.getId(), today, growth);
+            daoConcrete.addGrowth(selected.getId(), today, growth);
             newGrowthInput.clear();
-            growthList.setItems(FXCollections.observableArrayList(cropDAO.getGrowth(selected.getId())));
+            growthList.setItems(FXCollections.observableArrayList(daoConcrete.getGrowth(selected.getId())));
         }
     }
 
     @FXML
     void onFilterToggled(ActionEvent event) {
-        refreshTable(); // Refresh whenever checkbox is clicked
+        refreshTable();
     }
 
     /**
@@ -279,7 +294,6 @@ public class CropController {
 
         ObservableList<Crop> cropList = FXCollections.observableArrayList(rawList);
         table.setItems(cropList);
-
         summaryChart.setData(CropAnalytics.generatePieChartData(rawList));
         timeChart.getData().clear();
         timeChart.getData().add(CropAnalytics.generateTimelineData(rawList));

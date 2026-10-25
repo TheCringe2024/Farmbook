@@ -7,18 +7,29 @@ import java.util.List;
 /**
  * data access object for handling operations related to Crops
  * methods to create the table, insert, read, update, delete
+ * Implements the Singleton Pattern
  */
 public class CropDAO implements ICropDAO {
+    private static CropDAO instance;
     private Connection connection;
     /**
+     * Private constructor enforces Singleton pattern.
      * Establishes a connection to the SQLite db using the singleton SqliteConnection instance.
      */
-    public CropDAO() {
+    private CropDAO() {
         connection = SqliteConnection.getInstance();
     }
     /**
-     * Creates the crops table in the database if it does not already exist.
+     * Retrieves the single global instance of CropDAO.
+     * @return CropDAO instance
      */
+    public static synchronized CropDAO getInstance() {
+        if (instance == null) {
+            instance = new CropDAO();
+        }
+        return instance;
+    }
+
     @Override
     public void createTable() {
         try {
@@ -139,7 +150,7 @@ public class CropDAO implements ICropDAO {
             Statement getAllStmt = connection.createStatement();
             ResultSet rs = getAllStmt.executeQuery("SELECT * FROM crops");
             while (rs.next()) {
-                crops.add(new Crop(
+                crops.add(CropFactory.createExistingCrop(
                         rs.getInt("id"),
                         rs.getString("plantName"),
                         rs.getString("cropType"),
@@ -163,6 +174,20 @@ public class CropDAO implements ICropDAO {
      */
     @Override
     public Crop getById(int id) {
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM crops WHERE id = ?");
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return CropFactory.createExistingCrop(
+                        rs.getInt("id"), rs.getString("plantName"), rs.getString("cropType"),
+                        rs.getInt("amount"), rs.getString("datePlanted"), rs.getString("notes"),
+                        rs.getString("location"), rs.getString("status")
+                );
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
         return null;
     }
     /**
