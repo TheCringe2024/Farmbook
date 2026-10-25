@@ -183,7 +183,7 @@
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="282.0" layoutX="7.0" layoutY="88.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" styleClass="parent" width="271.0" />
                   <Accordion layoutX="412.0" layoutY="92.0" />
-                  <Pane layoutX="296.0" layoutY="86.0" prefHeight="66.0" prefWidth="265.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="296.0" AnchorPane.rightAnchor="299.0" AnchorPane.topAnchor="86.0">
+                  <Pane layoutX="296.0" layoutY="86.0" prefHeight="66.0" prefWidth="265.0" style="-fx-background-color: white;" AnchorPane.topAnchor="86.0">
                      <effect>
                         <DropShadow blurType="ONE_PASS_BOX" height="5.25" radius="0.8125" width="0.0">
                            <color>
