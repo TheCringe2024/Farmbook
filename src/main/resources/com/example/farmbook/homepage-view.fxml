@@ -16,6 +16,7 @@
          <top>
             <HBox alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="104.0" prefWidth="882.0" spacing="20.0" style="-fx-background-color: #3B435F;" BorderPane.alignment="CENTER">
                <children>
+                  <HBox alignment="CENTER" HBox.hgrow="ALWAYS" spacing="20.0">
                   <VBox alignment="CENTER" prefHeight="104.0" prefWidth="208.0" spacing="5.0">
                      <children>
                         <Label text="Wind" textFill="#d0d4de" />
@@ -88,6 +89,7 @@
                         <Label text="Maximum probability" textFill="#d0d4de" />
                      </children>
                   </VBox>
+                  </HBox>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <top>
                         <ImageView fitHeight="100.0" fitWidth="146.0" BorderPane.alignment="TOP_RIGHT">
