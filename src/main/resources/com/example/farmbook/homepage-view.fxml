@@ -18,7 +18,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="104.0" prefWidth="208.0" spacing="5.0">
                      <children>
-                        <Label text="Wind" />
+                        <Label text="Wind" textFill="#d0d4de" />
                         <Label fx:id="wind_speedLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="200.0" text="WindLabel" textFill="WHITE">
                            <font>
                               <Font size="20.0" />
@@ -27,12 +27,12 @@
                               <Insets left="20.0" right="20.0" />
                            </padding>
                         </Label>
-                        <Label text="Maximum speed" />
+                        <Label text="Maximum speed" textFill="#d0d4de" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="104.0" prefWidth="174.0" spacing="5.0">
                      <children>
-                        <Label text="Temperature" />
+                        <Label text="Temperature" textFill="#d0d4de" />
                         <Label fx:id="temp_max_min" prefHeight="30.0" prefWidth="154.0" text="Max/Min temp" textFill="WHITE">
                            <font>
                               <Font size="17.0" />
@@ -41,7 +41,7 @@
                               <Insets left="20.0" right="20.0" />
                            </padding>
                         </Label>
-                        <Label alignment="CENTER" text="Max / Min" />
+                        <Label alignment="CENTER" text="Max / Min" textFill="#d0d4de" />
                      </children>
                      <opaqueInsets>
                         <Insets left="20.0" right="20.0" />
@@ -52,7 +52,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label text="Time" textFill="#aea3a3" />
+                        <Label text="Time" textFill="#d0d4de" />
                         <Label fx:id="timeLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="148.0" text="TIME" textFill="WHITE">
                            <font>
                               <Font size="20.0" />
@@ -62,7 +62,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="104.0" prefWidth="144.0" spacing="5.0">
                      <children>
-                        <Label text="UV index" />
+                        <Label text="UV index" textFill="#d0d4de" />
                         <Label fx:id="UV_indexLabel" alignment="CENTER" contentDisplay="CENTER" text="UV" textFill="WHITE">
                            <font>
                               <Font size="20.0" />
@@ -71,12 +71,12 @@
                               <Insets left="20.0" right="20.0" />
                            </padding>
                         </Label>
-                        <Label text="Daily maximum" />
+                        <Label text="Daily maximum" textFill="#d0d4de" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="104.0" prefWidth="179.0" spacing="5.0">
                      <children>
-                        <Label text="Precipitation Chance" />
+                        <Label text="Precipitation Chance" textFill="#d0d4de" />
                         <Label fx:id="precipitationLabel" alignment="CENTER" prefHeight="30.0" prefWidth="200.0" text="Precip chance" textFill="WHITE">
                            <font>
                               <Font size="20.0" />
@@ -85,7 +85,7 @@
                               <Insets left="20.0" right="20.0" />
                            </padding>
                         </Label>
-                        <Label text="Maximum probability" />
+                        <Label text="Maximum probability" textFill="#d0d4de" />
                      </children>
                   </VBox>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
