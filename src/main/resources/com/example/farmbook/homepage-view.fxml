@@ -16,7 +16,7 @@
          <top>
             <HBox alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="104.0" prefWidth="882.0" spacing="20.0" style="-fx-background-color: #3B435F;" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" HBox.hgrow="ALWAYS" spacing="20.0">
+                  <HBox alignment="CENTER" spacing="20.0" HBox.hgrow="ALWAYS">
                   <VBox alignment="CENTER" prefHeight="104.0" prefWidth="208.0" spacing="5.0">
                      <children>
                         <Label text="Wind" textFill="#d0d4de" />
@@ -106,19 +106,8 @@
             </HBox>
          </top>
          <right>
-               <VBox alignment="TOP_RIGHT" prefWidth="140.0" spacing="20.0" style="-fx-background-color: rgba(59, 67, 95, 0.6);" BorderPane.alignment="TOP_RIGHT">
+               <VBox alignment="TOP_RIGHT" prefWidth="140.0" spacing="40.0" style="-fx-background-color: rgba(59, 67, 95, 0.6);" BorderPane.alignment="TOP_RIGHT">
                   <children>
-                     <Button mnemonicParsing="false" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5;" text="Account" textAlignment="CENTER" textFill="WHITE">
-                        <VBox.margin>
-                           <Insets top="15.0" />
-                        </VBox.margin>
-                        <padding>
-                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                        </padding>
-                        <font>
-                           <Font name="System Bold" size="15.0" />
-                        </font>
-                     </Button>
                      <Button mnemonicParsing="false" onAction="#onCrops" prefHeight="74.0" prefWidth="143.0" style="-fx-background-color: #7080b5;" text="Crops" textAlignment="CENTER" textFill="WHITE">
                         <VBox.margin>
                            <Insets top="15.0" />
