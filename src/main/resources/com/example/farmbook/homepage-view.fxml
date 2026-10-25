@@ -176,10 +176,10 @@
                </VBox>
          </right>
          <opaqueInsets>
-            <Insets left="280.0" right="40.0" />
+            <Insets left="40.0" right="40.0" />
          </opaqueInsets>
          <center>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-image: white;" BorderPane.alignment="CENTER">
+            <AnchorPane maxWidth="860.0" minWidth="860.0" prefHeight="200.0" prefWidth="860.0" style="-fx-background-image: white;" BorderPane.alignment="CENTER">
                <children>
                   <Rectangle arcHeight="0.0" arcWidth="0.0" fill="WHITE" height="282.0" layoutX="7.0" layoutY="88.0" opacity="0.92" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.5" styleClass="parent" width="271.0" />
                   <Accordion layoutX="412.0" layoutY="92.0" />
