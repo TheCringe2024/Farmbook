@@ -1,34 +1,55 @@
+
 package com.example.farmbook;
 
+/** Tracks the currently authenticated FarmBook user and login session. */
 public final class SessionState {
 
     private static boolean authenticated = false;
     private static String currentUsername = null;
+    private static long sessionVersion = 0;
 
     private SessionState() {
     }
 
-    public static void login() {
+    /** Legacy login path; does not grant access to any named user's records. */
+    public static synchronized void login() {
+        sessionVersion++;
         authenticated = true;
+        currentUsername = null;
     }
 
-    /** Logs in and remembers which user it is, so Settings can show their account. */
-    public static void login(String username) {
+    /** Starts a new session for a named user. */
+    public static synchronized void login(String username) {
+        sessionVersion++;
         authenticated = true;
         currentUsername = username;
     }
 
-    public static void logout() {
+    /** Revokes the current session, including any DAOs bound to it. */
+    public static synchronized void logout() {
+        sessionVersion++;
         authenticated = false;
         currentUsername = null;
     }
 
-    public static boolean isAuthenticated() {
+    public static synchronized boolean isAuthenticated() {
         return authenticated;
     }
 
-    /** The logged-in user's name, or null if nobody has logged in with a name. */
-    public static String getCurrentUsername() {
+    public static synchronized String getCurrentUsername() {
         return currentUsername;
+    }
+
+    public static synchronized long getSessionVersion() {
+        return sessionVersion;
+    }
+
+    /** Checks the username and session version together. */
+    public static synchronized boolean isCurrentSession(
+            String username, long version) {
+        return authenticated
+                && currentUsername != null
+                && currentUsername.equals(username)
+                && sessionVersion == version;
     }
 }
