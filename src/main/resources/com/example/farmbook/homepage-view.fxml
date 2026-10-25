@@ -207,7 +207,6 @@
                         <Text layoutX="44.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maximum Vapour Pressure Deficit" />
                      </children>
                   </Pane>
-                  <Circle fill="#b8bec4" layoutX="796.0" layoutY="40.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="282.0" layoutX="8.0" layoutY="388.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="271.0" />
                   <Pane layoutX="9.0" layoutY="388.0" prefHeight="67.0" prefWidth="268.0" style="-fx-background-color: white;">
                      <effect>
