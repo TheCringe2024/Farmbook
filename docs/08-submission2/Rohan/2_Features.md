@@ -3,6 +3,32 @@
 ## Overview
 Implemented crop lifecycle tracking, filtering, validation, growth logs, and plant needs tracking.
 
+## User Stories
+Related to:
+### FR02 - Crop Records `Record Planted Crops `
+- I can add a crop with type, field/plot, quantity and date planted.
+- A crop cannot be saved with a missing field or a non-numeric
+  quantity
+
+### FR03 - Crop Progress `Record Planted Crops `
+- I can add a dated growth entry (e.g. stage, height, notes) to a
+  crop.
+- A crop’s growth entries are listed in date order.
+
+### FR03 - Crop Progress `Mark Crops Harvested or Failed`
+- I can set a crop’s status to Growing, Harvested or Failed.
+- Harvested and failed crops are hidden from the active list but
+  can still be viewed.
+
+### FR04 - Crop Needs `Record Crop Needs`
+- I can add a need (watering, fertiliser or pest treatment) to a crop
+   with a frequency or due date.
+- A crop’s needs are shown when the crop is selected.
+
+### FR05 - Inventory Records `Add Inventory Items`
+- A non-numeric quantity is rejected with a message instead of
+  crashing.
+
 ## Implemented Features
 
 ### 1. Crop Details & Lifecycle
