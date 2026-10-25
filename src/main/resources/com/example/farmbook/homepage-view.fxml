@@ -176,7 +176,7 @@
                </VBox>
          </right>
          <opaqueInsets>
-            <Insets left="40.0" right="40.0" />
+            <Insets left="280.0" right="40.0" />
          </opaqueInsets>
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-image: white;" BorderPane.alignment="CENTER">
