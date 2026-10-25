@@ -180,6 +180,7 @@
          </opaqueInsets>
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-image: white;" BorderPane.alignment="CENTER">
+               <BorderPane.margin><Insets left="240.0" /></BorderPane.margin>
                <children>
                   <Rectangle arcHeight="0.0" arcWidth="0.0" fill="WHITE" height="282.0" layoutX="7.0" layoutY="88.0" opacity="0.92" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.5" styleClass="parent" width="271.0" />
                   <Accordion layoutX="412.0" layoutY="92.0" />
