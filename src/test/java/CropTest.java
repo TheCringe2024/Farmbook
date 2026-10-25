@@ -1,4 +1,5 @@
 import com.example.farmbook.Crop;
+import com.example.farmbook.CropFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,8 +10,7 @@ public class CropTest {
 
     @BeforeEach
     void setUp() {
-
-        crop = new Crop("Corn", "Grain", 500, "2023-10-01", "Test planting", "Field A", "Growing");
+        crop = CropFactory.createNewCrop("Corn", "Grain", 500, "2023-10-01", "Test planting", "Field A", "Growing");
     }
 
     @Test
@@ -55,7 +55,7 @@ public class CropTest {
 
     @Test
     void constructorWithId_setsIdCorrectly() {
-        Crop cropWithId = new Crop(10, "Wheat", "Cereal", 200, "2023-11-05", "Winter wheat", "Plot 2", "Harvested");
+        Crop cropWithId = CropFactory.createExistingCrop(10, "Wheat", "Cereal", 200, "2023-11-05", "Winter wheat", "Plot 2", "Harvested");
         assertEquals(10, cropWithId.getId());
         assertEquals("Wheat", cropWithId.getPlantName());
         assertEquals("Harvested", cropWithId.getStatus());
